@@ -147,6 +147,14 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
     。      記号,句点,*,*,*,*,。,。,。
     EOS
 
+## 今後の発展
+継続して開発しますので、気になるところはどんどん改善されます。
+
+ユーザの8割が気になる部分を優先して改善します。
+
+専門家が気になるレアケースは、解決に時間がかかると判断したら
+華麗にスルーさせていただきます。
+
 ## Bibtex
 
     @misc{sato2015mecabipadicneologd,
