@@ -14,7 +14,7 @@ When you analyze the Web documents, it's better to use this system dictionary an
 
 ## Pros and Cons
 ### Pros
-- Recorded more than about 1.6 million pairs(including duplicate entries) of surface/furigana(kana indicating the pronunciation of kanji) of the words such as the named entity that can not be tokenized correctly using default system dictionary of MeCab.
+- Recorded about 1.56 million pairs(including duplicate entries) of surface/furigana(kana indicating the pronunciation of kanji) of the words such as the named entity that can not be tokenized correctly using default system dictionary of MeCab.
 - Update process of this dictionary will automatically run on development server.
     - I'm planning to renew this dictionary in monthly beginning of the month and middle of the month.
 - When renewing by utilizing the language resources on Web, a new named entity can be recorded.
