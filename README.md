@@ -1,5 +1,10 @@
 # README
 
+## For Japanese
+README.ja.md is written in Japanese.
+
+- https://github.com/neologd/mecab-ipadic-neologd/blob/master/README.ja.md
+
 ## Documentation
 You can find more detailed documentation and examples in the the following wiki.
 
