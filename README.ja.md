@@ -1,70 +1,71 @@
-# README
+# README(最後まで読んでネ)
 
-## Documentation
-You can find more detailed documentation and examples in the the following wiki.
+## 詳細な情報
+mecab-ipadic-neologd に関する詳細な情報(サンプルコードなど)は以下の Wiki に書いてあります。
 
-- https://github.com/neologd/mecab-ipadic-neologd/wiki/Home
+- https://github.com/neologd/mecab-ipadic-neologd/wiki/Home.ja
 
-## Overview
-mecab-ipadic-neologd is customized system dictionary based on many language resources on Web for Mecab.
-When you analyze the Web documents, it's better to use this system dictionary and default one(ipadic) together.
+## mecab-ipadic-neologd とは
+mecab-ipadic-neologd は多数のWeb上の言語資源に基づくカスタマイズされた MeCab 用のシステム辞書です。
+Web上の文書の解析をする際には、この辞書と標準のシステム辞書(ipadic)を併用することをオススメします。
 
-## Pros and Cons
-### Pros
-- Recorded more than about 1.6 million pairs(including duplicate entries) of surface/furigana(kana indicating the pronunciation of kanji) of the words such as the named entity that can not be tokenized correctly using default system dictionary of MeCab.
-- Update process of this dictionary will automatically run on development server.
-    - I'm planning to renew this dictionary in monthly beginning of the month and middle of the month.
-- When renewing by utilizing the language resources on Web, a new named entity can be recorded.
-    - The resources which are being utilizeed at present are as follows.
-        - Dump data of hatena keyword
-        - Japanese postal code number data download(ken_all.lzh)
-        - The name-of-the-station list of the Japan whole country
-        - A lot of documents which are crawled from Web
-    - I'm planning to record the words such as the named entity which will be extracted from other new language resource.
+## 利点と欠点
+### 利点
+- MeCab の標準のシステム辞書では正しく分割できない固有表現などの語の表層(表記)とフリガナの組を約160万組(重複エントリを含む)採録しています
+- この辞書の更新は開発サーバ上で自動的におこなわれます
+    - 毎月月初と中旬に更新する予定です
+- Web上の言語資源を活用しているので、更新時に新しい固有表現を採録できます
+    - 現在使用している資源は以下のとおりです
+        - はてなキーワードのダンプデータ
+        - 郵便番号データダウンロード
+        - 日本全国駅名一覧のコーナー
+        - Web からクロールした大量の文書データ
+- 今後も他の新たな言語資源から抽出した固有表現などの語を採録する予定です
 
-### Cons
-- Classification of the named entity is insufficient
-    - Ex. A person name and a product name are classified into the same named entity category.
-- A word which isn't named entity is recorded as named entity too.
-- Since the manual check to all the named entities can not conducted, it may have made a mistake in matching of surface of the named entity and furigana of the named entity.
-- Unless the language resources on Web are updated, a new named entity won't add to the dictionary.
+### 欠点
+- 固有表現の分類が不十分です
+    - 例えば人名と製品名が同じ固有表現カテゴリに分類されています
+- 固有表現では無い語も固有表現として登録されています
+- 固有表現の表記とフリガナの対応づけを間違っている場合があります
+    - すべての固有表現とフリガナの組に対する人手による検査を実施していないためです
+- Web上の資源が更新されないなら、新しい固有表現は辞書に追加されません
 
-## Getting started
-### Preparation of installing
-The data which is a seed of the dictionary will distribute via GitHub repository.
+## 使用開始
+### mecab-ipadic-neologd をインストールする準備
+辞書の元になるデータの配布と更新は GitHub 経由で行います。
 
-In first time, you should execute the following command to 'git clone'.
+初回は以下のコマンドでgit cloneしてください。
 
     $ git clone https://github.com/neologd/mecab-ipadic-neologd.git
 
-OR
+または
 
     $ git clone git@github.com:neologd/mecab-ipadic-neologd.git
 
-### How to install/update mecab-ipadic-neologd
+### mecab-ipadic-neologd のインストール/更新
 #### Step.1
-Move to a directory of the repository which was cloned in the above preparation.
+上記の準備でcloneしたリポジトリに移動します。
 
     $ cd mecab-ipadic-neologd
 
 #### Step.2
-Update to the latest state.
+リポジトリの状態を最新の状態にします。
 
     $ git pull
 
 #### Step.3
-You can install or can update(overwritten) the recent mecab-ipadic-neologd by following command.
+以下のコマンドを実行するとインストール、または、上書きによる更新ができます。
 
     $ ./bin/install-mecab-ipadic-neologd
 
-### How to use mecab-ipadic-neologd
-When you want to use mecab-ipadic-neologd, you should set the path of custom system dictionay(*/lib/mecab/dic/mecab-ipadic-neologd/) as -d option of MeCab.
+### mecab-ipadic-neologd の使用方法
+mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
-#### Example (on CentOS)
+#### 例 (CentOS 上でインストールした場合)
 $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
-## Example of output of MeCab
-### When you use mecab-ipadic-neologd
+## MeCabの実行結果の例
+### mecab-ipadic-neologd をシステム辞書として使った場合
     $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
     10日    名詞,固有名詞,一般,*,*,24502,10日,トオカ,トオカ
     放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
@@ -97,14 +98,13 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
     。      記号,句点,*,*,*,*,。,。,。
     EOS
 
-#### What's the point of the above result
+#### どこに効果が出ている?
+- Mecab は mecab-ipadic-neologd に収録された語を正しく正しく分割できました
+    - 「中居正広のミになる図書館」は2011年後半に生まれた新しい語です
+        - この語はWeb上の言語資源が更新されたので正しく正しく分割できました
+- mecab-ipadic-neologd に収録されているほとんどの語にフリガナが付いています
 
-- MeCab can parse the words which are recorded in mecab-ipadic-neologd correctly.
-    - "中居正広のミになる図書館(Masahiro Nakai's library to improve an ability)" is a new word.
-        - This word could parse correctly because of updating of the language resources on Web.
-- Almost all of the entry of mecab-ipadic-neologd has the value of furigana field.
-
-### When you use default system dictionary
+### 標準のシステム辞書(ipadic-2.7.0)を使った場合
     $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab
     10      名詞,数,*,*,*,*,*
     日      名詞,接尾,助数詞,*,*,*,日,ニチ,ニチ
@@ -145,7 +145,6 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
     た      助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
     。      記号,句点,*,*,*,*,。,。,。
     EOS
-
 
 ## Bibtex
 
