@@ -4,28 +4,6 @@ Copyright (C) 2015 Toshinori Sato (@overlast)
 
       https://github.com/neologd/mecab-ipadic-neologd
 
-Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-----
-
-著作権及び使用条件
-
-佐藤敏紀
-
-1.  MeCab用のシステム辞書エントリ及び、システム辞書生成プログラム
-   『ipadic-mecab-neologd』(以後、本データ)の著作権は、佐藤敏紀
-    (以後、開発者)が保持する。
-
     i. 本データは、奈良先端科学技術大学院大学情報科学研究科
        自然言語処理学講座（松本研究室）で作成された IPADIC ver.2.7.0
        の辞書項目とシステム辞書として統合して使用することを前提
@@ -34,16 +12,16 @@ limitations under the License.
        IPADIC ver.2.7.0の著作権は、奈良先端科学技術大学院大学にある。
 
        本データにはIPADIC ver.2.7.0は含まれていないが、利用者が
-       インストールする辞書は IPADIC ver.2.7.0 を改変したものになる。
+       インストールした辞書は IPADIC ver.2.7.0 を改変したものになる。
 
        IPADIC ver.2.7.0 の使用条件に基づき、本文書末尾に IPADIC の
        著作権及び使用条件を明示する。
 
-   ii. また、IPADIC ver.2.7.0 には、ICOTの研究成果物（ICOT フリーソフ
+       また、IPADIC ver.2.7.0 には、ICOTの研究成果物（ICOT フリーソフ
        トウェア）が含まれている。そのため、IPADIC ver.2.7.0 の使用条件
        には、ICOT フリーソフトウェアの使用条件中の条項が添付されている。
 
-  iii. 本データは、株式会社はてなが提供するはてなキーワード一覧ファイル
+   ii. 本データは、株式会社はてなが提供するはてなキーワード一覧ファイル
        中の表記、及び、読み仮名の大半を使用している。
 
        はてなキーワード一覧ファイルの著作権は、株式会社はてなにある。
@@ -56,7 +34,7 @@ limitations under the License.
        はてなキーワード :
        http://developer.hatena.ne.jp/ja/documents/keyword/misc/catalog
 
-   iv. 本データは、日本郵便株式会社が提供する郵便番号データ中の表記、
+  iii. 本データは、日本郵便株式会社が提供する郵便番号データ中の表記、
        及び、読み仮名を使用している。
 
        日本郵便株式会社は、郵便番号データに限っては著作権を主張しないと
@@ -72,7 +50,7 @@ limitations under the License.
        郵便番号データ :
          http://www.post.japanpost.jp/zipcode/dl/readme.html
 
-    v. 本データは、スナフキん氏が提供する日本全国駅名一覧中の表記、及び
+   iv. 本データは、スナフキん氏が提供する日本全国駅名一覧中の表記、及び
        読み仮名を使用している。
 
        日本全国駅名一覧の著作権は、スナフキん氏にある。
@@ -87,55 +65,28 @@ limitations under the License.
        日本全国駅名一覧のコーナー :
          http://www5a.biglobe.ne.jp/~harako/data/station.htm
 
-   vi. 本データは、Web上からクロールした大量の文書データから抽出した
+    v. 本データは、Web上からクロールした大量の文書データから抽出した
        表記とそれに対応する読み仮名のデータを含んでいる。
 
-       抽出した表記とそれに対応する読み仮名の組は、上記の i. から v.
+       抽出した表記とそれに対応する読み仮名の組は、上記の i. から iv.
        の言語資源の組み合わせによって得られる組のみを採録した。
 
        Web 上に文書データを公開して下さっている皆様に感謝いたします。
 
-2.  本データの使用、複製、改変、再配布は、次の条件に従う限り許可する。
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-    i. 本データを複製する場合は、本文書も併せて複製すること。
+      http://www.apache.org/licenses/LICENSE-2.0
 
-   ii. 本データを原形あるいは改変した形で再配布する場合は、本データの
-       著作権を佐藤敏紀が保持することを明示するとともに、本文書を添付
-       すること。
-
-  iii. 本データを改変する場合は、本データの版番号(seed/*.csv.xzの
-       ファイル名に含まれる8桁の年月日を示す表現)を明示すること。
-
-   iV. 以上の著作権及び使用条件を開発者が任意のタイミングで書き換えることが
-       可能であるとし、書き換え前の文書がいかなる表現であったとしても
-       最も新しく公開した著作権及び使用条件以外は無効であり、
-       開発者は無効となった著作権及び使用条件に関連して発生した
-       如何なるトラブルに対する責任も負わないものとし、
-       開発者は賠償する責任を負わないものとする。
-
-       最新の著作権及び使用条件は以下の参照先で公開している。
-
-       mecab-ipadic-neologd : COPYING
-         https://github.com/neologd/mecab-ipadic-neologd/COPYING
-
-   v.  いたるところにツッコミどころがあるがあえてスルーする度量を持つ。
-
-  vi.  第iv項、第v項、及びvi項は削除して問題ないと開発者が判断した
-       任意のタイミングで削除可能である。
-
-3.  本データを利用することにより、直接的、間接的に生じたいかなる損害に
-    ついても、佐藤敏紀は賠償する責任を負わない。
-
-4.  本データのBibtexを以下に示す。
-
-    @misc{sato2015mecabipadicneologd,
-        title  = {Neologism dictionary based on the language resources on the Web for Mecab},
-        author = {Toshinori, Sato},
-        url    = {https://github.com/neologd/mecab-ipadic-neologd},
-        year   = {2015}
-    }
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 -----
+
 IPADIC ver.2.7.0 の著作権及び使用条件の表示
 (ICOT フリーソフトウェアの使用条件に関する条項を含む)
 
