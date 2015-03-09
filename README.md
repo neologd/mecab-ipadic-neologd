@@ -6,7 +6,10 @@ You can find more detailed documentation and examples in the the following wiki.
 - https://github.com/neologd/mecab-ipadic-neologd/wiki/Home
 
 ## Overview
-mecab-ipadic-neologd is customized system dictionary based on many language resources on Web for Mecab.
+mecab-ipadic-neologd is customized system dictionary for Mecab.
+
+This dictionary include many neologisms(new word) which are extracted from many language resources on the Web.
+
 When you analyze the Web documents, it's better to use this system dictionary and default one(ipadic) together.
 
 ## Pros and Cons
@@ -150,7 +153,7 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 ## Bibtex
 
     @misc{sato2015mecabipadicneologd,
-        title  = {Neologism dictionary based on the language resources on Web for Mecab},
+        title  = {Neologism dictionary based on the language resources on the Web for Mecab},
         author = {Toshinori, Sato},
         url    = {https://github.com/neologd/mecab-ipadic-neologd},
         year   = {2015}
