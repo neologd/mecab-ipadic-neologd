@@ -1,0 +1,1 @@
+# mecab-ipadic-neologd
