@@ -6,7 +6,8 @@ mecab-ipadic-neologd に関する詳細な情報(サンプルコードなど)は
 - https://github.com/neologd/mecab-ipadic-neologd/wiki/Home.ja
 
 ## mecab-ipadic-neologd とは
-mecab-ipadic-neologd は多数のWeb上の言語資源に基づくカスタマイズされた MeCab 用のシステム辞書です。
+mecab-ipadic-neologd は、多数のWeb上の言語資源から得た新語を追加することでカスタマイズした MeCab 用のシステム辞書です。
+
 Web上の文書の解析をする際には、この辞書と標準のシステム辞書(ipadic)を併用することをオススメします。
 
 ## 利点と欠点
@@ -149,7 +150,7 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 ## Bibtex
 
     @misc{sato2015mecabipadicneologd,
-        title  = {Neologism dictionary based on the language resources on Web for Mecab},
+        title  = {Neologism dictionary based on the language resources on the Web for Mecab},
         author = {Toshinori, Sato},
         url    = {https://github.com/neologd/mecab-ipadic-neologd},
         year   = {2015}
