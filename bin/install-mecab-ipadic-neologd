@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+BASEDIR=$(cd $(dirname $0);pwd)
+ECHO_PREFIX="[install-mecab-ipadic-neologd] :"
+
+echo "$ECHO_PREFIX Start.."
+
+echo "$ECHO_PREFIX Check the exists of libraries"
+COMMANDS=(find sort head cut egrep mecab mecab-config make curl sed cat diff tar unxz xargs grep iconv)
+for COMMAND in ${COMMANDS[@]};do
+    if [ ! `which ${COMMAND}` ]; then
+        echo "$ECHO_PREFIX ${COMMAND} is not found."
+        exit
+    else
+        echo "$ECHO_PREFIX ${COMMAND} => ok"
+    fi
+done
+
+echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh
+
+echo "$ECHO_PREFIX Get results of tokenize test"
+${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
+
+function wanna_install(){
+    while true;do
+        echo ""
+        echo "$ECHO_PREFIX Please check the list of differences in the upper part."
+        echo ""
+        echo "$ECHO_PREFIX Do you want to install mecab-ipadic-neologd? Type yes or no."
+        read answer
+        case $answer in
+            yes)
+                return 0
+                ;;
+            no)
+                echo "$ECHO_PREFIX Quit from installing process"
+                echo "$ECHO_PREFIX Finish.."
+                exit
+                ;;
+            *)
+                echo -e "cannot understand $answer.\n"
+                ;;
+        esac
+    done
+}
+
+wanna_install
+
+echo "$ECHO_PREFIX OK. Let's install mecab-ipadic-neologd."
+${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh
+
+echo "$ECHO_PREFIX Finish.."
