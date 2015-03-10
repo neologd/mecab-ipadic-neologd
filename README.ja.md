@@ -66,9 +66,11 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 辞書の元になるデータの配布と更新は GitHub 経由で行います。
 
 初回は以下のコマンドでgit cloneしてください。
+
     $ git clone https://github.com/neologd/mecab-ipadic-neologd.git
 
 または
+
     $ git clone git@github.com:neologd/mecab-ipadic-neologd.git
 
 
