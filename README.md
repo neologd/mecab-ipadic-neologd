@@ -6,16 +6,16 @@ README.ja.md is written in Japanese.
 - https://github.com/neologd/mecab-ipadic-neologd/blob/master/README.ja.md
 
 ## Documentation
-You can find more detailed documentation and examples in the the following wiki.
+You can find more detailed documentation and examples in the following wiki.
 
 - https://github.com/neologd/mecab-ipadic-neologd/wiki/Home
 
 ## Overview
-mecab-ipadic-neologd is customized system dictionary for Mecab.
+mecab-ipadic-neologd is customized system dictionary for MeCab.
 
-This dictionary include many neologisms(new word) which are extracted from many language resources on the Web.
+This dictionary includes many neologisms (new word), which are extracted from many language resources on the Web.
 
-When you analyze the Web documents, it's better to use this system dictionary and default one(ipadic) together.
+When you analyze the Web documents, it's better to use this system dictionary and default one (ipadic) together.
 
 ## Pros and Cons
 ### Pros
@@ -23,23 +23,23 @@ When you analyze the Web documents, it's better to use this system dictionary an
 - Update process of this dictionary will automatically run on development server.
     - I'm planning to renew this dictionary in monthly beginning of the month and middle of the month.
 - When renewing by utilizing the language resources on Web, a new named entity can be recorded.
-    - The resources which are being utilizeed at present are as follows.
+    - The resources are being utilized at present are as follows.
         - Dump data of hatena keyword
-        - Japanese postal code number data download(ken_all.lzh)
+        - Japanese postal code number data download (ken_all.lzh)
         - The name-of-the-station list of the Japan whole country
-        - A lot of documents which are crawled from Web
-    - I'm planning to record the words such as the named entity which will be extracted from other new language resource.
+        - A lot of documents, which crawled from Web
+    - I'm planning to record the words such as the named entity, which will be extracted from other new language resource.
 
 ### Cons
 - Classification of the named entity is insufficient
     - Ex. A person name and a product name are classified into the same named entity category.
-- A word which isn't named entity is recorded as named entity too.
-- Since the manual check to all the named entities can not conducted, it may have made a mistake in matching of surface of the named entity and furigana of the named entity.
+- Not named entity word is recorded as named entity too.
+- Since the manual checking to all the named entities can't conduct, it may have made a mistake in matching of surface of the named entity and furigana of the named entity.
 - Unless the language resources on Web are updated, a new named entity won't add to the dictionary.
 
 ## Getting started
 ### Preparation of installing
-The data which is a seed of the dictionary will distribute via GitHub repository.
+A seed data of the dictionary will distribute via GitHub repository.
 
 In first time, you should execute the following command to 'git clone'.
 
