@@ -34,7 +34,7 @@ MECAB_PATH=`which mecab`
 MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 
-echo "$ECHO_PREFIX Sodo make install to ${INSTALL_DIR_PATH}"
+echo "$ECHO_PREFIX Sudo make install to ${INSTALL_DIR_PATH}"
 cd ${BUILT_DIC_DIR}
 sudo make install
 
