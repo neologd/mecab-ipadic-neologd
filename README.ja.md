@@ -10,7 +10,7 @@ mecab-ipadic-neologd は、多数のWeb上の言語資源から得た新語を�
 
 Web上の文書の解析をする際には、この辞書と標準のシステム辞書(ipadic)を併用することをオススメします。
 
-## 利点と欠点
+## 特徴
 ### 利点
 - MeCab の標準のシステム辞書では正しく分割できない固有表現などの語の表層(表記)とフリガナの組を約156万組(重複エントリを含む)採録しています
 - この辞書の更新は開発サーバ上で自動的におこなわれます
@@ -21,7 +21,7 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
         - 郵便番号データダウンロード
         - 日本全国駅名一覧のコーナー
         - Web からクロールした大量の文書データ
-- 今後も他の新たな言語資源から抽出した固有表現などの語を採録する予定です
+    - 今後も他の新たな言語資源から抽出した固有表現などの語を採録する予定です
 
 ### 欠点
 - 固有表現の分類が不十分です
@@ -30,18 +30,46 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 - 固有表現の表記とフリガナの対応づけを間違っている場合があります
     - すべての固有表現とフリガナの組に対する人手による検査を実施していないためです
 - Web上の資源が更新されないなら、新しい固有表現は辞書に追加されません
+- 対応している文字コードは UTF-8 のみです
+    -- インストール済みの MeCab が使用している ipadic が UTF-8 版である必要があります
 
 ## 使用開始
+### 動作に必要なもの
+
+インストール時に mecab-ipadic をベースにビルド処理をするために必要なライブラリがあります。
+
+apt、yum や homebrew でインストールするか、自前でコンパイルしてインストールして下さい。
+
+- C++ コンパイラ : GCC-4.4.7 と Apple LLVM version 6.0 で動作を確認しています
+- iconv (libiconv): 辞書のコード変換に使います
+- mecab : MeCab 本体です
+    - mecab と mecab-config を使います
+- mecab-ipadic : MeCab 用の辞書のひとつです
+    - インストール時のテストに使います
+    - 自前でインストールするときは以下の手順で文字コードを UTF-8 インストールして下さい
+        - ./configure --with-charset=utf8; make; sudo make install
+- xz : mecab-ipadic-neologd のシードの解凍に unxz を使います
+
+他にも足りないものがあったら適時インストールして下さい。
+
+-  CentOS の場合
+
+    $ sudo yum install mecab mecab-ipadic xz
+
+- MacOS の場合
+
+    $ brew install mecab mecab-ipadic xz
+
 ### mecab-ipadic-neologd をインストールする準備
+
 辞書の元になるデータの配布と更新は GitHub 経由で行います。
 
 初回は以下のコマンドでgit cloneしてください。
-
     $ git clone https://github.com/neologd/mecab-ipadic-neologd.git
 
 または
-
     $ git clone git@github.com:neologd/mecab-ipadic-neologd.git
+
 
 ### mecab-ipadic-neologd のインストール/更新
 #### Step.1
@@ -58,6 +86,13 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 以下のコマンドを実行するとインストール、または、上書きによる更新ができます。
 
     $ ./bin/install-mecab-ipadic-neologd
+
+インストール先は mecab-config に従って決まります。
+以下のコマンドを実行すると確認できます。
+
+    $ echo `mecab-config --dicdir`"/mecab-ipadic-neologd"
+
+複数の MeCab をインストールしている場合は、任意の mecab-config にパスを通して下さい。
 
 ### mecab-ipadic-neologd の使用方法
 mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
