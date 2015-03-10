@@ -57,7 +57,11 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ sudo yum install mecab mecab-ipadic xz
 
-- MacOS の場合
+- Ubuntu の場合
+
+    $ sudo aptitude install mecab mecab-ipadic-utf8 xz-utils
+
+- Mac OSX の場合
 
     $ brew install mecab mecab-ipadic xz
 
