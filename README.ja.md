@@ -135,9 +135,9 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
     EOS
 
 #### どこに効果が出ている?
-- Mecab は mecab-ipadic-neologd に収録された語を正しく正しく分割できました
+- Mecab は mecab-ipadic-neologd に収録された語を正しく分割できました
     - 「中居正広のミになる図書館」は2011年後半に生まれた新しい語です
-        - この語はWeb上の言語資源が更新されたので正しく正しく分割できました
+        - この語はWeb上の言語資源が更新されたので正しく分割できました
 - mecab-ipadic-neologd に収録されているほとんどの語にフリガナが付いています
 
 ### 標準のシステム辞書(ipadic-2.7.0)を使った場合
