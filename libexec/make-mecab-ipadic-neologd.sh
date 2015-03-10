@@ -65,7 +65,7 @@ fi
 tar xfvz ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz -C ${BASEDIR}/../build/
 mv ${BASEDIR}/../build/${ORG_DIC_NAME} ${NEOLOGD_DIC_NAME}
 
-echo "${ECHO_PREFIX} Configure custum system dictionary on ${NEOLOGD_DIC_DIR}"
+echo "${ECHO_PREFIX} Configure custom system dictionary on ${NEOLOGD_DIC_DIR}"
 
 cd ${NEOLOGD_DIC_DIR}
 
@@ -90,10 +90,10 @@ SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
-echo "${ECHO_PREFIX} Re-Index system dictionaty"
+echo "${ECHO_PREFIX} Re-Index system dictionary"
 ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8
 
-echo "${ECHO_PREFIX} Make custum system dictionary on ${BASEDIR}/../build/${NEOLOGD_DIC_NAME}"
+echo "${ECHO_PREFIX} Make custom system dictionary on ${BASEDIR}/../build/${NEOLOGD_DIC_NAME}"
 make
 
 echo "$ECHO_PREFIX Finish.."
