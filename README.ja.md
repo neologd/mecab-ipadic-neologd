@@ -46,7 +46,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     - mecab と mecab-config を使います
 - mecab-ipadic : MeCab 用の辞書のひとつです
     - インストール時のテストに使います
-    - 自前でインストールするときは以下の手順で文字コードを UTF-8 インストールして下さい
+    - ソースコードからインストールするときは以下の手順で文字コードを UTF-8 インストールして下さい
         - ./configure --with-charset=utf8; make; sudo make install
 - xz : mecab-ipadic-neologd のシードの解凍に unxz を使います
 
