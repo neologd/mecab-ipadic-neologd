@@ -190,9 +190,6 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
 ユーザの8割が気になる部分を優先して改善します。
 
-専門家が気になるレアケースは、解決に時間がかかると判断したら
-華麗にスルーさせていただきます。
-
 ## Bibtex
 
     @misc{sato2015mecabipadicneologd,
