@@ -55,15 +55,15 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 #### 例
 -  CentOS の場合
 
-    $ sudo yum install mecab mecab-ipadic xz
+    $ sudo yum install mecab mecab-ipadic git make curl xz
 
 - Ubuntu の場合
 
-    $ sudo aptitude install mecab mecab-ipadic-utf8 xz-utils
+    $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils
 
 - Mac OSX の場合
 
-    $ brew install mecab mecab-ipadic xz
+    $ brew install mecab mecab-ipadic git make curl xz
 
 ### mecab-ipadic-neologd をインストールする準備
 
