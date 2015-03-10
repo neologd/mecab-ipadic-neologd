@@ -204,3 +204,7 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
 ## Copyrights
 Copyright (c) 2015 Toshinori Sato (@overlast) All rights reserved.
+
+ライセンスは Apache License, Version 2.0 です。下記をご参照下さい。
+
+- https://github.com/neologd/mecab-ipadic-neologd/blob/master/COPYING
