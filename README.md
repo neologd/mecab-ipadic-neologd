@@ -1,4 +1,4 @@
-# README
+# mecab-ipadic-NEologd : Neologism dictionary for MeCab
 
 ## For Japanese
 README.ja.md is written in Japanese.
@@ -7,7 +7,7 @@ README.ja.md is written in Japanese.
 
 ## Documentation
 You can find more detailed documentation and examples in the following wiki.
-
+≈≈
 - https://github.com/neologd/mecab-ipadic-neologd/wiki/Home
 
 ## Overview
