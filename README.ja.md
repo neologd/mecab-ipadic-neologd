@@ -25,7 +25,7 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 
 ### 欠点
 - 固有表現の分類が不十分です
-    - 例えば人名と製品名が同じ固有表現カテゴリに分類されています
+    - 例えば一部の人名と製品名が同じ固有表現カテゴリに分類されています
 - 固有表現では無い語も固有表現として登録されています
 - 固有表現の表記とフリガナの対応づけを間違っている場合があります
     - すべての固有表現とフリガナの組に対する人手による検査を実施していないためです
@@ -40,15 +40,22 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 
 apt、yum や homebrew でインストールするか、自前でコンパイルしてインストールして下さい。
 
-- C++ コンパイラ : GCC-4.4.7 と Apple LLVM version 6.0 で動作を確認しています
-- iconv (libiconv): 辞書のコード変換に使います
-- mecab : MeCab 本体です
+- C++ コンパイラ
+    - GCC-4.4.7 と Apple LLVM version 6.0 で動作を確認しています
+- iconv (libiconv)
+    - 辞書のコード変換に使います
+- mecab
+    - MeCab 本体です
     - mecab と mecab-config を使います
-- mecab-ipadic : MeCab 用の辞書のひとつです
-    - インストール時のテストに使います
-    - ソースコードからインストールするときは以下の手順で文字コードを UTF-8 インストールして下さい
-        - ./configure --with-charset=utf8; make; sudo make install
-- xz : mecab-ipadic-neologd のシードの解凍に unxz を使います
+- mecab-ipadic
+    - MeCab 用の辞書のひとつです
+        - インストール時のテストに使います
+        - ソースコードからインストールするときは以下の手順で文字コードを UTF-8 インストールして下さい
+
+    ./configure --with-charset=utf8; make; sudo make install
+
+- xz
+    - mecab-ipadic-neologd のシードの解凍に unxz を使います
 
 他にも足りないものがあったら適時インストールして下さい。
 
@@ -109,7 +116,8 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
 #### 例 (CentOS 上でインストールした場合)
-$ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
+
+    $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
 ## MeCabの実行結果の例
 ### mecab-ipadic-neologd をシステム辞書として使った場合
