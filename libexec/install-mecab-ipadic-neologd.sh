@@ -21,7 +21,7 @@ ECHO_PREFIX="[install-mecab-ipadic-neologd] :"
 
 echo "$ECHO_PREFIX Start.."
 
-YMD=`ls -c \`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz\` | head -1 | egrep -o '[0-9]{8}' | tail -1`
+YMD=`ls -c \`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz\` | egrep -o '[0-9]{8}' | tail -1`
 if [ ! -e ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} ]; then
     echo "${ECHO_PREFIX} ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} isn't there."
     echo "${ECHO_PREFIX} You should execute libexec/make-mecab-ipadic-neologd.sh first."
