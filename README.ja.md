@@ -1,4 +1,4 @@
-# README(最後まで読んでネ)
+# mecab-ipadic-NEologd : Neologism dictionary for MeCab
 
 ## 詳細な情報
 mecab-ipadic-neologd に関する詳細な情報(サンプルコードなど)は以下の Wiki に書いてあります。
