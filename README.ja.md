@@ -67,7 +67,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 - Mac OSX の場合
 
-    $ brew install mecab mecab-ipadic git make curl xz
+    $ brew install mecab mecab-ipadic git curl xz
 
 ### mecab-ipadic-neologd をインストールする準備
 
