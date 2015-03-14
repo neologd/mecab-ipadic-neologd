@@ -113,6 +113,11 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 複数の MeCab をインストールしている場合は、任意の mecab-config にパスを通して下さい。
 
+任意の path にインストールしたい場合や、user 権限でインストールする際のオプションなどは以下で確認できます。
+
+    $ ./bin/install-mecab-ipadic-neologd -h
+
+
 ### mecab-ipadic-neologd の使用方法
 mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
