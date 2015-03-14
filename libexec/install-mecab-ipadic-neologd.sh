@@ -33,10 +33,25 @@ BUILT_DIC_DIR=${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 MECAB_PATH=`which mecab`
 MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
+INSTALL_AS_USER=0
 
-echo "$ECHO_PREFIX Sudo make install to ${INSTALL_DIR_PATH}"
+while getopts p:u: OPT
+do
+  case $OPT in
+    "p" ) INSTALL_DIR_PATH=$OPTARG ;;
+    "u" ) INSTALL_AS_USER=$OPTARG ;;
+  esac
+done
+
 cd ${BUILT_DIC_DIR}
-sudo make install
+
+if [ ${INSTALL_AS_USER} = 1 ]; then
+    echo "$ECHO_PREFIX Make install to ${INSTALL_DIR_PATH}"
+    make install
+else
+    echo "$ECHO_PREFIX Sudo make install to ${INSTALL_DIR_PATH}"
+    sudo make install
+fi
 
 if [ -e ${MECAB_DIC_DIR} ]; then
     echo ""

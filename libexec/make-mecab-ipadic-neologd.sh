@@ -74,6 +74,13 @@ MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
 MECAB_LIBEXEC_DIR=`${MECAB_PATH}-config --libexecdir`
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 
+while getopts p: OPT
+do
+  case $OPT in
+    "p" ) INSTALL_DIR_PATH=$OPTARG ;;
+  esac
+done
+
 LIBS=-liconv ./configure --prefix=${INSTALL_DIR_PATH} --with-charset=utf8
 
 echo "${ECHO_PREFIX} Encode the character encoding of system dictionary resources from EUC_JP to UTF-8"
