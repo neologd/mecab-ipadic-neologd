@@ -53,7 +53,7 @@ else
     sudo make install
 fi
 
-if [ -e ${MECAB_DIC_DIR} ]; then
+if [ -e ${INSTALL_DIR_PATH} ]; then
     echo ""
     echo "${ECHO_PREFIX} Install completed."
     echo "${ECHO_PREFIX} When you use MeCab, you can set '${INSTALL_DIR_PATH}' as a value of '-d' option of MeCab."
@@ -62,7 +62,7 @@ if [ -e ${MECAB_DIC_DIR} ]; then
     echo "    $ mecab -d ${INSTALL_DIR_PATH} ..."
     echo ""
 else
-    echo "${ECHO_PREFIX} ${MECAB_DIC_DIR} can't be found. Install Failed."
+    echo "${ECHO_PREFIX} ${INSTALL_DIR_PATH} can't be found. Install Failed."
 fi
 
 echo "$ECHO_PREFIX Finish.."
