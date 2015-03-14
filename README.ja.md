@@ -106,7 +106,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ ./bin/install-mecab-ipadic-neologd
 
-インストール先は mecab-config に従って決まります。
+インストール先はオプション未指定の場合 mecab-config に従って決まります。
 以下のコマンドを実行すると確認できます。
 
     $ echo `mecab-config --dicdir`"/mecab-ipadic-neologd"
