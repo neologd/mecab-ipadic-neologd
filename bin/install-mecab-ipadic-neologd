@@ -23,7 +23,7 @@ ECHO_PREFIX="[${PROGRAM_NAME}] :"
 VERSION="install-mecab-ipadic-neologd version 0.0.1"
 
 usage() {
-    echo "Usage: $PROGNAME [OPTIONS] FILE"
+    echo "Usage: $PROGRAM_NAME [OPTIONS]"
     echo "  This script is the installer of mecab-ipadic-neologd"
     echo
     echo "Options:"
