@@ -17,7 +17,78 @@
 # limitations under the License.
 
 BASEDIR=$(cd $(dirname $0);pwd)
-ECHO_PREFIX="[install-mecab-ipadic-neologd] :"
+PROGRAM_NAME=install-mecab-ipadic-neologd
+ECHO_PREFIX="[${PROGRAM_NAME}] :"
+
+VERSION="install-mecab-ipadic-neologd version 0.0.1"
+
+usage() {
+    echo "Usage: $PROGNAME [OPTIONS] FILE"
+    echo "  This script is the installer of mecab-ipadic-neologd"
+    echo
+    echo "Options:"
+    echo "  -h, --help"
+    echo
+    echo "  -v, --version"
+    echo
+    echo "  -p, --prefix /path/to/install/dirctory"
+    echo "     Set any directry path where you want to install"
+    echo
+    echo "  -y, --forceyes"
+    echo "     If you want to install regardless of the result of test"
+    echo
+    echo "  -u, --user"
+    echo "     If you want to install to user directory"
+    echo
+    exit 1
+}
+
+INSTALL_PATH_PREFIX=""
+IS_FORCE_YES=0
+IS_AS_USER=0
+
+for OPT in "$@"
+do
+    case "$OPT" in
+        '-h'|'--help' )
+            usage
+            exit 1
+            ;;
+        '-v'|'--version' )
+            echo $VERSION
+            exit 1
+            ;;
+        '-p'|'--prefix' )
+            if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+                echo "${PROGRAM_NAME}: option requires an argument -- $1" 1>&2
+                usage
+                exit 1
+            fi
+            INSTALL_PATH_PREFIX="$2"
+            shift 2
+            ;;
+        '-y'|'--fourceyes' )
+            IS_FORCE_YES=1
+            shift 1
+            ;;
+        '-u'|'--user' )
+            IS_AS_USER=1
+            shift 1
+            ;;
+        -*)
+            echo "${PROGRAM_NAME}: illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2
+            usage
+            exit 1
+            ;;
+        *)
+            if [[ ! -z "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
+                #param=( ${param[@]} "$1" )
+                param+=( "$1" )
+                shift 1
+            fi
+            ;;
+    esac
+done
 
 echo "$ECHO_PREFIX Start.."
 
@@ -32,8 +103,17 @@ for COMMAND in ${COMMANDS[@]};do
     fi
 done
 
+if [ -z ${INSTALL_PATH_PREFIX} ]; then
+    INSTALL_PATH_PREFIX=`mecab-config --dicdir`"/mecab-ipadic-neologd"
+fi
+
+echo ""
+echo "$ECHO_PREFIX mecab-ipadic-neologd will be install to ${INSTALL_PATH_PREFIX}"
+echo ""
+sleep 3
+
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX}
 
 echo "$ECHO_PREFIX Get results of tokenize test"
 ${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
@@ -61,9 +141,11 @@ function wanna_install(){
     done
 }
 
-wanna_install
+if [ ${IS_FORCE_YES} -eq 0 ]; then
+    wanna_install
+fi
 
 echo "$ECHO_PREFIX OK. Let's install mecab-ipadic-neologd."
-${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh
+${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -u ${IS_AS_USER}
 
 echo "$ECHO_PREFIX Finish.."
