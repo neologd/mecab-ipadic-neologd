@@ -1,6 +1,12 @@
 # Release 20150315-01
 
+### New seed data
+* seed/mecab-user-dict-seed.20150316.csv.xz
+	execute: aperiodic data update on 2015-03-16
+
+# Release 20150315-01
+
 ### Bug fixes
-* seed/*.xz : fix context ids & POS info
+* seed/*.xz: fix context ids & POS info
 	report: http://d.hatena.ne.jp/Kazuhira/20150315/1426391366
-	commit : https://github.com/neologd/mecab-ipadic-neologd/commit/121699611563da654d6ec2ca2b904d1fffea80ec
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/121699611563da654d6ec2ca2b904d1fffea80ec
