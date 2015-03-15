@@ -1,0 +1,6 @@
+# Release 20150315-01
+
+### Bug fixes
+* seed/*.xz : fix context ids & POS info
+	report: http://d.hatena.ne.jp/Kazuhira/20150315/1426391366
+	commit : https://github.com/neologd/mecab-ipadic-neologd/commit/121699611563da654d6ec2ca2b904d1fffea80ec
