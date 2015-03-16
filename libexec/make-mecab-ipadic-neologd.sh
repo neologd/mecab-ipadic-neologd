@@ -74,10 +74,14 @@ MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
 MECAB_LIBEXEC_DIR=`${MECAB_PATH}-config --libexecdir`
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 
-while getopts p: OPT
+MIN_SURFACE_LEN=0
+MAX_SURFACE_LEN=0
+while getopts p:s:l: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
+    "s" ) MIN_SURFACE_LEN=$OPTARG ;;
+    "l" ) MAX_SURFACE_LEN=$OPTARG ;;
   esac
 done
 
@@ -96,6 +100,19 @@ echo "${ECHO_PREFIX} Copy user dictionary resource"
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
+
+if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
+    if [ ${MIN_SURFACE_LEN} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Delete the entries whose length of surface is shorter than ${MIN_SURFACE_LEN} from seed file"
+        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne 'use Encode;my $l=$_;my @a=split /,/,$l;$len=length Encode::decode_utf8($a[0]);print $l if($len >= ${MIN_SURFACE_LEN});' > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
+        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
+    fi
+    if [ ${MAX_SURFACE_LEN} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Delete the entries whose length of surface is longer than ${MAX_SURFACE_LEN} from seed file"
+        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne 'use Encode;my $l=$_;my @a=split /,/,$l;$len=length Encode::decode_utf8($a[0]);print $l if($len <= ${MAX_SURFACE_LEN});' > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
+        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
+    fi
+fi
 
 echo "${ECHO_PREFIX} Re-Index system dictionary"
 ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8
