@@ -39,6 +39,7 @@ echo "$ECHO_PREFIX Get buzz phrases"
 curl http://searchranking.yahoo.co.jp/realtime_buzz/ -o "/tmp/realtime_buzz.html"
 sed -i -e "/\n/d" /tmp/realtime_buzz.html
 cat /tmp/realtime_buzz.html | perl -ne '$l = $_;  if ($l =~ m|<h3><a href="http://rdsig\.yahoo\.co\.jp.+?">(.+)</a></h3>|g){ print $1."\n";}' > /tmp/buzz_phrase
+rm /tmp/realtime_buzz.html
 
 PHRASE_FILE=/tmp/buzz_phrase
 if [ ! -s ${PHRASE_FILE} ]; then
@@ -70,5 +71,10 @@ if [ -s /tmp/buzz_phrase_tokenized_diff ]; then
 else
     echo "$ECHO_PREFIX Something wrong. You shouldn't install mecab-ipadic-neologd yet."
 fi
+
+rm /tmp/buzz_phrase
+rm /tmp/buzz_phrase_tokenized_using_defdic
+rm /tmp/buzz_phrase_tokenized_using_neologismdic
+rm /tmp/buzz_phrase_tokenized_diff
 
 echo "$ECHO_PREFIX Finish.."
