@@ -86,11 +86,11 @@ LIBS=-liconv ./configure --prefix=${INSTALL_DIR_PATH} --with-charset=utf8
 echo "${ECHO_PREFIX} Encode the character encoding of system dictionary resources from EUC_JP to UTF-8"
 sed -i -e "s|${MECAB_DIC_DIR}/ipadic|${INSTALL_DIR_PATH}|p" ${NEOLOGD_DIC_DIR}/Makefile
 
-find ${NEOLOGD_DIC_DIR} -type f | xargs file | grep ".csv" | cut -d: -f1 | xargs -t -I{} ${BASEDIR}/../libexec/iconv_euc_to_utf8.sh {}
-find ${NEOLOGD_DIC_DIR} -type f | xargs file | grep ".csv" | grep -v ".utf8" | cut -d: -f1 | xargs -t -I{} rm {}
-find ${NEOLOGD_DIC_DIR} -type f | xargs file | grep ".def" | cut -d: -f1 | xargs -t -I{} ${BASEDIR}/../libexec/iconv_euc_to_utf8.sh {}
-find ${NEOLOGD_DIC_DIR} -type f | xargs file | grep ".def" | grep -v ".utf8" | cut -d: -f1 | xargs -t -I{} rm {}
-find ${NEOLOGD_DIC_DIR} -type f | xargs file | grep  ".utf8" | cut -d: -f1 |  sed -e "s|.utf8||" |  xargs -t -I{} mv {}.utf8 {}
+find . -type f | xargs file | grep ".csv" | cut -d: -f1 | xargs -t -I{} ./../../libexec/iconv_euc_to_utf8.sh {}
+find . -type f | xargs file | grep ".csv" | grep -v ".utf8" | cut -d: -f1 | xargs -t -I{} rm {}
+find . -type f | xargs file | grep ".def" | cut -d: -f1 | xargs -t -I{} ./../../libexec/iconv_euc_to_utf8.sh {}
+find . -type f | xargs file | grep ".def" | grep -v ".utf8" | cut -d: -f1 | xargs -t -I{} rm {}
+find . -type f | xargs file | grep  ".utf8" | cut -d: -f1 |  sed -e "s|.utf8||" |  xargs -t -I{} mv {}.utf8 {}
 
 echo "${ECHO_PREFIX} Copy user dictionary resource"
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
