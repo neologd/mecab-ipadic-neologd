@@ -11,7 +11,7 @@
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/1cc51e5faf12b7b947e39657a59e956a5cb8db9b
 
 ### Bug fixes
-* libexec/make-mecab-ipadic-neologd.sh: Fix to delete temporal files from /tmp
+* libexec/test-mecab-ipadic-neologd.sh: Fix to delete temporal files from /tmp
 	To save time to patch.
 	report: http://d.hatena.ne.jp/hjym_u/20150315/1426380897
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/fb0f9fa1024c1cc15dd791102d8ba6ca2a43f37c
