@@ -31,8 +31,8 @@ usage() {
     echo
     echo "  -v, --version"
     echo
-    echo "  -p, --prefix /path/to/install/dirctory"
-    echo "     Set any directry path where you want to install"
+    echo "  -p, --prefix /PATH/TO/INSTALL/DIRECTORY"
+    echo "     Set any directory path where you want to install"
     echo
     echo "  -y, --forceyes"
     echo "     If you want to install regardless of the result of test"
@@ -40,12 +40,16 @@ usage() {
     echo "  -u, --user"
     echo "     If you want to install to user directory"
     echo
+    echo "  -n, --newest"
+    echo "     If you want to update this mecab-ipadic-neologd directory"
+    echo
     exit 1
 }
 
 INSTALL_PATH_PREFIX=""
 IS_FORCE_YES=0
 IS_AS_USER=0
+WANNA_UPDATE=0
 
 for OPT in "$@"
 do
@@ -73,6 +77,10 @@ do
             ;;
         '-u'|'--user' )
             IS_AS_USER=1
+            shift 1
+            ;;
+        '-n'|'--newest' )
+            WANNA_UPDATE=1
             shift 1
             ;;
         -*)
@@ -103,9 +111,17 @@ for COMMAND in ${COMMANDS[@]};do
     fi
 done
 
+if [ ${WANNA_UPDATE} = 1 ]; then
+    echo
+    echo "$ECHO_PREFIX Get the newest updated information using git"
+    cd ${BASEDIR}/../
+    git pull
+fi
+
 if [ -z ${INSTALL_PATH_PREFIX} ]; then
     INSTALL_PATH_PREFIX=`mecab-config --dicdir`"/mecab-ipadic-neologd"
 fi
+
 
 echo ""
 echo "$ECHO_PREFIX mecab-ipadic-neologd will be install to ${INSTALL_PATH_PREFIX}"
