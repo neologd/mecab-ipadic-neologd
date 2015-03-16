@@ -49,6 +49,12 @@ usage() {
     echo "  --max_surface_length INT_VALUE"
     echo "     If you want to delete the entries whose length of surface is longer than INT_VALUE"
     echo
+    echo "  --min_baseform_length INT_VALUE"
+    echo "     If you want to delete the entries whose length of base form is shorter than INT_VALUE"
+    echo
+    echo "  --max_baseform_length INT_VALUE"
+    echo "     If you want to delete the entries whose length of base form is longer than INT_VALUE"
+    echo
     exit 1
 }
 
@@ -58,6 +64,8 @@ IS_AS_USER=0
 WANNA_UPDATE=0
 MIN_SURFACE_LEN=0
 MAX_SURFACE_LEN=0
+MIN_BASEFORM_LEN=0
+MAX_BASEFORM_LEN=0
 
 for OPT in "$@"
 do
@@ -109,6 +117,24 @@ do
             MAX_SURFACE_LEN="$2"
             shift 2
             ;;
+        '--min_baseform_length' )
+            if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+                echo "${PROGRAM_NAME}: option requires an argument -- $1" 1>&2
+                usage
+                exit 1
+            fi
+            MIN_BASEFORM_LEN="$2"
+            shift 2
+            ;;
+        '--max_baseform_length' )
+            if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+                echo "${PROGRAM_NAME}: option requires an argument -- $1" 1>&2
+                usage
+                exit 1
+            fi
+            MAX_BASEFORM_LEN="$2"
+            shift 2
+            ;;
         -*)
             echo "${PROGRAM_NAME}: illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2
             usage
@@ -127,6 +153,13 @@ done
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
     if [ ${MIN_SURFACE_LEN} -ge ${MAX_SURFACE_LEN} ]; then
         echo "${ECHO_PREFIX} Can't set inconsistent values: MIN_SURFACE_LEN(${MIN_SURFACE_LEN}) >= MAX_SURFACE_LEN(${MAX_SURFACE_LEN})"
+        usage
+        exit 1
+    fi
+fi
+if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
+    if [ ${MIN_BASEFORM_LEN} -ge ${MAX_BASEFORM_LEN} ]; then
+        echo "${ECHO_PREFIX} Can't set inconsistent values: MIN_BASEFORM_LEN(${MIN_BASEFORM_LEN}) >= MAX_BASEFORM_LEN(${MAX_BASEFORM_LEN})"
         usage
         exit 1
     fi
@@ -163,7 +196,7 @@ echo ""
 sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN}
 
 echo "$ECHO_PREFIX Get results of tokenize test"
 ${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
