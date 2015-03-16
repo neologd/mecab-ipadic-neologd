@@ -7,8 +7,12 @@
 
 * bin/install-mecab-ipadic-neologd; Add '-max_surface_length' option and '--min_surface_length' option
         To delete the entries from seed file based on surface length of a entry.
-	report: http://d.hatena.ne.jp/Kazuhira/20150316/1426520209
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/1cc51e5faf12b7b947e39657a59e956a5cb8db9b
+
+* bin/install-mecab-ipadic-neologd; Add '-max_baseform_length' option and '--min_baseform_length' option
+        To delete the entries from seed file based on base form length of a entry.
+	report: http://d.hatena.ne.jp/Kazuhira/20150316/1426520209
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/257cd257e45f96892d4823cdb05c8cd4c58c4756
 
 ### Bug fixes
 * libexec/test-mecab-ipadic-neologd.sh: Fix to delete temporal files from /tmp
