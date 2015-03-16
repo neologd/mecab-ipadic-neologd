@@ -1,12 +1,44 @@
-# Release 20150316-01
+# Release 20150317-01
 
 ### New seed data
-* seed/mecab-user-dict-seed.20150316.csv.xz
-	execute: aperiodic data update on 2015-03-16
+* seed/mecab-user-dict-seed.20150317.csv.xz
+	execute: aperiodic data update on 2015-03-17
+
+### New features
+* bin/install-mecab-ipadic-neologd; Add '-n' option
+	To save time to git pull.
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/de491941b5a5b0a1c0a1ad23f2ccd3ed8f937c6e
+
+* bin/install-mecab-ipadic-neologd; Add '-max_surface_length' option and '--min_surface_length' option
+        To delete the entries from seed file based on surface length of a entry.
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/1cc51e5faf12b7b947e39657a59e956a5cb8db9b
+
+* bin/install-mecab-ipadic-neologd; Add '-max_baseform_length' option and '--min_baseform_length' option
+        To delete the entries from seed file based on base form length of a entry.
+	report: http://d.hatena.ne.jp/Kazuhira/20150316/1426520209
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/257cd257e45f96892d4823cdb05c8cd4c58c4756
+
+### Bug fixes
+* libexec/test-mecab-ipadic-neologd.sh: Fix to delete temporal files from /tmp
+	To save time to patch.
+	report: http://d.hatena.ne.jp/hjym_u/20150315/1426380897
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/fb0f9fa1024c1cc15dd791102d8ba6ca2a43f37c
+
+* libexec/make-mecab-ipadic-neologd.sh: xargs can't get too long file path
+	To save time to patch.
+	report: http://d.hatena.ne.jp/hjym_u/20150315/1426380897
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/a4ae4efdcf41e3f6aadfaf0bf263d01839ba6c31
+
+
+# Release 20150316-01
+
+### Bug fixes
+* seed/*.xz: Fix bug about context id and check the uniqeness of context id to POS information
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/86b3157fb06b13f20bc102e4a974ded89f4db5d1
 
 # Release 20150315-01
 
 ### Bug fixes
-* seed/*.xz: fix context ids & POS info
+* seed/*.xz: Fix context ids & POS info
 	report: http://d.hatena.ne.jp/Kazuhira/20150315/1426391366
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/121699611563da654d6ec2ca2b904d1fffea80ec
