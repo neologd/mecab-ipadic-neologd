@@ -104,12 +104,12 @@ unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
     if [ ${MIN_SURFACE_LEN} -gt 0 ]; then
         echo "${ECHO_PREFIX} Delete the entries whose length of surface is shorter than ${MIN_SURFACE_LEN} from seed file"
-        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne 'use Encode;my $l=$_;my @a=split /,/,$l;$len=length Encode::decode_utf8($a[0]);print $l if($len >= ${MIN_SURFACE_LEN});' > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
+        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[0]);print \$l if(\$len >= ${MIN_SURFACE_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
         mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
     fi
     if [ ${MAX_SURFACE_LEN} -gt 0 ]; then
         echo "${ECHO_PREFIX} Delete the entries whose length of surface is longer than ${MAX_SURFACE_LEN} from seed file"
-        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne 'use Encode;my $l=$_;my @a=split /,/,$l;$len=length Encode::decode_utf8($a[0]);print $l if($len <= ${MAX_SURFACE_LEN});' > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
+        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[0]);print \$l if(\$len <= ${MAX_SURFACE_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
         mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
     fi
 fi
