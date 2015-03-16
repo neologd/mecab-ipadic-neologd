@@ -41,7 +41,7 @@ usage() {
     echo "     If you want to install to user directory"
     echo
     echo "  -n, --newest"
-    echo "     If you want to update this mecab-ipadic-neologd directory"
+    echo "     If you want to update mecab-ipadic-neologd"
     echo
     echo "  --min_surface_length INT_VALUE"
     echo "     If you want to delete the entries whose length of surface is shorter than INT_VALUE"
