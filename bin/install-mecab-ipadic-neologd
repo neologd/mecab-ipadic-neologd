@@ -43,6 +43,12 @@ usage() {
     echo "  -n, --newest"
     echo "     If you want to update this mecab-ipadic-neologd directory"
     echo
+    echo "  --min_surface_length INT_VALUE"
+    echo "     If you want to delete the entries whose length of surface is shorter than INT_VALUE"
+    echo
+    echo "  --max_surface_length INT_VALUE"
+    echo "     If you want to delete the entries whose length of surface is longer than INT_VALUE"
+    echo
     exit 1
 }
 
@@ -50,6 +56,8 @@ INSTALL_PATH_PREFIX=""
 IS_FORCE_YES=0
 IS_AS_USER=0
 WANNA_UPDATE=0
+MIN_SURFACE_LEN=0
+MAX_SURFACE_LEN=0
 
 for OPT in "$@"
 do
@@ -83,6 +91,24 @@ do
             WANNA_UPDATE=1
             shift 1
             ;;
+        '--min_surface_length' )
+            if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+                echo "${PROGRAM_NAME}: option requires an argument -- $1" 1>&2
+                usage
+                exit 1
+            fi
+            MIN_SURFACE_LEN="$2"
+            shift 2
+            ;;
+        '--max_surface_length' )
+            if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+                echo "${PROGRAM_NAME}: option requires an argument -- $1" 1>&2
+                usage
+                exit 1
+            fi
+            MAX_SURFACE_LEN="$2"
+            shift 2
+            ;;
         -*)
             echo "${PROGRAM_NAME}: illegal option -- '$(echo $1 | sed 's/^-*//')'" 1>&2
             usage
@@ -97,6 +123,14 @@ do
             ;;
     esac
 done
+
+if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
+    if [ ${MIN_SURFACE_LEN} -ge ${MAX_SURFACE_LEN} ]; then
+        echo "${ECHO_PREFIX} Can't set inconsistent values: MIN_SURFACE_LEN(${MIN_SURFACE_LEN}) >= MAX_SURFACE_LEN(${MAX_SURFACE_LEN})"
+        usage
+        exit 1
+    fi
+fi
 
 echo "$ECHO_PREFIX Start.."
 
@@ -129,7 +163,7 @@ echo ""
 sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN}
 
 echo "$ECHO_PREFIX Get results of tokenize test"
 ${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
