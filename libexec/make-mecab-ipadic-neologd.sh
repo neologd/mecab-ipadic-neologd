@@ -76,12 +76,16 @@ INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 
 MIN_SURFACE_LEN=0
 MAX_SURFACE_LEN=0
-while getopts p:s:l: OPT
+MIN_BASEFORM_LEN=0
+MAX_BASEFORM_LEN=0
+while getopts p:s:l:S:L: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
     "s" ) MIN_SURFACE_LEN=$OPTARG ;;
     "l" ) MAX_SURFACE_LEN=$OPTARG ;;
+    "S" ) MIN_BASEFORM_LEN=$OPTARG ;;
+    "L" ) MAX_BASEFORM_LEN=$OPTARG ;;
   esac
 done
 
@@ -113,6 +117,19 @@ if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
         mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
     fi
 fi
+if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
+    if [ ${MIN_BASEFORM_LEN} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Delete the entries whose length of base form is shorter than ${MIN_BASEFORM_LEN} from seed file"
+        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[10]);print \$l if(\$len >= ${MIN_BASEFORM_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
+        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
+    fi
+    if [ ${MAX_BASEFORM_LEN} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Delete the entries whose length of base form is longer than ${MAX_BASEFORM_LEN} from seed file"
+        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[10]);print \$l if(\$len <= ${MAX_BASEFORM_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
+        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
+    fi
+fi
+
 
 echo "${ECHO_PREFIX} Re-Index system dictionary"
 ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8
