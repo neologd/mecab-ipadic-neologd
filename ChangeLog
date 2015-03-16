@@ -1,5 +1,9 @@
 # Release 20150317-01
 
+### New seed data
+* seed/mecab-user-dict-seed.20150317.csv.xz
+	execute: aperiodic data update on 2015-03-17
+
 ### New features
 * bin/install-mecab-ipadic-neologd; Add '-n' option
 	To save time to git pull.
@@ -24,7 +28,6 @@
 	To save time to patch.
 	report: http://d.hatena.ne.jp/hjym_u/20150315/1426380897
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/a4ae4efdcf41e3f6aadfaf0bf263d01839ba6c31
-
 
 # Release 20150316-01
 
