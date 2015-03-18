@@ -1,3 +1,10 @@
+# Release 20150319-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150319.csv.xz
+	Fix to reduce the side effects about a single noun with kana
+	commit:
+
 # Release 20150317-01
 
 ### New seed data
