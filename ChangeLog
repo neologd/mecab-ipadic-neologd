@@ -3,7 +3,7 @@
 ### Bug fixes
 * seed/mecab-user-dict-seed.20150319.csv.xz
 	Fix to reduce the side effects about a single noun with kana
-	commit:
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/dbff045adcada8b537baf40a0567f88c2d372a4e
 
 # Release 20150317-01
 
