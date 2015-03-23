@@ -89,9 +89,9 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ git clone --depth 1 git@github.com:neologd/mecab-ipadic-neologd.git
 
-もしも、リポジトリの変更履歴を遡って入手したい方は「--depth 1」を消してcloneして下さい。
+もしも、リポジトリの全変更履歴を入手したい方は「--depth 1」を消してcloneして下さい。
 
-リポジトリの変更履歴のサイズは変動しますが、ピーク時は約 1GB となり、かなり大容量ですのでご注意下さい。
+全変更履歴のデータサイズは変動しますが、ピーク時は約 1GB となり、かなり大容量ですのでご注意下さい。
 
 ### mecab-ipadic-neologd のインストール/更新
 #### Step.1
