@@ -83,12 +83,15 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 初回は以下のコマンドでgit cloneしてください。
 
-    $ git clone https://github.com/neologd/mecab-ipadic-neologd.git
+    $ git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
 
 または
 
-    $ git clone git@github.com:neologd/mecab-ipadic-neologd.git
+    $ git clone --depth 1 git@github.com:neologd/mecab-ipadic-neologd.git
 
+もしも、リポジトリの変更履歴を遡って入手したい方は「--depth 1」を消してcloneして下さい。
+
+リポジトリの変更履歴のサイズは変動しますが、ピーク時は約 1GB となり、かなり大容量ですのでご注意下さい。
 
 ### mecab-ipadic-neologd のインストール/更新
 #### Step.1
