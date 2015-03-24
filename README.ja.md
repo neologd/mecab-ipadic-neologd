@@ -213,7 +213,7 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
 ## 研究結果の評価や再現などに使いたい場合
 以下に更新を止めた辞書をリリースしています。
 
-    https://github.com/neologd/mecab-ipadic-neologd/releases/
+- https://github.com/neologd/mecab-ipadic-neologd/releases/
 
 以下の用途でご利用いただく場合は便利でしょう。
 

@@ -213,7 +213,7 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 ## To evaluate or to reproduce a research result
 We release the tag for mainly research purpose.
 
-    https://github.com/neologd/mecab-ipadic-neologd/releases/
+- https://github.com/neologd/mecab-ipadic-neologd/releases/
 
 It is very useful for the following applications.
 
@@ -236,3 +236,7 @@ Please use the following bibtex, when you refer mecab-ipadic-NEologd from your p
 
 ## Copyrights
 Copyright (c) 2015 Toshinori Sato (@overlast) All rights reserved.
+
+We select the 'Apache License, Version 2.0'. Please check following link.
+
+- https://github.com/neologd/mecab-ipadic-neologd/blob/master/COPYING
