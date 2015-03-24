@@ -210,7 +210,7 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
     。      記号,句点,*,*,*,*,。,。,。
     EOS
 
-## For evaluation of a research result
+## To evaluate or to reproduce a research result
 We release the tag for mainly research purpose.
 
     https://github.com/neologd/mecab-ipadic-neologd/releases/
