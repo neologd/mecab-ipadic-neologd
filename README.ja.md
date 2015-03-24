@@ -12,7 +12,7 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 
 ## 特徴
 ### 利点
-- MeCab の標準のシステム辞書では正しく分割できない固有表現などの語の表層(表記)とフリガナの組を約156万組(重複エントリを含む)採録しています
+- MeCab の標準のシステム辞書では正しく分割できない固有表現などの語の表層(表記)とフリガナの組を約168万組(重複エントリを含む)採録しています
 - この辞書の更新は開発サーバ上で自動的におこなわれます
     - 毎月月初と中旬に更新する予定です
 - Web上の言語資源を活用しているので、更新時に新しい固有表現を採録できます
@@ -47,7 +47,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     - 辞書のコード変換に使います
 - mecab
     - MeCab 本体です
-    - mecab と mecab-config を使います
+    - bin/mecab と bin/mecab-config を使います
 - mecab-ipadic
     - MeCab 用の辞書のひとつです
         - インストール時のテストに使います
@@ -229,6 +229,8 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
 ユーザの8割が気になる部分を優先して改善します。
 
 ## Bibtex
+
+もしも mecab-ipadic-NEologd を論文から参照して下さる場合は、以下の bibtex をご利用ください。
 
     @misc{sato2015mecabipadicneologd,
         title  = {Neologism dictionary based on the language resources on the Web for Mecab},
