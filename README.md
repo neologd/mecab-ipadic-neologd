@@ -7,7 +7,7 @@ README.ja.md is written in Japanese.
 
 ## Documentation
 You can find more detailed documentation and examples in the following wiki.
-≈≈
+
 - https://github.com/neologd/mecab-ipadic-neologd/wiki/Home
 
 ## Overview
@@ -87,7 +87,7 @@ A seed data of the dictionary will distribute via GitHub repository.
 
 In first time, you should execute the following command to 'git clone'.
 
-    $ git clone --depth 1  https://github.com/neologd/mecab-ipadic-neologd.git
+    $ git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
 
 OR
 
