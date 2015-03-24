@@ -121,7 +121,6 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ ./bin/install-mecab-ipadic-neologd -h
 
-
 ### mecab-ipadic-neologd の使用方法
 mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
@@ -210,6 +209,19 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
     た      助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
     。      記号,句点,*,*,*,*,。,。,。
     EOS
+
+## 研究結果の評価などに使いたい場合
+以下に更新を止めた辞書をリリースしています。
+
+    https://github.com/neologd/mecab-ipadic-neologd/releases/
+
+以下の用途でご利用いただく場合は便利でしょう。
+
+- 研究結果の評価実験
+- 他人の研究結果の再現
+- 永遠に更新しない形態素解析結果の作成
+
+言語処理を始めたばかりの方や上記以外の多くの用途には master branch の最新版の使用を推奨します。
 
 ## 今後の発展
 継続して開発しますので、気になるところはどんどん改善されます。
