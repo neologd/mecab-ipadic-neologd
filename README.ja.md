@@ -210,7 +210,7 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
     。      記号,句点,*,*,*,*,。,。,。
     EOS
 
-## 研究結果の評価などに使いたい場合
+## 研究結果の評価や再現などに使いたい場合
 以下に更新を止めた辞書をリリースしています。
 
     https://github.com/neologd/mecab-ipadic-neologd/releases/
