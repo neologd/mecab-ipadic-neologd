@@ -37,8 +37,8 @@ usage() {
     echo "  -y, --forceyes"
     echo "     If you want to install regardless of the result of test"
     echo
-    echo "  -u, --user"
-    echo "     If you want to install to user directory"
+    echo "  -u, --asuser"
+    echo "     If you want to install to the user directory as an user"
     echo
     echo "  -n, --newest"
     echo "     If you want to update mecab-ipadic-neologd"
@@ -91,7 +91,7 @@ do
             IS_FORCE_YES=1
             shift 1
             ;;
-        '-u'|'--user' )
+        '-u'|'--asuser' )
             IS_AS_USER=1
             shift 1
             ;;
