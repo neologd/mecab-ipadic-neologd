@@ -1,9 +1,21 @@
+# Release 20150324-01
+
+### New release
+* releases/tag/v0.0.1
+	We release the tag for mainly research purpose.
+	release: https://github.com/neologd/mecab-ipadic-neologd/releases/tag/v0.0.1
+
+### New seed data
+* seed/mecab-user-dict-seed.20150324.csv.xz
+	Update to create the tag for v0.0.1
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/e045fcab425f84eb7e441976eb11d26f58755ef2
+
 # Release 20150323-01
 
 ### New seed data
 * seed/mecab-user-dict-seed.20150323.csv.xz
 	Update to apply all of normalized rules to the surface column and the base form column
-	https://github.com/neologd/mecab-ipadic-neologd/commit/73ce180e25aa7b951ef09eb83bba1835d43ef45e
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/73ce180e25aa7b951ef09eb83bba1835d43ef45e
 
 # Release 20150319-01
 
