@@ -78,7 +78,7 @@ MIN_SURFACE_LEN=0
 MAX_SURFACE_LEN=0
 MIN_BASEFORM_LEN=0
 MAX_BASEFORM_LEN=0
-while getopts p:s:l:S:L: OPT
+while getopts p:s:l:S:L:u: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -86,6 +86,7 @@ do
     "l" ) MAX_SURFACE_LEN=$OPTARG ;;
     "S" ) MIN_BASEFORM_LEN=$OPTARG ;;
     "L" ) MAX_BASEFORM_LEN=$OPTARG ;;
+    "u" ) CREATE_USER_DIC=$OPTARG ;;
   esac
 done
 
@@ -130,6 +131,19 @@ if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
     fi
 fi
 
+if [ ${CREATE_USER_DIC} = 1 ]; then
+    echo "${ECHO_PREFIX} Create the user dictionary using ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}"
+    echo "${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8 -d ${MECAB_DIC_DIR}/ipadic -u ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.dic ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}"
+    ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8 -d ${MECAB_DIC_DIR}/ipadic -u ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.dic ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
+    if [ -f ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.dic ]; then
+        echo "${ECHO_PREFIX} Success to create the user dictionary"
+        echo
+        echo "${ECHO_PREFIX} User dictionaty is here : ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.dic"
+        echo
+    else
+        echo "${ECHO_PREFIX} Fail to create the user dictionary"
+    fi
+fi
 
 echo "${ECHO_PREFIX} Re-Index system dictionary"
 ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8
