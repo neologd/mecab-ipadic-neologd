@@ -1,3 +1,10 @@
+# Release 20150327-01
+
+### New features
+* bin/install-mecab-ipadic-neologd; Add '--create_user_dic' option
+	To create an user dictionary using the a seed data of mecab-ipadic-neologd
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/2c032c66c1b6dfde6b10ab9c6e147144ce11e36c
+
 # Release 20150324-01
 
 ### New release
