@@ -55,6 +55,9 @@ usage() {
     echo "  --max_baseform_length INT_VALUE"
     echo "     If you want to delete the entries whose length of base form is longer than INT_VALUE"
     echo
+    echo "  --create_user_dic"
+    echo "     If you want to create an user dictionary using seed data of mecab-ipadic-neologd"
+    echo
     exit 1
 }
 
@@ -66,6 +69,7 @@ MIN_SURFACE_LEN=0
 MAX_SURFACE_LEN=0
 MIN_BASEFORM_LEN=0
 MAX_BASEFORM_LEN=0
+WANNA_CREATE_USER_DIC=0
 
 for OPT in "$@"
 do
@@ -97,6 +101,10 @@ do
             ;;
         '-n'|'--newest' )
             WANNA_UPDATE=1
+            shift 1
+            ;;
+        '--create_user_dic' )
+            WANNA_CREATE_USER_DIC=1
             shift 1
             ;;
         '--min_surface_length' )
@@ -196,7 +204,7 @@ echo ""
 sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC}
 
 echo "$ECHO_PREFIX Get results of tokenize test"
 ${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
@@ -230,5 +238,6 @@ fi
 
 echo "$ECHO_PREFIX OK. Let's install mecab-ipadic-neologd."
 ${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -u ${IS_AS_USER}
+
 
 echo "$ECHO_PREFIX Finish.."
