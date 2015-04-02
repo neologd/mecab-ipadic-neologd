@@ -88,6 +88,7 @@ do
     "S" ) MIN_BASEFORM_LEN=$OPTARG ;;
     "L" ) MAX_BASEFORM_LEN=$OPTARG ;;
     "u" ) WANNA_CREATE_USER_DIC=$OPTARG ;;
+  esac
 done
 
 LIBS=-liconv ./configure --prefix=${INSTALL_DIR_PATH} --with-charset=utf8
