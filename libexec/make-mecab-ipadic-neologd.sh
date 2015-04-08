@@ -78,6 +78,7 @@ MIN_SURFACE_LEN=0
 MAX_SURFACE_LEN=0
 MIN_BASEFORM_LEN=0
 MAX_BASEFORM_LEN=0
+WANNA_CREATE_USER_DIC=0
 while getopts p:s:l:S:L:u: OPT
 do
   case $OPT in
@@ -86,7 +87,7 @@ do
     "l" ) MAX_SURFACE_LEN=$OPTARG ;;
     "S" ) MIN_BASEFORM_LEN=$OPTARG ;;
     "L" ) MAX_BASEFORM_LEN=$OPTARG ;;
-    "u" ) CREATE_USER_DIC=$OPTARG ;;
+    "u" ) WANNA_CREATE_USER_DIC=$OPTARG ;;
   esac
 done
 
@@ -131,7 +132,7 @@ if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
     fi
 fi
 
-if [ ${CREATE_USER_DIC} = 1 ]; then
+if [ ${WANNA_CREATE_USER_DIC} = 1 ]; then
     echo "${ECHO_PREFIX} Create the user dictionary using ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}"
     echo "${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8 -d ${MECAB_DIC_DIR}/ipadic -u ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.dic ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}"
     ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8 -d ${MECAB_DIC_DIR}/ipadic -u ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.dic ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
