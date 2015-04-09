@@ -205,6 +205,11 @@ sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
 ${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC}
+if [ "$?" != "0" ]; then
+    echo ""
+    echo "Failed to make mecab-ipadic-neolog."
+    exit 1
+fi
 
 echo "$ECHO_PREFIX Get results of tokenize test"
 ${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
