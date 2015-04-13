@@ -25,7 +25,7 @@ YMD=`ls -c \`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz\` | egrep -o 
 if [ ! -e ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} ]; then
     echo "${ECHO_PREFIX} ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} isn't there."
     echo "${ECHO_PREFIX} You should execute libexec/make-mecab-ipadic-neologd.sh first."
-    exit
+    exit 1
 fi
 
 BUILT_DIC_DIR=${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD}
