@@ -91,7 +91,7 @@ do
             INSTALL_PATH_PREFIX="$2"
             shift 2
             ;;
-        '-y'|'--fourceyes' )
+        '-y'|'--forceyes' )
             IS_FORCE_YES=1
             shift 1
             ;;
@@ -180,7 +180,7 @@ COMMANDS=(find sort head cut egrep mecab mecab-config make curl sed cat diff tar
 for COMMAND in ${COMMANDS[@]};do
     if [ ! `which ${COMMAND}` ]; then
         echo "$ECHO_PREFIX ${COMMAND} is not found."
-        exit
+        exit 1
     else
         echo "$ECHO_PREFIX ${COMMAND} => ok"
     fi
@@ -206,8 +206,11 @@ sleep 3
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
 ${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC}
 
-echo "$ECHO_PREFIX Get results of tokenize test"
-${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
+if [ $? != 0 ]; then
+    echo ""
+    echo "$ECHO_PREFIX Failed to make mecab-ipadic-neologd"
+    exit 1
+fi
 
 function wanna_install(){
     while true;do
@@ -233,11 +236,28 @@ function wanna_install(){
 }
 
 if [ ${IS_FORCE_YES} -eq 0 ]; then
+
+    echo "$ECHO_PREFIX Get results of tokenize test"
+    ${BASEDIR}/../libexec/test-mecab-ipadic-neologd.sh
+
+    if [ $? != 0 ]; then
+        echo ""
+        echo "$ECHO_PREFIX Failed to test mecab-ipadic-neologd"
+        echo "$ECHO_PREFIX If you want to skip the test, you can use '-y' or '--forceyes' option"
+        usage
+        exit 1
+    fi
+
     wanna_install
 fi
 
 echo "$ECHO_PREFIX OK. Let's install mecab-ipadic-neologd."
 ${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -u ${IS_AS_USER}
 
+if [ $? != 0 ]; then
+    echo ""
+    echo "$ECHO_PREFIX Failed to install mecab-ipadic-neologd"
+    exit 1
+fi
 
 echo "$ECHO_PREFIX Finish.."
