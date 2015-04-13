@@ -25,7 +25,7 @@ echo "$ECHO_PREFIX Check local seed directory"
 if [ ! -e ${BASEDIR}/../seed ]; then
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed isn't there."
     echo "${ECHO_PREFIX} You should execute libexec/copy-dict-seed.sh first."
-    exit;
+    exit 1;
 fi
 
 echo "$ECHO_PREFIX Check local seed file"
@@ -34,7 +34,7 @@ YMD=`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz | egrep -o '[0-9]{8}'
 if [ ! -e ${BASEDIR}/../seed/mecab-user-dict-seed.${YMD}.csv.xz ]; then
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/mecab-user-dict-seed.${YMD}.csv.xz isn't there."
     echo "${ECHO_PREFIX} You should execute libexec/copy-dict-seed.sh first."
-    exit;
+    exit 1;
 fi
 
 echo "$ECHO_PREFIX Check local build directory"
@@ -50,6 +50,14 @@ ORG_DIC_NAME=mecab-ipadic-2.7.0-20070801
 NEOLOGD_DIC_NAME=mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     curl -O "https://mecab.googlecode.com/files/${ORG_DIC_NAME}.tar.gz"
+
+    if [ $? != 0 ]; then
+        echo ""
+        echo "$ECHO_PREFIX Failed to download $ORG_DIC_NAME"
+        echo "$ECHO_PREFIX Please check your network to download 'https://mecab.googlecode.com/files/${ORG_DIC_NAME}.tar.gz'"
+        exit 1;
+    fi
+
 else
     echo "$ECHO_PREFIX Original mecab-ipadic file is already there."
 fi
@@ -142,7 +150,8 @@ if [ ${WANNA_CREATE_USER_DIC} = 1 ]; then
         echo "${ECHO_PREFIX} User dictionaty is here : ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.dic"
         echo
     else
-        echo "${ECHO_PREFIX} Fail to create the user dictionary"
+        echo "${ECHO_PREFIX} Failed to create the user dictionary"
+        exit 1
     fi
 fi
 
