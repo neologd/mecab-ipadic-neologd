@@ -1,4 +1,4 @@
- !#/usr/bin/bash
+ !#/bin/bash
 
  FILE_PATH=$1
  ECHO_PREFIX='[git_rm_from_history_too] '
