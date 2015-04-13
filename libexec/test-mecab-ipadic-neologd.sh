@@ -28,7 +28,7 @@ YMD=`ls -c \`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz\` | egrep -o 
 if [ ! -e ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} ]; then
     echo "${ECHO_PREFIX} ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} isn't there."
     echo "${ECHO_PREFIX} You should execute libexec/make-mecab-ipadic-neologd.sh first."
-    exit
+    exit 1
 fi
 
 MECAB_PATH=`which mecab`
@@ -37,6 +37,14 @@ MECAB_DIC_DIR=${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 echo "$ECHO_PREFIX Get buzz phrases"
 
 curl http://searchranking.yahoo.co.jp/realtime_buzz/ -o "/tmp/realtime_buzz.html"
+
+if [ $? != 0 ]; then
+    echo ""
+    echo "$ECHO_PREFIX Failed to get the buzz phrases"
+    echo "$ECHO_PREFIX Please check your network to download 'http://searchranking.yahoo.co.jp/realtime_buzz/'"
+    exit 1;
+fi
+
 sed -i -e "/\n/d" /tmp/realtime_buzz.html
 cat /tmp/realtime_buzz.html | perl -ne '$l = $_;  if ($l =~ m|<h3><a href="http://rdsig\.yahoo\.co\.jp.+?">(.+)</a></h3>|g){ print $1."\n";}' > /tmp/buzz_phrase
 rm /tmp/realtime_buzz.html
