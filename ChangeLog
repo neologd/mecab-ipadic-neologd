@@ -1,3 +1,10 @@
+# Release 20150413-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150413.csv.xz
+	Delete rows with a field that does not contain any katakana
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/9d7fc9c5dc0581bf8c6fabd48e0f270a4ecb1cd9
+
 # Release 20150408-01
 
 ### New seed data
