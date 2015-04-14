@@ -30,7 +30,7 @@ fi
 
 echo "$ECHO_PREFIX Check local seed file"
 
-YMD=`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz | egrep -o '[0-9]{8}' | tail -1`
+YMD=`ls -ltr \`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz\` | egrep -o '[0-9]{8}' | tail -1`
 if [ ! -e ${BASEDIR}/../seed/mecab-user-dict-seed.${YMD}.csv.xz ]; then
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/mecab-user-dict-seed.${YMD}.csv.xz isn't there."
     echo "${ECHO_PREFIX} You should execute libexec/copy-dict-seed.sh first."

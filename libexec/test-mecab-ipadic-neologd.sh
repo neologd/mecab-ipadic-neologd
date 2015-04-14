@@ -24,7 +24,7 @@ echo "$ECHO_PREFIX Start.."
 echo "$ECHO_PREFIX Replace timestamp from 'git clone' date to 'git commit' date"
 ${BASEDIR}/../misc/git-set-file-times
 
-YMD=`ls -c \`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz\` | egrep -o '[0-9]{8}' | tail -1`
+YMD=`ls -ltr \`find ${BASEDIR}/../seed/mecab-user-dict-seed.*.csv.xz\` | egrep -o '[0-9]{8}' | tail -1`
 if [ ! -e ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} ]; then
     echo "${ECHO_PREFIX} ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD} isn't there."
     echo "${ECHO_PREFIX} You should execute libexec/make-mecab-ipadic-neologd.sh first."
