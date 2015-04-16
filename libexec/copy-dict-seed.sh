@@ -47,6 +47,12 @@ cat ${BASEDIR}/../seed/${SEED_FILE_NAME} | cut -d $',' -f -13 > ${BASEDIR}/../se
 echo "$ECHO_PREFIX Compress the seed file"
 mv ${BASEDIR}/../seed/${SEED_FILE_NAME} ${BASEDIR}/../seed/${SEED_FILE_NAME}.rich
 mv ${BASEDIR}/../seed/${SEED_FILE_NAME}.lite ${BASEDIR}/../seed/${SEED_FILE_NAME}
+
+LC_ALL=C sort -t $',' -k 1,1 ${BASEDIR}/../seed/${SEED_FILE_NAME} > ${BASEDIR}/../seed/${SEED_FILE_NAME}.sort
+LC_ALL=C uniq ${BASEDIR}/../seed/${SEED_FILE_NAME}.sort > ${BASEDIR}/../seed/${SEED_FILE_NAME}.uniq
+rm ${BASEDIR}/../seed/${SEED_FILE_NAME}.sort
+mv ${BASEDIR}/../seed/${SEED_FILE_NAME}.uniq ${BASEDIR}/../seed/${SEED_FILE_NAME}
+
 xz -9 -k ${BASEDIR}/../seed/${SEED_FILE_NAME}
 
 echo "$ECHO_PREFIX Finish.."
