@@ -1,3 +1,10 @@
+# Release 20150418-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150418.csv.xz
+	Delete the rows which are a verb and a conjunctive particle
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/01cba26ce3c1371b311dcf9b52d0dd4b290ae29a
+
 # Release 20150416-01
 
 ### New seed data
