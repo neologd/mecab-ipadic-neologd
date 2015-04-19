@@ -1,8 +1,15 @@
+# Release 20150419-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150419.csv.xz
+	Delete the rows that don't contain the kana-characters that are included in the surface notation to yomi
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/43842c24eb28f2b1cee869ee957bac256f16a529
+
 # Release 20150418-01
 
 ### Bug fixes
 * seed/mecab-user-dict-seed.20150418.csv.xz
-	Delete the rows which are a verb and a conjunctive particle
+	Delete the rows which are the word which was combined a verb and a conjunctive particle
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/01cba26ce3c1371b311dcf9b52d0dd4b290ae29a
 
 # Release 20150416-01
