@@ -1,3 +1,10 @@
+# Release 20150424-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150424.csv.xz
+	Fix the yomi field of many entries of the seed file
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/a04b4700884e9fda51180e4b8df37b19d0dfad6b
+
 # Release 20150419-01
 
 ### Bug fixes
