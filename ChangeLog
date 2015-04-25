@@ -1,3 +1,10 @@
+# Release 20150426-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150426.csv.xz
+	Remove entries which are combination of a verb and an auxiliary verb
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/63b0675107fe57aab0fa8903338452fc51ce8103
+
 # Release 20150424-01
 
 ### Bug fixes
