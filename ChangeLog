@@ -1,3 +1,10 @@
+# Release 20150428-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150428.csv.xz
+	Remove rows which have yomigana of string of a number
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/47b38f46562f811dcd619fcb2a7b916e62dba672
+
 # Release 20150426-01
 
 ### Bug fixes
