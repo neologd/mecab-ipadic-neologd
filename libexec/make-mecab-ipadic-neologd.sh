@@ -50,7 +50,6 @@ ORG_DIC_NAME=mecab-ipadic-2.7.0-20070801
 NEOLOGD_DIC_NAME=mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     curl --insecure -L "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" -o "${ORG_DIC_NAME}.tar.gz"
-
     if [ $? != 0 ]; then
         echo ""
         echo "$ECHO_PREFIX Failed to download $ORG_DIC_NAME"
