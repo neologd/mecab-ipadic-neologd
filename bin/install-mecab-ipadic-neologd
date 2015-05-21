@@ -190,6 +190,8 @@ if [ ${WANNA_UPDATE} = 1 ]; then
     echo
     echo "$ECHO_PREFIX Get the newest updated information using git"
     cd ${BASEDIR}/../
+    git fetch origin
+    git reset --hard origin/master
     git pull
 fi
 
