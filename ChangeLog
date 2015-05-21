@@ -1,3 +1,10 @@
+# Release 20150521-01
+
+### New features
+* seed/mecab-user-dict-seed.20150521.csv.xz
+	Add entries of emoji symbols of Unicode 6.0 or less
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/0c9b253ecd16f01fced7e1921ac138d43be648b4
+
 # Release 20150518-01
 
 ### New seed data
