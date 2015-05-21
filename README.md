@@ -102,14 +102,10 @@ Move to a directory of the repository which was cloned in the above preparation.
     $ cd mecab-ipadic-neologd
 
 #### Step.2
-Update to the latest state.
 
-    $ git pull
-
-#### Step.3
 You can install or can update(overwritten) the recent mecab-ipadic-neologd by following command.
 
-    $ ./bin/install-mecab-ipadic-neologd
+    $ ./bin/install-mecab-ipadic-neologd -n
 
 You can check the directory path to install it.
 
