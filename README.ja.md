@@ -101,14 +101,9 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     $ cd mecab-ipadic-neologd
 
 #### Step.2
-リポジトリの状態を最新の状態にします。
+以下のコマンドを実行するとインストール、または、上書きによる最新版への更新ができます。
 
-    $ git pull
-
-#### Step.3
-以下のコマンドを実行するとインストール、または、上書きによる更新ができます。
-
-    $ ./bin/install-mecab-ipadic-neologd
+    $ ./bin/install-mecab-ipadic-neologd -n
 
 インストール先はオプション未指定の場合 mecab-config に従って決まります。
 
