@@ -1,3 +1,10 @@
+# Release 20150526-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150526.csv.xz
+	Fix the cost field of entries of Unicode emoji because cost values were higher than max range of short value
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/0c9b253ecd16f01fced7e1921ac138d43be648b4
+
 # Release 20150521-01
 
 ### New features
