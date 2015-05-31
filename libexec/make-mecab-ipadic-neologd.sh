@@ -154,6 +154,8 @@ if [ ${WANNA_CREATE_USER_DIC} = 1 ]; then
     fi
 fi
 
+cp ${BASEDIR}/../misc/dic/unk.def .
+
 echo "${ECHO_PREFIX} Re-Index system dictionary"
 ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8
 
