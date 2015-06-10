@@ -109,6 +109,11 @@ find . -type f | xargs file | grep ".def" | cut -d: -f1 | xargs -t -I{} ./../../
 find . -type f | xargs file | grep ".def" | grep -v ".utf8" | cut -d: -f1 | xargs -t -I{} rm {}
 find . -type f | xargs file | grep  ".utf8" | cut -d: -f1 |  sed -e "s|.utf8||" |  xargs -t -I{} mv {}.utf8 {}
 
+echo "${ECHO_PREFIX} Fix yomigana field of IPA dictionary"
+patch < ${BASEDIR}/../misc/patch/Noun.csv.20150609.diff
+patch < ${BASEDIR}/../misc/patch/Noun.place.csv.20150609.diff
+patch < ${BASEDIR}/../misc/patch/Verb.csv.20150609.diff
+
 echo "${ECHO_PREFIX} Copy user dictionary resource"
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
