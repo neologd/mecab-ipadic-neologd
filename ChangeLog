@@ -1,3 +1,14 @@
+# Release 20150609-01
+
+### New features
+* misc/patch/*.csv.20150609.diff
+	execute: Add patch file to fix yomigana field of rows of IPA dictionary
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/69e49c05d78069fb1926df7dbc68575a6dcc8d99
+
+* libexec/make-mecab-ipadic-neologd.sh
+	execute: Add process to fix yomigana field of rows of IPA dictionary
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/87ae70de94d771ffbcf794cddaef0c147bf3497b
+
 # Release 20150608-01
 
 ### New seed data
