@@ -1,3 +1,18 @@
+# Release 20150618-01
+
+### New features
+* seed/neologd-adverb-dict-seed.20150618.csv.xz
+	execute: Add seed file of adverb entries
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/93ea2726c031aecc0c57d24b112705f7f8149fea
+
+* bin/install-mecab-ipadic-neologd
+	execute: Add process to install the seed file of adverb entries
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/e0082ad45a1fa80e573161dadddd6ec66100f6f7
+
+* libexec/make-mecab-ipadic-neologd.sh
+	execute: Add process to install the seed file of adverb entries
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/23ae2723ad4ac2c759ed7347c9307f8d2df9b083
+
 # Release 20150616-01
 
 ### New features
