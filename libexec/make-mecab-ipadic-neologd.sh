@@ -86,7 +86,8 @@ MAX_SURFACE_LEN=0
 MIN_BASEFORM_LEN=0
 MAX_BASEFORM_LEN=0
 WANNA_CREATE_USER_DIC=0
-while getopts p:s:l:S:L:u: OPT
+WOULD_NOT_LIKE_TO_INSTALL_ADVERB=0
+while getopts p:s:l:S:L:u:B: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -95,6 +96,7 @@ do
     "S" ) MIN_BASEFORM_LEN=$OPTARG ;;
     "L" ) MAX_BASEFORM_LEN=$OPTARG ;;
     "u" ) WANNA_CREATE_USER_DIC=$OPTARG ;;
+    "B" ) WOULD_NOT_LIKE_TO_INSTALL_ADVERB=$OPTARG ;;
   esac
 done
 
@@ -118,6 +120,13 @@ echo "${ECHO_PREFIX} Copy user dictionary resource"
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
+
+if [ ${WOULD_NOT_LIKE_TO_INSTALL_ADVERB} -gt 0 ]; then
+    echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/neologd-adverb-dict-seed.20150618.*.csv"
+else
+    cp ${BASEDIR}/../seed/neologd-adverb-dict-seed.20150618.csv.xz ${NEOLOGD_DIC_DIR}
+    unxz ${NEOLOGD_DIC_DIR}/neologd-adverb-dict-seed.20150618.csv.xz
+fi
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
     if [ ${MIN_SURFACE_LEN} -gt 0 ]; then
