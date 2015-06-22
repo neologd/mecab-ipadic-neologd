@@ -96,7 +96,7 @@ do
     "S" ) MIN_BASEFORM_LEN=$OPTARG ;;
     "L" ) MAX_BASEFORM_LEN=$OPTARG ;;
     "u" ) WANNA_CREATE_USER_DIC=$OPTARG ;;
-    "B" ) WOULD_NOT_LIKE_TO_INSTALL_ADVERB=$OPTARG ;;
+    "B" ) WANNA_IGNORE_ADVERB=$OPTARG ;;
   esac
 done
 
@@ -121,11 +121,19 @@ SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
-if [ ${WOULD_NOT_LIKE_TO_INSTALL_ADVERB} -gt 0 ]; then
-    echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/neologd-adverb-dict-seed.20150618.*.csv"
+
+ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv.xz
+if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} ]; then
+    if [ ${WANNA_IGNORE_ADVERB} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
+    else
+        echo "${ECHO_PREFIX} Install adverb entries using ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
+        cp ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${ADVERB_SEED_FILE_NAME}
+    fi
 else
-    cp ${BASEDIR}/../seed/neologd-adverb-dict-seed.20150618.csv.xz ${NEOLOGD_DIC_DIR}
-    unxz ${NEOLOGD_DIC_DIR}/neologd-adverb-dict-seed.20150618.csv.xz
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
 fi
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
