@@ -1,9 +1,16 @@
+# Release 20150624-01
+
+### New seed data
+* seed/mecab-user-dict-seed.20150624.csv.xz
+	execute: Add many entries whose surface field has word boundaries using the character of half width space
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/e494d2ef55f08aa8639e64cd5e6afcbf620c2acf
+
 # Release 20150623-01
 
 ### New seed data
 * seed/mecab-user-dict-seed.20150623.csv.xz & seed/neologd-adverb-dict-seed.20150623.csv.xz
 	execute: Aperiodic data update on 2015-06-23
-	execute: https://github.com/neologd/mecab-ipadic-neologd/commit/d0517c77e96721d2c5e38b3fb7c55dd07ea9de4b
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/d0517c77e96721d2c5e38b3fb7c55dd07ea9de4b
 
 # Release 20150618-01
 
