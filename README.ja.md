@@ -66,7 +66,8 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 #### 例
 - CentOS の場合
 
-    $ sudo yum install mecab mecab-ipadic git make curl xz
+    $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
+    $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
 
 - Fedora の場合
 
