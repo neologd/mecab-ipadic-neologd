@@ -28,6 +28,8 @@ When you analyze the Web documents, it's better to use this system dictionary an
         - Japanese postal code number data download (ken_all.lzh)
         - The name-of-the-station list of the Japan whole country
         - The entry data of the person name (last name / first name)
+        - The entry data of Unicode emoji
+        - The entry data of Adverb
         - A lot of documents, which crawled from Web
     - I'm planning to record the words such as the named entity, which will be extracted from other new language resource.
 
@@ -68,7 +70,8 @@ Please install at any time other lack library.
 #### Examples
 - On CentOS
 
-    $ sudo yum install mecab mecab-ipadic git make curl xz
+    $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
+    $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
 
 - On Fedora
 
