@@ -196,17 +196,24 @@ done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
     echo
-    echo "$ECHO_PREFIX Get the newest updated information using git"
-    cd ${BASEDIR}/../
-    git fetch origin
-    git reset --hard origin/master
-    git pull
+    if [ `git log --pretty=%H ...refs/heads/master^` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
+        echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
+    else
+        echo "$ECHO_PREFIX Get the newest updated information using git"
+        cd ${BASEDIR}/../
+        git fetch origin
+    fi
+else
+    echo "$ECHO_PREFIX You should execute the following command if you want to install newest version of mecab-ipadic-NEologd"
+    echo
+    echo "    $ bin/install-mecab-ipadic-neologd -n"
+    echo
+    sleep 3
 fi
 
 if [ -z ${INSTALL_PATH_PREFIX} ]; then
     INSTALL_PATH_PREFIX=`mecab-config --dicdir`"/mecab-ipadic-neologd"
 fi
-
 
 echo ""
 echo "$ECHO_PREFIX mecab-ipadic-neologd will be install to ${INSTALL_PATH_PREFIX}"
