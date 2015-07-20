@@ -62,7 +62,7 @@ cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} > /tmp/buzz_phrase_toke
 
 if [ -s /tmp/buzz_phrase_tokenized_diff ]; then
     echo "$ECHO_PREFIX Tokenize phrase using default system dictionary"
-    echo "default system dictonary" > /tmp/buzz_phrase_tokenized_using_defdic
+    echo "default system dictionary" > /tmp/buzz_phrase_tokenized_using_defdic
     cat /tmp/buzz_phrase| mecab -Owakati >> /tmp/buzz_phrase_tokenized_using_defdic
 
     echo "$ECHO_PREFIX Tokenize phrase using mecab-ipadic-neologd"
