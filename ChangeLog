@@ -1,3 +1,10 @@
+# Release 20150805-01
+
+### Bug fixes
+* seed/mecab-user-dict-seed.20150805.csv.xz
+        execute: Improve a value of cost column of many entries of a seed file
+        commit: https://github.com/neologd/mecab-ipadic-neologd/commit/6e5c56d059a436044f1f0e8d6d1b5b272ce6aa23
+
 # Release 20150803-01
 
 ### New seed data
