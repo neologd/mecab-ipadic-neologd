@@ -124,6 +124,8 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 ### mecab-ipadic-neologd の使用方法
 mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
+使ってみて良い結果が得られた時は、ぜひこの star ボタン ([![Star of mecab-ipadic-neologd](https://ghbtns.com/github-btn.html?user=neologd&repo=mecab-ipadic-neologd&type=star&count=true)]) を押して下さい。励みになります。
+
 #### 例 (CentOS 上でインストールした場合)
 
     $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
