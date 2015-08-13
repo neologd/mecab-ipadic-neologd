@@ -203,6 +203,7 @@ if [ ${WANNA_UPDATE} = 1 ]; then
         cd ${BASEDIR}/../
         git fetch origin
     fi
+    git pull
 else
     echo "$ECHO_PREFIX You should execute the following command if you want to install newest version of mecab-ipadic-NEologd"
     echo
