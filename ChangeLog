@@ -1,3 +1,10 @@
+# Release 20150821-02
+
+### New features
+* seed/mecab-user-dict-seed.20150821.csv.xz
+	execute: Add many fashion brand names (thanks kimoto)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/84bed2b1a103920b4d10b801ad02c8c7e960bc1b
+
 # Release 20150821-01
 
 ### Bug fixes
