@@ -1,3 +1,11 @@
+# Release 20150821-01
+
+### Bug fixes
+* bin/install-mecab-ipadic-neologd
+	issue: https://github.com/neologd/mecab-ipadic-neologd/issues/4
+	execute: Fix the code about checking an update information of remote repository using 'git log' (thanks hidekuro)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/fb388c9ba92dca62c28e8f63297dd9cbeb9fee54
+
 # Release 20150817-01
 
 ### New features
