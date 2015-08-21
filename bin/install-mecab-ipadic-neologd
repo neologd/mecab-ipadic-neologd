@@ -196,7 +196,7 @@ done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
     echo
-    if [ `git log --pretty=%H ...refs/heads/master^` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
+    if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
         echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
     else
         echo "$ECHO_PREFIX Get the newest updated information using git"
