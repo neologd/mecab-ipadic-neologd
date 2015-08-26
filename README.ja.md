@@ -224,11 +224,11 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
 言語処理を始めたばかりの方や上記以外の多くの用途には master branch の最新版の使用を推奨します。
 
 ## インストールで行き詰まった場合
-以下のコマンドを実行すると mecab-ipadic-NEologd の Yum リポジトリをシステムに登録し、さらに RPM ファイルをインストールできます。
+以下のコマンドを実行すると mecab-ipadic-NEologd の Yum リポジトリをシステムに登録し、さらに RPM ファイル(気まぐれ更新)をインストールできます。
 
 最新版をインストールしたい場合は利用しないで下さい。
 
-### RHEL 6 of CentOS 6
+### RHEL 6 or CentOS 6
 
     // インストール先は /usr/lib64/mecab/dic/mecab-ipadic-neologd/ 以下
     $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
