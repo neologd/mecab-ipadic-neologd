@@ -39,7 +39,7 @@ if [ ! -e ${BASEDIR}/../seed ]; then
 fi
 
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
-cp ${SEED_DIR}/seed/${SEED_FILE_NAME} ${BASEDIR}/../seed/
+cp -p ${SEED_DIR}/seed/${SEED_FILE_NAME} ${BASEDIR}/../seed/
 
 echo "$ECHO_PREFIX Delete the debug columns"
 cat ${BASEDIR}/../seed/${SEED_FILE_NAME} | cut -d $',' -f -13 > ${BASEDIR}/../seed/${SEED_FILE_NAME}.lite
