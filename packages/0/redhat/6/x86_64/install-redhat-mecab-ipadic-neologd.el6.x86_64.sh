@@ -17,19 +17,19 @@ sudo sh <<SCRIPT
 
   # add GPG key
   echo "${ECHO_PREFIX} Import GPG public key."
-  rpm --import https://neologd.github.io/mecab-ipadic-neologd/RPM-GPG-KEY-NEolgod
+  rpm --import https://neologd.github.io/mecab-ipadic-neologd-yum-repository/RPM-GPG-KEY-NEolgod
 
   # add treasure data repository to yum
   echo "${ECHO_PREFIX} Put the repo file to /etc/yum.repos.d/* ."
   cat >/etc/yum.repos.d/mecab-ipadic-neologd.repo <<'EOF';
 [mecab-ipadic-neologd]
 name=mecab-ipadic-NEologd
-baseurl=https://neologd.github.io/mecab-ipadic-neologd/packages/0/redhat/6/x86_64/
+baseurl=https://neologd.github.io/mecab-ipadic-neologd-yum-repository/packages/0/redhat/6/x86_64/
 gpgcheck=1
-gpgkey=https://neologd.github.io/mecab-ipadic-neologd/RPM-GPG-KEY-NEolgod
+gpgkey=https://neologd.github.io/mecab-ipadic-neologd-yum-repository/RPM-GPG-KEY-NEolgod
 EOF
 
-  #https://neologd.github.io/mecab-ipadic-neologd/packages/0/\$releasever/\$basearch
+  #https://neologd.github.io/mecab-ipadic-neologd-yum-repository/packages/0/\$releasever/\$basearch
 
   # update your sources
   echo "${ECHO_PREFIX} Chack update information of yum ."
