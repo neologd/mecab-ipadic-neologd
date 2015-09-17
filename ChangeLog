@@ -1,3 +1,10 @@
+# Release 20150918-01
+
+### New seed data
+* seed/mecab-user-dict-seed.20150918.csv.xz
+	execute: Aperiodic data update on 2015-09-18
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/a6a0401ed5f431de50402fcef4a28645548165d9
+
 # Release 20150915-01
 
 ### New seed data
