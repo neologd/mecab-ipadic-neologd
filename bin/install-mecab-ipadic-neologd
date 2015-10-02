@@ -61,6 +61,9 @@ usage() {
     echo "  --ignore_adverb"
     echo "     If you would not like to install adverb entries of seed data of mecab-ipadic-neologd"
     echo
+    echo "  --ignore_interject"
+    echo "     If you would not like to install interjection entries of seed data of mecab-ipadic-neologd"
+    echo
     exit 1
 }
 
@@ -74,6 +77,7 @@ MIN_BASEFORM_LEN=0
 MAX_BASEFORM_LEN=0
 WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
+WANNA_IGNORE_INTERJECT=0
 
 for OPT in "$@"
 do
@@ -113,6 +117,10 @@ do
             ;;
         '--ignore_adverb' )
             WANNA_IGNORE_ADVERB=1
+            shift 1
+            ;;
+        '--ignore_interject' )
+            WANNA_IGNORE_INTERJECT=1
             shift 1
             ;;
         '--min_surface_length' )
@@ -222,7 +230,7 @@ echo ""
 sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT}
 
 if [ $? != 0 ]; then
     echo ""
