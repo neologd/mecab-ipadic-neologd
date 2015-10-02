@@ -87,6 +87,7 @@ MIN_BASEFORM_LEN=0
 MAX_BASEFORM_LEN=0
 WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
+WANNA_IGNORE_INTERJECT=0
 while getopts p:s:l:S:L:u:B: OPT
 do
   case $OPT in
@@ -97,6 +98,7 @@ do
     "L" ) MAX_BASEFORM_LEN=$OPTARG ;;
     "u" ) WANNA_CREATE_USER_DIC=$OPTARG ;;
     "B" ) WANNA_IGNORE_ADVERB=$OPTARG ;;
+    "J" ) WANNA_IGNORE_INTERJECT=$OPTARG ;;
   esac
 done
 
@@ -123,7 +125,6 @@ SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
-
 ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv.xz
 if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} ]; then
     if [ ${WANNA_IGNORE_ADVERB} -gt 0 ]; then
@@ -136,6 +137,20 @@ if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} ]; then
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
+fi
+
+INTERJECT_SEED_FILE_NAME=neologd-interjection-dict-seed.20151002.csv.xz
+if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} ]; then
+    if [ ${WANNA_IGNORE_INTERJECT} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
+    else
+        echo "${ECHO_PREFIX} Install interjection entries using ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
+        cp ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${INTERJECT_SEED_FILE_NAME}
+    fi
+else
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
 fi
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
