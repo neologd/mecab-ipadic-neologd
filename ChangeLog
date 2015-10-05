@@ -1,3 +1,10 @@
+# Release 20151002-01
+
+### New seed data
+* seed/neologd-interjection-dict-seed.20151002.csv.xz
+	execute: Add the seed data file of interjection words
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/75ad1eab01c40ec9d87b5de2eea907c8c57c173d
+
 # Release 20151001-01
 
 ### New seed data
