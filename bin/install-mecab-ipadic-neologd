@@ -209,7 +209,8 @@ if [ ${WANNA_UPDATE} = 1 ]; then
         IS_NETWORK_ONLINE=1
     else
         echo "$ECHO_PREFIX Unable to access https://github.com/"
-        while true;do
+        while :
+        do
             echo ""
             echo "$ECHO_PREFIX Do you want to install mecab-ipadic-neologd without accessing https://github.com/ ? Type yes or no."
             read nanswer
