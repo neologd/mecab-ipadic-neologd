@@ -70,6 +70,14 @@ else
     echo "$ECHO_PREFIX Original mecab-ipadic file is already there."
 fi
 
+if [ `openssl sha1 ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801.tar.gz | cut -d $' ' -f 2,2` != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
+    echo "$ECHO_PREFIX Fail to download ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz"
+    echo "$ECHO_PREFIX You should remove ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz before retrying to install mecab-ipadic-NEologd"
+    echo "$ECHO_PREFIX        rm -rf ${BASEDIR}/../build/${ORG_DIC_NAME}"
+    echo "$ECHO_PREFIX        rm ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz"
+    exit 1
+fi
+
 echo "$ECHO_PREFIX Decompress original mecab-ipadic file"
 
 NEOLOGD_DIC_DIR=${BASEDIR}/../build/${NEOLOGD_DIC_NAME}
