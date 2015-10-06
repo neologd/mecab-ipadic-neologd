@@ -48,7 +48,17 @@ cd ${BASEDIR}/../build
 
 ORG_DIC_NAME=mecab-ipadic-2.7.0-20070801
 NEOLOGD_DIC_NAME=mecab-ipadic-2.7.0-20070801-neologd-${YMD}
+
 if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
+    /usr/bin/env ping -c 1 -t 5 drive.google.com >> /dev/null
+    if [ $? = 0 ]; then
+        IS_NETWORK_ONLINE=1
+    else
+        echo "$ECHO_PREFIX Unable to access https://drive.google.com/ within 5 seconds"
+        echo "$ECHO_PREFIX Install error, please retry after re-connecting to network"
+        exit 1
+    fi
+
     curl --insecure -L "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" -o "${ORG_DIC_NAME}.tar.gz"
     if [ $? != 0 ]; then
         echo ""
@@ -56,7 +66,6 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
         echo "$ECHO_PREFIX Please check your network to download 'https://mecab.googlecode.com/files/${ORG_DIC_NAME}.tar.gz'"
         exit 1;
     fi
-
 else
     echo "$ECHO_PREFIX Original mecab-ipadic file is already there."
 fi
