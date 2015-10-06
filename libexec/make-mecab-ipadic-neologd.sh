@@ -97,7 +97,7 @@ MAX_BASEFORM_LEN=0
 WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
 WANNA_IGNORE_INTERJECT=0
-while getopts p:s:l:S:L:u:B: OPT
+while getopts p:s:l:S:L:u:B:J: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
