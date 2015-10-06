@@ -203,14 +203,44 @@ for COMMAND in ${COMMANDS[@]};do
 done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
-    echo
-    if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
-        echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
+    /usr/bin/env ping github.com -c 1 >> /dev/null
+    IS_NETWORK_ONLINE=0
+    if ( $? == 0 ) then
+        IS_NETWORK_ONLINE=1
     else
-        echo "$ECHO_PREFIX Get the newest updated information using git"
-        cd ${BASEDIR}/../
-        git fetch origin
-        git reset --hard origin/master
+        echo "$ECHO_PREFIX Unable to access https://github.com/"
+        while true;do
+            echo ""
+            echo "$ECHO_PREFIX Do you want to install mecab-ipadic-neologd without accessing https://github.com/ ? Type yes or no."
+            read nanswer
+            case $nanswer in
+                yes)
+                    echo "$ECHO_PREFIX [$nanswer] OK. We respect your selection"
+                    IS_NETWORK_ONLINE=1
+                    ;;
+                no)
+                    echo "$ECHO_PREFIX [$nanswer] OK. We respect your selection"
+                    IS_NETWORK_ONLINE=0
+                    ;;
+                *)
+                    ;;
+            esac
+        done
+    fi
+
+    if [ ${IS_NETWORK_ONLINE} = 1 ]; then
+        echo
+        if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
+            echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
+        else
+            echo "$ECHO_PREFIX Get the newest updated information using git"
+            cd ${BASEDIR}/../
+            git fetch origin
+            git reset --hard origin/master
+        fi
+    else
+        echo "$ECHO_PREFIX Install error, please retry after re-connecting to network"
+        exit 1
     fi
 else
     echo "$ECHO_PREFIX You should execute the following command if you want to install newest version of mecab-ipadic-NEologd"
