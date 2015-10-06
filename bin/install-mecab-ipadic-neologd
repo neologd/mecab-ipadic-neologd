@@ -203,27 +203,23 @@ for COMMAND in ${COMMANDS[@]};do
 done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
-    IS_NETWORK_ONLINE=0
     /usr/bin/env ping -c 1 -t 5 github.com >> /dev/null
     if [ $? = 0 ]; then
         IS_NETWORK_ONLINE=1
     else
         echo "$ECHO_PREFIX Unable to access https://github.com/ within 5 seconds"
-    fi
-
-    if [ ${IS_NETWORK_ONLINE} = 1 ]; then
-        echo
-        if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
-            echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
-        else
-            echo "$ECHO_PREFIX Get the newest updated information using git"
-            cd ${BASEDIR}/../
-            git fetch origin
-            git reset --hard origin/master
-        fi
-    else
         echo "$ECHO_PREFIX Install error, please retry after re-connecting to network"
         exit 1
+    fi
+
+    echo
+    if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
+        echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
+    else
+        echo "$ECHO_PREFIX Get the newest updated information using git"
+        cd ${BASEDIR}/../
+        git fetch origin
+        git reset --hard origin/master
     fi
 else
     echo "$ECHO_PREFIX You should execute the following command if you want to install newest version of mecab-ipadic-NEologd"
