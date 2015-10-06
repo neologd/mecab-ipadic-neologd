@@ -217,10 +217,12 @@ if [ ${WANNA_UPDATE} = 1 ]; then
                 yes)
                     echo "$ECHO_PREFIX [$nanswer] OK. We respect your selection"
                     IS_NETWORK_ONLINE=1
+                    break
                     ;;
                 no)
                     echo "$ECHO_PREFIX [$nanswer] OK. We respect your selection"
                     IS_NETWORK_ONLINE=0
+                    break
                     ;;
                 *)
                     ;;
