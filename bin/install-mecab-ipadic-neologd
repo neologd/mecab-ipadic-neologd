@@ -204,7 +204,7 @@ done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
     IS_NETWORK_ONLINE=0
-    /usr/bin/env ping -c 1 github.com >> /dev/null
+    /usr/bin/env ping -c 1 -t 10 github.com >> /dev/null
     if [ $? = 0 ]; then
         IS_NETWORK_ONLINE=1
     else
