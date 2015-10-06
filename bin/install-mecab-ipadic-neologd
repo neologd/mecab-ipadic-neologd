@@ -203,7 +203,7 @@ for COMMAND in ${COMMANDS[@]};do
 done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
-    /usr/bin/env ping github.com -c 1 >> /dev/null
+    /usr/bin/env ping -c 1 github.com >> /dev/null
     IS_NETWORK_ONLINE=0
     if ( $? == 0 ) then
         IS_NETWORK_ONLINE=1
