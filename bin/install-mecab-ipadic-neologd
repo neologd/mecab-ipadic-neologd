@@ -204,31 +204,11 @@ done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
     IS_NETWORK_ONLINE=0
-    /usr/bin/env ping -c 1 -t 10 github.com >> /dev/null
+    /usr/bin/env ping -c 1 -t 5 github.com >> /dev/null
     if [ $? = 0 ]; then
         IS_NETWORK_ONLINE=1
     else
-        echo "$ECHO_PREFIX Unable to access https://github.com/"
-        while :
-        do
-            echo ""
-            echo "$ECHO_PREFIX Do you want to install mecab-ipadic-neologd without accessing https://github.com/ ? Type yes or no."
-            read nanswer
-            case $nanswer in
-                yes)
-                    echo "$ECHO_PREFIX [$nanswer] OK. We respect your selection"
-                    IS_NETWORK_ONLINE=1
-                    break
-                    ;;
-                no)
-                    echo "$ECHO_PREFIX [$nanswer] OK. We respect your selection"
-                    IS_NETWORK_ONLINE=0
-                    break
-                    ;;
-                *)
-                    ;;
-            esac
-        done
+        echo "$ECHO_PREFIX Unable to access https://github.com/ within 5 seconds"
     fi
 
     if [ ${IS_NETWORK_ONLINE} = 1 ]; then
