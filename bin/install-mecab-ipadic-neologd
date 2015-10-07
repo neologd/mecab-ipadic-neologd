@@ -203,12 +203,15 @@ for COMMAND in ${COMMANDS[@]};do
 done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
-    /usr/bin/env ping -c 1 -t 5 github.com >> /dev/null
-    if [ $? = 0 ]; then
+    STATUS_CODE=`curl -IL https://github.com -s -w '%{http_code}\n' -o /dev/null`
+    if [ ${STATUS_CODE} = 200 ]; then
         IS_NETWORK_ONLINE=1
     else
-        echo "$ECHO_PREFIX Unable to access https://github.com/ within 5 seconds"
-        echo "$ECHO_PREFIX Install error, please retry after re-connecting to network"
+        echo "$ECHO_PREFIX Unable to access https://github.com/"
+        echo "$ECHO_PREFIX     Status code : ${STATUS_CODE}"
+        echo "$ECHO_PREFIX Update error, please retry after re-connecting to network"
+        echo "$ECHO_PREFIX Or you can try to install without updating option(-n)"
+        echo "$ECHO_PREFIX     \$ ./bin/install-mecab-ipadic-neologd"
         exit 1
     fi
 
