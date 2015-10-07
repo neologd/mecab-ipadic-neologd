@@ -50,7 +50,7 @@ ORG_DIC_NAME=mecab-ipadic-2.7.0-20070801
 NEOLOGD_DIC_NAME=mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 
 if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
-    STATUS_CODE=`curl -IL https://drive.google.com -s -w '%{http_code}\n' -o /dev/null`
+    STATUS_CODE=`curl --insecure -IL https://drive.google.com -s -w '%{http_code}\n' -o /dev/null`
     if [ ${STATUS_CODE} = 200 ]; then
         IS_NETWORK_ONLINE=1
     else
