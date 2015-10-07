@@ -203,7 +203,7 @@ for COMMAND in ${COMMANDS[@]};do
 done
 
 if [ ${WANNA_UPDATE} = 1 ]; then
-    STATUS_CODE=`curl -IL https://github.com -s -w '%{http_code}\n' -o /dev/null`
+    STATUS_CODE=`curl --insecure -IL https://github.com -s -w '%{http_code}\n' -o /dev/null`
     if [ ${STATUS_CODE} = 200 ]; then
         IS_NETWORK_ONLINE=1
     else
