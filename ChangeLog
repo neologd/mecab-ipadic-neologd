@@ -1,6 +1,13 @@
 # Release 20151008-01
 
 ### New seed data
+* seed/seed/neologd-noun-ortho-variant-dict-seed.20151013.csv.xz
+	execute: Add a seed file of orthographical variant of common noun
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/102e94c55a04a5d56487b2206e572bc70c0e2a24
+
+# Release 20151008-01
+
+### New seed data
 * seed/mecab-user-dict-seed.20151008.csv.xz
 	execute: Aperiodic data update on 2015-10-08(Thu)
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/b8a0e3f0fddf638163ab0e76845503dbf8cc4e84
