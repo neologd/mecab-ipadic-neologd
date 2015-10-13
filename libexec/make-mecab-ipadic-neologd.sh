@@ -106,7 +106,8 @@ MAX_BASEFORM_LEN=0
 WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
 WANNA_IGNORE_INTERJECT=0
-while getopts p:s:l:S:L:u:B:J: OPT
+WANNA_IGNORE_NOUN_ORTHO=0
+while getopts p:s:l:S:L:u:B:J:O: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -117,6 +118,7 @@ do
     "u" ) WANNA_CREATE_USER_DIC=$OPTARG ;;
     "B" ) WANNA_IGNORE_ADVERB=$OPTARG ;;
     "J" ) WANNA_IGNORE_INTERJECT=$OPTARG ;;
+    "O" ) WANNA_IGNORE_NOUN_ORTHO=$OPTARG ;;
   esac
 done
 
@@ -169,6 +171,20 @@ if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} ]; then
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
+fi
+
+NOUN_ORTHO_SEED_FILE_NAME=neologd-noun-ortho-variant-dict-seed.20151013.csv.xz
+if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} ]; then
+    if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
+    else
+        echo "${ECHO_PREFIX} Install interjection entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
+        cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}
+    fi
+else
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
 fi
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
