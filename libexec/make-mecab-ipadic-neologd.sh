@@ -145,42 +145,42 @@ SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
-ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv.xz
-if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} ]; then
+ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv
+if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_ADVERB} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz"
     else
-        echo "${ECHO_PREFIX} Install adverb entries using ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
-        cp ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} ${NEOLOGD_DIC_DIR}
-        unxz ${NEOLOGD_DIC_DIR}/${ADVERB_SEED_FILE_NAME}
+        echo "${ECHO_PREFIX} Install adverb entries using ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${ADVERB_SEED_FILE_NAME}.xz
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
 fi
 
-INTERJECT_SEED_FILE_NAME=neologd-interjection-dict-seed.20151022.csv.xz
-if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} ]; then
+INTERJECT_SEED_FILE_NAME=neologd-interjection-dict-seed.20151022.csv
+if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_INTERJECT} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz"
     else
-        echo "${ECHO_PREFIX} Install interjection entries using ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
-        cp ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} ${NEOLOGD_DIC_DIR}
-        unxz ${NEOLOGD_DIC_DIR}/${INTERJECT_SEED_FILE_NAME}
+        echo "${ECHO_PREFIX} Install interjection entries using ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${INTERJECT_SEED_FILE_NAME}.xz
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
 fi
 
-NOUN_ORTHO_SEED_FILE_NAME=neologd-noun-ortho-variant-dict-seed.20151013.csv.xz
-if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} ]; then
+NOUN_ORTHO_SEED_FILE_NAME=neologd-noun-ortho-variant-dict-seed.20151013.csv
+if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
     else
-        echo "${ECHO_PREFIX} Install interjection entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
-        cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} ${NEOLOGD_DIC_DIR}
-        unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}
+        echo "${ECHO_PREFIX} Install noun orthographical variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}.xz
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
