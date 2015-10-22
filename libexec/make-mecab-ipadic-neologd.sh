@@ -145,6 +145,9 @@ SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
+SEED_FILE_NAMES=()
+SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${SEED_FILE_NAME}")
+
 ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv
 if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_ADVERB} -gt 0 ]; then
@@ -153,6 +156,7 @@ if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install adverb entries using ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADVERB_SEED_FILE_NAME}.xz
+        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADVERB_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} isn't there"
@@ -167,6 +171,7 @@ if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install interjection entries using ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${INTERJECT_SEED_FILE_NAME}.xz
+        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${INTERJECT_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} isn't there"
@@ -181,6 +186,7 @@ if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install noun orthographical variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}.xz
+        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${NOUN_ORTHO_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
@@ -188,28 +194,43 @@ else
 fi
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
-    if [ ${MIN_SURFACE_LEN} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Delete the entries whose length of surface is shorter than ${MIN_SURFACE_LEN} from seed file"
-        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[0]);print \$l if(\$len >= ${MIN_SURFACE_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
-        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
-    fi
-    if [ ${MAX_SURFACE_LEN} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Delete the entries whose length of surface is longer than ${MAX_SURFACE_LEN} from seed file"
-        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[0]);print \$l if(\$len <= ${MAX_SURFACE_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
-        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
-    fi
+    for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
+    do
+        TMP_SEED_FILE_NAME=${SEED_FILE_NAMES[$I]}
+        if [ -f ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} ]; then
+            echo "${ECHO_PREFIX} Cut string of surface of entries in ${TMP_SEED_FILE_NAME}"
+            if [ ${MIN_SURFACE_LEN} -gt 0 ]; then
+                echo "${ECHO_PREFIX} Delete the entries whose length of surface is shorter than ${MIN_SURFACE_LEN} from seed file"
+                cat ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[0]);print \$l if(\$len >= ${MIN_SURFACE_LEN});" > ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp
+                mv ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}
+            fi
+            if [ ${MAX_SURFACE_LEN} -gt 0 ]; then
+                echo "${ECHO_PREFIX} Delete the entries whose length of surface is longer than ${MAX_SURFACE_LEN} from seed file"
+                cat ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[0]);print \$l if(\$len <= ${MAX_SURFACE_LEN});" > ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp
+                mv ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}
+            fi
+        fi
+    done
 fi
+
 if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
-    if [ ${MIN_BASEFORM_LEN} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Delete the entries whose length of base form is shorter than ${MIN_BASEFORM_LEN} from seed file"
-        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[10]);print \$l if(\$len >= ${MIN_BASEFORM_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
-        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
-    fi
-    if [ ${MAX_BASEFORM_LEN} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Delete the entries whose length of base form is longer than ${MAX_BASEFORM_LEN} from seed file"
-        cat ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[10]);print \$l if(\$len <= ${MAX_BASEFORM_LEN});" > ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp
-        mv ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}
-    fi
+    for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
+    do
+        TMP_SEED_FILE_NAME=${SEED_FILE_NAMES[$I]}
+        if [ -f ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} ]; then
+            echo "${ECHO_PREFIX} Cut string of base form of entries in ${TMP_SEED_FILE_NAME}"
+            if [ ${MIN_BASEFORM_LEN} -gt 0 ]; then
+                echo "${ECHO_PREFIX} Delete the entries whose length of base form is shorter than ${MIN_BASEFORM_LEN} from seed file"
+                cat ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[10]);print \$l if(\$len >= ${MIN_BASEFORM_LEN});" > ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp
+                mv ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}
+            fi
+            if [ ${MAX_BASEFORM_LEN} -gt 0 ]; then
+                echo "${ECHO_PREFIX} Delete the entries whose length of base form is longer than ${MAX_BASEFORM_LEN} from seed file"
+                cat ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} | perl -ne "use Encode;my \$l=\$_;my @a=split /,/,\$l;\$len=length Encode::decode_utf8(\$a[10]);print \$l if(\$len <= ${MAX_BASEFORM_LEN});" > ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp
+                mv ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.tmp ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}
+            fi
+        fi
+    done
 fi
 
 if [ ${WANNA_CREATE_USER_DIC} = 1 ]; then
