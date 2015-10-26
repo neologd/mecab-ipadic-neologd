@@ -1,5 +1,10 @@
 # Release 20151022-02
 
+### Add new process
+* libexec/make-mecab-ipadic-neologd.sh
+	execute: Add process to delete the entry whose surface/base-form is shorter/longer than optional length
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/64435d34a2518cd1cf9eb214989471479606cd43
+
 ### Update seed data
 * seed/neologd-interjection-dict-seed.20151022.csv.xz
 	execute: Fix POS information (thanks @kazuhira_r & @moco_beta)
