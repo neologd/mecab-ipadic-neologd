@@ -178,7 +178,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
 fi
 
-NOUN_ORTHO_SEED_FILE_NAME=neologd-noun-ortho-variant-dict-seed.20151013.csv
+NOUN_ORTHO_SEED_FILE_NAME=neologd-noun-ortho-variant-dict-seed.20151110.csv
 if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
