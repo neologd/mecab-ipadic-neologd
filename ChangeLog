@@ -1,3 +1,10 @@
+# Release 20151110-01
+
+### New seed data
+* seed/neologd-noun-ortho-variant-dict-seed.20151110.csv.xz
+	execute: Add many entries of general noun written in Hiragana or Katakana
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/bfa776fdb1859bad45f87bbd329eedf81516e432
+
 # Release 20151109-01
 
 ### New seed data
