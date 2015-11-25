@@ -213,7 +213,7 @@ fi
 ADJECTIVE_EXP_SEED_FILE_NAME=neologd-adjective-exp-dict-seed.20151125.csv
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSTALL_ADJECTIVE_EXP} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Install unfrequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX} Install infrequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz
         SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_EXP_SEED_FILE_NAME}")
