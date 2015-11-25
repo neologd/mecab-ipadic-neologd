@@ -1,3 +1,10 @@
+# Release 20151126-01
+
+### New seed data
+* seed/neologd-adjective-exp-dict-seed.20151126.csv.xz, seed/neologd-adjective-std-dict-seed.20151126.csv.xz
+	execute: Update seed files of orthographical variant of an adjective
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/17cb5c07581be93b4784e77a5d3c39d6d1483e3d
+
 # Release 20151125-01
 
 ### New seed data
