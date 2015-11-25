@@ -1,3 +1,14 @@
+# Release 20151125-01
+
+### New seed data
+* seed/neologd-adjective-exp-dict-seed.20151125.csv.xz
+	execute: Add seed file to tokenize infrequent orthographical variant of an adjective
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/efedcfad65227df463c04328466d2942e9d38856
+
+* seed/neologd-adjective-std-dict-seed.20151125.csv.xz
+	execute: Add seed file to tokenize infrequent orthographical variant of an adjective
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/fa01cdd2c13732c91247e8a144ba561dedb8da5d
+
 # Release 20151123-01
 
 ### New seed data
