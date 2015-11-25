@@ -107,7 +107,10 @@ WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
 WANNA_IGNORE_INTERJECT=0
 WANNA_IGNORE_NOUN_ORTHO=0
-while getopts p:s:l:S:L:u:B:J:O: OPT
+WANNA_IGNORE_ADJECTIVE_STD=0
+WANNA_INSTALL_ADJECTIVE_EXP=0
+
+while getopts p:s:l:S:L:u:B:J:O:t:T: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -119,6 +122,8 @@ do
     "B" ) WANNA_IGNORE_ADVERB=$OPTARG ;;
     "J" ) WANNA_IGNORE_INTERJECT=$OPTARG ;;
     "O" ) WANNA_IGNORE_NOUN_ORTHO=$OPTARG ;;
+    "t" ) WANNA_IGNORE_ADJECTIVE_STD=$OPTARG ;;
+    "T" ) WANNA_INSTALL_ADJECTIVE_EXP=$OPTARG ;;
   esac
 done
 
@@ -144,9 +149,6 @@ echo "${ECHO_PREFIX} Copy user dictionary resource"
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
-
-SEED_FILE_NAMES=()
-SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${SEED_FILE_NAME}")
 
 ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv
 if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
@@ -192,6 +194,39 @@ else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
 fi
+
+ADJECTIVE_STD_SEED_FILE_NAME=neologd-adjective-std-dict-seed.20151125.csv
+if [ -f ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_IGNORE_ADJECTIVE_STD} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
+    else
+        echo "${ECHO_PREFIX} Install noun orthographical variant entries using ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_STD_SEED_FILE_NAME}.xz
+        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_STD_SEED_FILE_NAME}")
+    fi
+else
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}"
+fi
+
+ADJECTIVE_EXP_SEED_FILE_NAME=neologd-adjective-exp-dict-seed.20151125.csv
+if [ -f ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSTALL_ADJECTIVE_EXP} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Install noun orthographical variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz
+        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_EXP_SEED_FILE_NAME}")
+    else
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX}     When you install ${ADJECTIVE_EXP_SEED_FILE_NAME}.xz, please set --install_adjective_exp option"
+        echo
+    fi
+else
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}"
+fi
+
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
     for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
