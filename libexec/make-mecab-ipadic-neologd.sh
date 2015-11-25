@@ -185,7 +185,7 @@ if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
     else
-        echo "${ECHO_PREFIX} Install noun orthographical variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX} Install noun orthographic variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}.xz
         SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${NOUN_ORTHO_SEED_FILE_NAME}")
@@ -200,7 +200,7 @@ if [ -f ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_ADJECTIVE_STD} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
     else
-        echo "${ECHO_PREFIX} Install noun orthographical variant entries using ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX} Install frequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_STD_SEED_FILE_NAME}.xz
         SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_STD_SEED_FILE_NAME}")
@@ -213,7 +213,7 @@ fi
 ADJECTIVE_EXP_SEED_FILE_NAME=neologd-adjective-exp-dict-seed.20151125.csv
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSTALL_ADJECTIVE_EXP} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Install noun orthographical variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX} Install unfrequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz
         SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_EXP_SEED_FILE_NAME}")
