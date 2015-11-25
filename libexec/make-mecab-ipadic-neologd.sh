@@ -195,7 +195,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
 fi
 
-ADJECTIVE_STD_SEED_FILE_NAME=neologd-adjective-std-dict-seed.20151125.csv
+ADJECTIVE_STD_SEED_FILE_NAME=neologd-adjective-std-dict-seed.20151126.csv
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_ADJECTIVE_STD} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
@@ -210,7 +210,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}"
 fi
 
-ADJECTIVE_EXP_SEED_FILE_NAME=neologd-adjective-exp-dict-seed.20151125.csv
+ADJECTIVE_EXP_SEED_FILE_NAME=neologd-adjective-exp-dict-seed.20151126.csv
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSTALL_ADJECTIVE_EXP} -gt 0 ]; then
         echo "${ECHO_PREFIX} Install infrequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
