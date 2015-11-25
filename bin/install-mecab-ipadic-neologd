@@ -59,13 +59,19 @@ usage() {
     echo "     If you want to create an user dictionary using seed data of mecab-ipadic-neologd"
     echo
     echo "  --ignore_adverb"
-    echo "     If you would not like to install adverb entries of seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of adverbial as seed data of mecab-ipadic-neologd"
     echo
     echo "  --ignore_interject"
-    echo "     If you would not like to install interjection entries of seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of interjection as seed data of mecab-ipadic-neologd"
     echo
     echo "  --ignore_noun_ortho"
-    echo "     If you would not like to install entries of orthographical variant of common noun as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of common noun as seed data of mecab-ipadic-neologd"
+    echo
+    echo "  --ignore_adjective_std"
+    echo "     If you would not like to install entries of frequent orthographic variant of adjective as seed data of mecab-ipadic-neologd"
+    echo
+    echo "  --install_adjective_exp"
+    echo "     If you would like to install entries of unfrequent orthographic variant of adjective as seed data of mecab-ipadic-neologd"
     echo
     exit 1
 }
@@ -82,6 +88,8 @@ WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
 WANNA_IGNORE_INTERJECT=0
 WANNA_IGNORE_NOUN_ORTHO=0
+WANNA_IGNORE_ADJECTIVE_STD=0
+WANNA_INSTALL_ADJECTIVE_EXP=0
 
 for OPT in "$@"
 do
@@ -123,8 +131,12 @@ do
             WANNA_IGNORE_ADVERB=1
             shift 1
             ;;
-        '--ignore_noun_ortho' )
-            WANNA_IGNORE_NOUN_ORTHO=1
+        '--ignore_adjective_std' )
+            WANNA_IGNORE_ADJECTIVE_STD=1
+            shift 1
+            ;;
+        '--install_adjective_exp' )
+            WANNA_INSTALL_ADJECTIVE_EXP=1
             shift 1
             ;;
         '--min_surface_length' )
@@ -246,7 +258,7 @@ echo ""
 sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP}
 
 if [ $? != 0 ]; then
     echo ""
