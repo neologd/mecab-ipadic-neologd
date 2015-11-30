@@ -150,6 +150,9 @@ SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
+SEED_FILE_NAMES=()
+SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${SEED_FILE_NAME}")
+
 ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv
 if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_ADVERB} -gt 0 ]; then
