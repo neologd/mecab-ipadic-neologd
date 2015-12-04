@@ -73,6 +73,9 @@ usage() {
     echo "  --install_adjective_exp"
     echo "     If you would like to install entries of infrequent orthographic variant of an adjective as seed data of mecab-ipadic-neologd"
     echo
+    echo "  --ignore_adjective_verb"
+    echo "     If you would not like to install entries of orthographic variant of an adjective verb as seed data of mecab-ipadic-neologd"
+    echo
     exit 1
 }
 
@@ -90,6 +93,7 @@ WANNA_IGNORE_INTERJECT=0
 WANNA_IGNORE_NOUN_ORTHO=0
 WANNA_IGNORE_ADJECTIVE_STD=0
 WANNA_INSTALL_ADJECTIVE_EXP=0
+WANNA_IGNORE_ADJECTIVE_VERB=0
 
 for OPT in "$@"
 do
@@ -137,6 +141,10 @@ do
             ;;
         '--install_adjective_exp' )
             WANNA_INSTALL_ADJECTIVE_EXP=1
+            shift 1
+            ;;
+        '--ignore_adjective_verb' )
+            WANNA_IGNORE_ADJECTIVE_VERB=1
             shift 1
             ;;
         '--min_surface_length' )
@@ -258,7 +266,7 @@ echo ""
 sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -J ${WANNA_IGNORE_ADJECTIVE_VERB}
 
 if [ $? != 0 ]; then
     echo ""
