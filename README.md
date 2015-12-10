@@ -26,10 +26,15 @@ When you analyze the Web documents, it's better to use this system dictionary an
     - The resources are being utilized at present are as follows.
         - Dump data of hatena keyword
         - Japanese postal code number data download (ken_all.lzh)
-        - The name-of-the-station list of the Japan whole country
-        - The entry data of the person name (last name / first name)
-        - The entry data of Unicode emoji
-        - The entry data of Adverb
+        - The name-of-the-station list of whole country of Japan
+        - The entry data of the person names (last name / first name)
+        - The entry data of Unicode emojis (version 8.0)
+        - The entry data of Kaomoji strings
+        - The entry data of adverbs
+        - The entry data of adjectives
+        - The entry data of adjective verbs
+        - The entry data of interjections
+        - The entry data of orthographic variant of general nouns
         - A lot of documents, which crawled from Web
     - I'm planning to record the words such as the named entity, which will be extracted from other new language resource.
 
