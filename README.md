@@ -50,7 +50,8 @@ When you analyze the Web documents, it's better to use this system dictionary an
 ## Getting started
 
 ### Memory requirements
-- 2GB of RAM
+- Required: 1GB of RAM
+- Recommend: 4GB of RAM
     - Current maximum binary size is 800MB
 
 ### Dependencies
