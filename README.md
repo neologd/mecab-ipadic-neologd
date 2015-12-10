@@ -245,6 +245,9 @@ Please use the following bibtex, when you refer mecab-ipadic-NEologd from your p
         year   = {2015}
     }
 
+## Star please !!
+Please star this github repository if mecab-ipadic-NEologd is very useful to your project ;)
+
 ## Copyrights
 Copyright (c) 2015 Toshinori Sato (@overlast) All rights reserved.
 
