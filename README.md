@@ -54,6 +54,9 @@ We build mecab-ipadic-neologd using the source code of mecab-ipadic at installin
 
 You should install following libraries using apt or yum, homebrew, source-code.
 
+- Memory requirements
+    - 2GB of RAM
+        - Current maximum binary size is 800MB
 - C++ Compiler
     - Operation on GCC-4.4.7 and Apple LLVM version 6.0 are confirmed
 - iconv (libiconv)
