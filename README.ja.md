@@ -271,7 +271,7 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
 とても大きな励みになります。
 
 ## Copyrights
-Copyright (c) 2015 Toshinori Sato (@overlast) All rights reserved.
+Copyright (c) 2015-2016 Toshinori Sato (@overlast) All rights reserved.
 
 ライセンスは Apache License, Version 2.0 です。下記をご参照下さい。
 
