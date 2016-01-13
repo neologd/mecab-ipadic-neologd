@@ -16,6 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ set -e
+
  FILE_PATH=$1
  ECHO_PREFIX='[git_rm_from_history_too] '
 
