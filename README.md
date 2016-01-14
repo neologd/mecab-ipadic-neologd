@@ -239,11 +239,11 @@ If you are the beginner of NLP, I recommend that you use the latest version of m
 
 Please use the following bibtex, when you refer mecab-ipadic-NEologd from your papers.
 
-    @misc{sato2015mecabipadicneologd,
+    @misc{sato2016mecabipadicneologd,
         title  = {Neologism dictionary based on the language resources on the Web for Mecab},
         author = {Toshinori, Sato},
         url    = {https://github.com/neologd/mecab-ipadic-neologd},
-        year   = {2015}
+        year   = {2016}
     }
 
 ## Star please !!
