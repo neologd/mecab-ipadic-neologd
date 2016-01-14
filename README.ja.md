@@ -259,11 +259,11 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
 
 もしも mecab-ipadic-NEologd を論文や書籍、アプリ、サービスから参照して下さる場合は、以下の bibtex をご利用ください。
 
-    @misc{sato2016mecabipadicneologd,
+    @misc{sato2015mecabipadicneologd,
         title  = {Neologism dictionary based on the language resources on the Web for Mecab},
         author = {Toshinori, Sato},
         url    = {https://github.com/neologd/mecab-ipadic-neologd},
-        year   = {2016}
+        year   = {2015}
     }
 
 また、mecab-ipadic-NEologd 使ってみて良い結果が得られた時は、ぜひこのリポジトリの Star ボタンを押して下さい。
