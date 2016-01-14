@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -e
+#set -e
 
 BASEDIR=$(cd $(dirname $0);pwd)
 ECHO_PREFIX="[test-mecab-ipadic-neologd] :"
@@ -58,33 +58,33 @@ fi
 
 echo "$ECHO_PREFIX Get difference between default system dictionary and mecab-ipadic-neologd"
 
-cat /tmp/buzz_phrase| mecab -Owakati > /tmp/buzz_phrase_tokenized_using_defdic
-cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} > /tmp/buzz_phrase_tokenized_using_neologismdic
-/usr/bin/diff -y -W60 --side-by-side --suppress-common-lines /tmp/buzz_phrase_tokenized_using_defdic /tmp/buzz_phrase_tokenized_using_neologismdic > /tmp/buzz_phrase_tokenized_diff
+cat /tmp/buzz_phrase| mecab -Owakati > /tmp/buzz_phrase_defdic
+cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} > /tmp/buzz_phrase_neologismdic
+/usr/bin/diff -y -W60 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic > /tmp/buzz_phrase_diff
 
-if [ -s /tmp/buzz_phrase_tokenized_diff ]; then
+if [ -s /tmp/buzz_phrase_diff ]; then
     echo "$ECHO_PREFIX Tokenize phrase using default system dictionary"
-    echo "default system dictionary" > /tmp/buzz_phrase_tokenized_using_defdic
-    cat /tmp/buzz_phrase| mecab -Owakati >> /tmp/buzz_phrase_tokenized_using_defdic
+    echo "default system dictionary" > /tmp/buzz_phrase_defdic
+    cat /tmp/buzz_phrase| mecab -Owakati >> /tmp/buzz_phrase_defdic
 
     echo "$ECHO_PREFIX Tokenize phrase using mecab-ipadic-neologd"
-    echo "mecab-ipadic-neologd" > /tmp/buzz_phrase_tokenized_using_neologismdic
-    cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} >> /tmp/buzz_phrase_tokenized_using_neologismdic
+    echo "mecab-ipadic-neologd" > /tmp/buzz_phrase_neologismdic
+    cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} >> /tmp/buzz_phrase_neologismdic
 
     echo "$ECHO_PREFIX Get result of diff"
-    /usr/bin/diff -y -W60 --side-by-side --suppress-common-lines /tmp/buzz_phrase_tokenized_using_defdic /tmp/buzz_phrase_tokenized_using_neologismdic > /tmp/buzz_phrase_tokenized_diff
+    /usr/bin/diff -y -W60 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic > /tmp/buzz_phrase_diff
 
     echo "$ECHO_PREFIX Please check difference between default system dictionary and mecab-ipadic-neologd"
     echo ""
-    cat /tmp/buzz_phrase_tokenized_diff
+    cat /tmp/buzz_phrase_diff
     echo ""
 else
     echo "$ECHO_PREFIX Something wrong. You shouldn't install mecab-ipadic-neologd yet."
 fi
 
 rm /tmp/buzz_phrase
-rm /tmp/buzz_phrase_tokenized_using_defdic
-rm /tmp/buzz_phrase_tokenized_using_neologismdic
-rm /tmp/buzz_phrase_tokenized_diff
+rm /tmp/buzz_phrase_defdic
+rm /tmp/buzz_phrase_neologismdic
+rm /tmp/buzz_phrase_diff
 
 echo "$ECHO_PREFIX Finish.."
