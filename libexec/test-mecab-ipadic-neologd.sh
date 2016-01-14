@@ -53,14 +53,14 @@ rm /tmp/realtime_buzz.html
 
 PHRASE_FILE=/tmp/buzz_phrase
 if [ ! -s ${PHRASE_FILE} ]; then
-   PHRASE_FILE=""#${BASEDIR}/../misc/buzz_phrase_201402181610
+   PHRASE_FILE=""
 fi
 
 echo "$ECHO_PREFIX Get difference between default system dictionary and mecab-ipadic-neologd"
 
 cat /tmp/buzz_phrase| mecab -Owakati > /tmp/buzz_phrase_defdic
 cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} > /tmp/buzz_phrase_neologismdic
-/usr/bin/diff -y -W60 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic > /tmp/buzz_phrase_diff
+/usr/bin/diff -y -W70 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic >/tmp/buzz_phrase_diff
 
 if [ -s /tmp/buzz_phrase_diff ]; then
     echo "$ECHO_PREFIX Tokenize phrase using default system dictionary"
@@ -72,7 +72,7 @@ if [ -s /tmp/buzz_phrase_diff ]; then
     cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} >> /tmp/buzz_phrase_neologismdic
 
     echo "$ECHO_PREFIX Get result of diff"
-    /usr/bin/diff -y -W60 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic > /tmp/buzz_phrase_diff
+    /usr/bin/diff -y -W70 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic > /tmp/buzz_phrase_diff
 
     echo "$ECHO_PREFIX Please check difference between default system dictionary and mecab-ipadic-neologd"
     echo ""
