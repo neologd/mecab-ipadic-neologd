@@ -1,3 +1,10 @@
+# Release 20160114-01
+
+### New seed data
+* seed/mecab-user-dict-seed.20160114
+	execute: Periodic data update on 2016-01-14(Thu)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/9c70a19a47247b2e3e0cf2bb37ff80f524dcdd8b
+
 # Release 20160111-01
 
 ### New seed data
