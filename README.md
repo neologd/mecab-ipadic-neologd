@@ -36,7 +36,8 @@ When you analyze the Web documents, it's better to use this system dictionary an
         - The entry data of adjective verbs
         - The entry data of interjections
         - The entry data of orthographic variant of general nouns
-        - A lot of documents, which crawled from Web
+        - The entry data of orthographic variant of nouns used as verb form
+- A lot of documents, which crawled from Web
     - I'm planning to record the words such as the named entity, which will be extracted from other new language resource.
 
 ### Cons
