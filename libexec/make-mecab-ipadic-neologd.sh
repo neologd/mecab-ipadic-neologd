@@ -109,11 +109,12 @@ WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
 WANNA_IGNORE_INTERJECT=0
 WANNA_IGNORE_NOUN_ORTHO=0
+WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO=0
 WANNA_IGNORE_ADJECTIVE_STD=0
 WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
 
-while getopts p:s:l:S:L:u:B:J:O:t:T:J: OPT
+while getopts p:s:l:S:L:u:B:J:O:H:t:T:J: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -125,6 +126,7 @@ do
     "B" ) WANNA_IGNORE_ADVERB=$OPTARG ;;
     "J" ) WANNA_IGNORE_INTERJECT=$OPTARG ;;
     "O" ) WANNA_IGNORE_NOUN_ORTHO=$OPTARG ;;
+    "H" ) WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO=$OPTARG ;;
     "t" ) WANNA_IGNORE_ADJECTIVE_STD=$OPTARG ;;
     "T" ) WANNA_INSTALL_ADJECTIVE_EXP=$OPTARG ;;
     "J" ) WANNA_IGNORE_ADJECTIVE_VERB=$OPTARG ;;
@@ -200,6 +202,21 @@ if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
+fi
+
+NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME=neologd-noun-sahen-conn-ortho-variant-dict-seed.20160125.csv
+if [ -f ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz"
+    else
+        echo "${ECHO_PREFIX} Install entries of orthographic variant of a noun used as verb form using ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz
+        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}")
+    fi
+else
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}"
 fi
 
 ADJECTIVE_STD_SEED_FILE_NAME=neologd-adjective-std-dict-seed.20151126.csv
