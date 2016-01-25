@@ -67,7 +67,10 @@ usage() {
     echo "     If you would not like to install entries of orthographic variant of an interjection as seed data of mecab-ipadic-neologd"
     echo
     echo "  --ignore_noun_ortho"
-    echo "     If you would not like to install entries of orthographic variant of common noun as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of a common noun as seed data of mecab-ipadic-neologd"
+    echo
+    echo "  --ignore_noun_sahen_conn_ortho"
+    echo "     If you would not like to install entries of orthographic variant of a noun used as verb form(Sahen-setsuzoku) as seed data of mecab-ipadic-neologd"
     echo
     echo "  --ignore_adjective_std"
     echo "     If you would not like to install entries of frequent orthographic variant of an adjective as seed data of mecab-ipadic-neologd"
@@ -93,6 +96,7 @@ WANNA_CREATE_USER_DIC=0
 WANNA_IGNORE_ADVERB=0
 WANNA_IGNORE_INTERJECT=0
 WANNA_IGNORE_NOUN_ORTHO=0
+WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO=0
 WANNA_IGNORE_ADJECTIVE_STD=0
 WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
@@ -131,6 +135,14 @@ do
             ;;
         '--create_user_dic' )
             WANNA_CREATE_USER_DIC=1
+            shift 1
+            ;;
+        '--ignore_noun_ortho' )
+            WANNA_IGNORE_NOUN_ORTHO=1
+            shift 1
+            ;;
+        '--ignore_noun_sahen_conn_ortho' )
+            WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO=1
             shift 1
             ;;
         '--ignore_adverb' )
@@ -268,7 +280,7 @@ echo ""
 sleep 3
 
 echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -J ${WANNA_IGNORE_ADJECTIVE_VERB}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -J ${WANNA_IGNORE_ADJECTIVE_VERB}
 
 if [ $? != 0 ]; then
     echo ""
