@@ -5,6 +5,10 @@
 	execute: Periodic data update on 2016-01-25(Mon)
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/7f307dbc7f430c5320178e48b8eb24d2afb581ab
 
+* seed/neologd-noun-sahen-conn-ortho-variant-dict-seed.20160125.csv.xz
+	execute: Add a dictionary file of orthographical variants of nouns used as verb form
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/da37a98d2cc47a049c0a4e4a701c5780846b7822
+
 # Release 20160121-01
 
 ### New seed data
