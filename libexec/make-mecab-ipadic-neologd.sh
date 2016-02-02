@@ -189,12 +189,12 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
 fi
 
-NOUN_ORTHO_SEED_FILE_NAME=neologd-noun-ortho-variant-dict-seed.20151110.csv
+NOUN_ORTHO_SEED_FILE_NAME=neologd-common-noun-ortho-variant-dict-seed.20150202.csv
 if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
     else
-        echo "${ECHO_PREFIX} Install noun orthographic variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX} Install common noun orthographic variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}.xz
         SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${NOUN_ORTHO_SEED_FILE_NAME}")
