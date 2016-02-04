@@ -1,3 +1,14 @@
+# Release 20160202-01
+
+### Update seed data
+* seed/neologd-noun-sahen-conn-ortho-variant-dict-seed.20160202.csv.xz
+	execute: Update a dictionary file of orthographical variants of nouns used as verb form
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/40bda15703aed18f15e21f957d4991c72b2cc090
+
+* seed/neologd-common-noun-ortho-variant-dict-seed.20150202.csv.xz
+	execute: Update a dictionary file of orthographical variants of common nouns
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/d92b3217a05d55098b2169bffc00ba2233ec472d
+
 # Release 20160201-01
 
 ### New seed data
