@@ -1,4 +1,11 @@
-# Release 20160208-01
+# Release 20160212-01
+
+### New seed data
+* seed/mecab-user-dict-seed.20160212.csv.xz
+	execute: Periodic data update on 2016-02-11(Thu)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/d00b401cf617aad70ceba1b800a8d932df5e1c01
+
+# Release 20160209-01
 
 ### Update seed data
 * seed/neologd-noun-sahen-conn-ortho-variant-dict-seed.20160209.csv.xz
