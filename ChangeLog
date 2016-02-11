@@ -26,14 +26,14 @@
 # Release 20160205-01
 
 ### New seed data
-* seed/mecab-user-dict-seed.20160205
+* seed/mecab-user-dict-seed.20160205.csv.xz
 	execute: Delete entries of a string that expressed a unit
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/998e5697e98f7fbcadf3af0afceb85ad476696dc
 
 # Release 20160204-01
 
 ### New seed data
-* seed/mecab-user-dict-seed.20160204
+* seed/mecab-user-dict-seed.20160204.csv.xz
 	execute: Periodic data update on 2016-02-04(Thu)
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/fa2d9578b82546f5b06c62118585151d1c231887
 
@@ -76,7 +76,7 @@
 # Release 20160121-01
 
 ### New seed data
-* seed/mecab-user-dict-seed.20160121
+* seed/mecab-user-dict-seed.20160121.csv.xz
 	execute: Periodic data update on 2016-01-21(Thu)
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/fc48ab89487224e4a96bfaa578471e7b2be76f67
 
@@ -90,7 +90,7 @@
 # Release 20160114-01
 
 ### New seed data
-* seed/mecab-user-dict-seed.20160114
+* seed/mecab-user-dict-seed.20160114.csv.xz
 	execute: Periodic data update on 2016-01-14(Thu)
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/9c70a19a47247b2e3e0cf2bb37ff80f524dcdd8b
 
@@ -104,7 +104,7 @@
 # Release 20160107-01
 
 ### New seed data
-* seed/mecab-user-dict-seed.20160107
+* seed/mecab-user-dict-seed.20160107.csv.xz
 	execute: Periodic data update on 2016-01-07(Thu)
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/70444c17d9486f15265e7ca3dceadedec0748a4f
 
