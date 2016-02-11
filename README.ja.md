@@ -267,7 +267,8 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
         year   = {2015}
     }
 
-また、mecab-ipadic-NEologd 使ってみて良い結果が得られた時は、ぜひこのリポジトリの Star ボタンを押して下さい。
+## Star please !!
+mecab-ipadic-NEologd 使ってみて良い結果が得られた時は、ぜひこのリポジトリの Star ボタンを押して下さい。
 
 とても大きな励みになります。
 
