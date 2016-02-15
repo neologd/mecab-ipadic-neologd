@@ -1,12 +1,12 @@
 # mecab-ipadic-NEologd : Neologism dictionary for MeCab
 
 ## 詳細な情報
-mecab-ipadic-neologd に関する詳細な情報(サンプルコードなど)は以下の Wiki に書いてあります。
+mecab-ipadic-NEologd に関する詳細な情報(サンプルコードなど)は以下の Wiki に書いてあります。
 
 - https://github.com/neologd/mecab-ipadic-neologd/wiki/Home.ja
 
-## mecab-ipadic-neologd とは
-mecab-ipadic-neologd は、多数のWeb上の言語資源から得た新語を追加することでカスタマイズした MeCab 用のシステム辞書です。
+## mecab-ipadic-NEologd とは
+mecab-ipadic-NEologd は、多数のWeb上の言語資源から得た新語を追加することでカスタマイズした MeCab 用のシステム辞書です。
 
 Web上の文書の解析をする際には、この辞書と標準のシステム辞書(ipadic)を併用することをオススメします。
 
@@ -75,7 +75,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     ./configure --with-charset=utf8; make; sudo make install
 
 - xz
-    - mecab-ipadic-neologd のシードの解凍に unxz を使います
+    - mecab-ipadic-NEologd のシードの解凍に unxz を使います
 
 他にも足りないものがあったら適時インストールして下さい。
 
@@ -98,7 +98,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ brew install mecab mecab-ipadic git curl xz
 
-### mecab-ipadic-neologd をインストールする準備
+### mecab-ipadic-NEologd をインストールする準備
 
 辞書の元になるデータの配布と更新は GitHub 経由で行います。
 
@@ -114,7 +114,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 全変更履歴のデータサイズは変動しますが、ピーク時は約 1GB となり、かなり大容量ですのでご注意下さい。
 
-### mecab-ipadic-neologd のインストール/更新
+### mecab-ipadic-NEologd のインストール/更新
 #### Step.1
 上記の準備でcloneしたリポジトリに移動します。
 
@@ -137,15 +137,15 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ ./bin/install-mecab-ipadic-neologd -h
 
-### mecab-ipadic-neologd の使用方法
-mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
+### mecab-ipadic-NEologd の使用方法
+mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
 #### 例 (CentOS 上でインストールした場合)
 
     $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
 ## MeCabの実行結果の例
-### mecab-ipadic-neologd をシステム辞書として使った場合
+### mecab-ipadic-NEologd をシステム辞書として使った場合
     $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
     10日    名詞,固有名詞,一般,*,*,*,10日,トオカ,トオカ
     放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
@@ -179,10 +179,10 @@ mecab-ipadic-neologd を使いたいときは、MeCab の -d オプションに�
     EOS
 
 #### どこに効果が出ている?
-- Mecab は mecab-ipadic-neologd に収録された語を正しく分割できました
+- Mecab は mecab-ipadic-NEologd に収録された語を正しく分割できました
     - 「中居正広のミになる図書館」は2011年後半に生まれた新しい語です
         - この語はWeb上の言語資源が更新されたので正しく分割できました
-- mecab-ipadic-neologd に収録されているほとんどの語にフリガナが付いています
+- mecab-ipadic-NEologd に収録されているほとんどの語にフリガナが付いています
 
 ### 標準のシステム辞書(ipadic-2.7.0)を使った場合
     $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab
