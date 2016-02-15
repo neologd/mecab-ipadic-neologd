@@ -19,14 +19,14 @@
 set -e
 
 BASEDIR=$(cd $(dirname $0);pwd)
-PROGRAM_NAME=install-mecab-ipadic-neologd
+PROGRAM_NAME=install-mecab-ipadic-NEologd
 ECHO_PREFIX="[${PROGRAM_NAME}] :"
 
-VERSION="install-mecab-ipadic-neologd version 0.0.1"
+VERSION="install-mecab-ipadic-NEologd version 0.0.1"
 
 usage() {
     echo "Usage: $PROGRAM_NAME [OPTIONS]"
-    echo "  This script is the installer of mecab-ipadic-neologd"
+    echo "  This script is the installer of mecab-ipadic-NEologd"
     echo
     echo "Options:"
     echo "  -h, --help"
@@ -43,7 +43,7 @@ usage() {
     echo "     If you want to install to the user directory as an user"
     echo
     echo "  -n, --newest"
-    echo "     If you want to update mecab-ipadic-neologd"
+    echo "     If you want to update mecab-ipadic-NEologd"
     echo
     echo "  --min_surface_length INT_VALUE"
     echo "     If you want to delete the entries whose length of surface is shorter than INT_VALUE"
@@ -58,28 +58,28 @@ usage() {
     echo "     If you want to delete the entries whose length of base form is longer than INT_VALUE"
     echo
     echo "  --create_user_dic"
-    echo "     If you want to create an user dictionary using seed data of mecab-ipadic-neologd"
+    echo "     If you want to create an user dictionary using seed data of mecab-ipadic-NEologd"
     echo
     echo "  --ignore_adverb"
-    echo "     If you would not like to install entries of orthographic variant of an adverbial as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of an adverbial as seed data of mecab-ipadic-NEologd"
     echo
     echo "  --ignore_interject"
-    echo "     If you would not like to install entries of orthographic variant of an interjection as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of an interjection as seed data of mecab-ipadic-NEologd"
     echo
     echo "  --ignore_noun_ortho"
-    echo "     If you would not like to install entries of orthographic variant of a common noun as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of a common noun as seed data of mecab-ipadic-NEologd"
     echo
     echo "  --ignore_noun_sahen_conn_ortho"
-    echo "     If you would not like to install entries of orthographic variant of a noun used as verb form(Sahen-setsuzoku) as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of a noun used as verb form(Sahen-setsuzoku) as seed data of mecab-ipadic-NEologd"
     echo
     echo "  --ignore_adjective_std"
-    echo "     If you would not like to install entries of frequent orthographic variant of an adjective as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of frequent orthographic variant of an adjective as seed data of mecab-ipadic-NEologd"
     echo
     echo "  --install_adjective_exp"
-    echo "     If you would like to install entries of infrequent orthographic variant of an adjective as seed data of mecab-ipadic-neologd"
+    echo "     If you would like to install entries of infrequent orthographic variant of an adjective as seed data of mecab-ipadic-NEologd"
     echo
     echo "  --ignore_adjective_verb"
-    echo "     If you would not like to install entries of orthographic variant of an adjective verb as seed data of mecab-ipadic-neologd"
+    echo "     If you would not like to install entries of orthographic variant of an adjective verb as seed data of mecab-ipadic-NEologd"
     echo
     exit 1
 }
@@ -275,16 +275,16 @@ if [ -z ${INSTALL_PATH_PREFIX} ]; then
 fi
 
 echo ""
-echo "$ECHO_PREFIX mecab-ipadic-neologd will be install to ${INSTALL_PATH_PREFIX}"
+echo "$ECHO_PREFIX mecab-ipadic-NEologd will be install to ${INSTALL_PATH_PREFIX}"
 echo ""
 sleep 3
 
-echo "$ECHO_PREFIX Make mecab-ipadic-neologd"
+echo "$ECHO_PREFIX Make mecab-ipadic-NEologd"
 ${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -J ${WANNA_IGNORE_ADJECTIVE_VERB}
 
 if [ $? != 0 ]; then
     echo ""
-    echo "$ECHO_PREFIX Failed to make mecab-ipadic-neologd"
+    echo "$ECHO_PREFIX Failed to make mecab-ipadic-NEologd"
     exit 1
 fi
 
@@ -293,7 +293,7 @@ function wanna_install(){
         echo ""
         echo "$ECHO_PREFIX Please check the list of differences in the upper part."
         echo ""
-        echo "$ECHO_PREFIX Do you want to install mecab-ipadic-neologd? Type yes or no."
+        echo "$ECHO_PREFIX Do you want to install mecab-ipadic-NEologd? Type yes or no."
         read answer
         case $answer in
             yes)
@@ -318,7 +318,7 @@ if [ ${IS_FORCE_YES} -eq 0 ]; then
 
     if [ $? != 0 ]; then
         echo ""
-        echo "$ECHO_PREFIX Failed to test mecab-ipadic-neologd"
+        echo "$ECHO_PREFIX Failed to test mecab-ipadic-NEologd"
         echo "$ECHO_PREFIX If you want to skip the test, you can use '-y' or '--forceyes' option"
         usage
         exit 1
@@ -327,12 +327,12 @@ if [ ${IS_FORCE_YES} -eq 0 ]; then
     wanna_install
 fi
 
-echo "$ECHO_PREFIX OK. Let's install mecab-ipadic-neologd."
+echo "$ECHO_PREFIX OK. Let's install mecab-ipadic-NEologd."
 ${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -u ${IS_AS_USER}
 
 if [ $? != 0 ]; then
     echo ""
-    echo "$ECHO_PREFIX Failed to install mecab-ipadic-neologd"
+    echo "$ECHO_PREFIX Failed to install mecab-ipadic-NEologd"
     exit 1
 fi
 
