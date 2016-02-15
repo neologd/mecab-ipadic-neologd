@@ -11,7 +11,7 @@ You can find more detailed documentation and examples in the following wiki.
 - https://github.com/neologd/mecab-ipadic-neologd/wiki/Home
 
 ## Overview
-mecab-ipadic-neologd is customized system dictionary for MeCab.
+mecab-ipadic-NEologd is customized system dictionary for MeCab.
 
 This dictionary includes many neologisms (new word), which are extracted from many language resources on the Web.
 
@@ -58,7 +58,7 @@ When you analyze the Web documents, it's better to use this system dictionary an
 
 ### Dependencies
 
-We build mecab-ipadic-neologd using the source code of mecab-ipadic at installing phase.
+We build mecab-ipadic-NEologd using the source code of mecab-ipadic at installing phase.
 
 You should install following libraries using apt or yum, homebrew, source-code.
 
@@ -76,7 +76,7 @@ You should install following libraries using apt or yum, homebrew, source-code.
     ./configure --with-charset=utf8; make; sudo make install
 
 - xz
-    - Use to decompress a xz package of a seed of mecab-ipadic-neologd
+    - Use to decompress a xz package of a seed of mecab-ipadic-NEologd
 
 Please install at any time other lack library.
 
@@ -112,7 +112,7 @@ OR
 
 If you need all log of mecab-ipadic-neologd.git, you should clone the repository without '--depth 1'
 
-### How to install/update mecab-ipadic-neologd
+### How to install/update mecab-ipadic-NEologd
 #### Step.1
 Move to a directory of the repository which was cloned in the above preparation.
 
@@ -120,7 +120,7 @@ Move to a directory of the repository which was cloned in the above preparation.
 
 #### Step.2
 
-You can install or can update(overwritten) the recent mecab-ipadic-neologd by following command.
+You can install or can update(overwritten) the recent mecab-ipadic-NEologd by following command.
 
     $ ./bin/install-mecab-ipadic-neologd -n
 
@@ -134,14 +134,14 @@ If you use following command, you can check useful command line option.
 
     $ ./bin/install-mecab-ipadic-neologd -h
 
-### How to use mecab-ipadic-neologd
-When you want to use mecab-ipadic-neologd, you should set the path of custom system dictionay(*/lib/mecab/dic/mecab-ipadic-neologd/) as -d option of MeCab.
+### How to use mecab-ipadic-NEologd
+When you want to use mecab-ipadic-NEologd, you should set the path of custom system dictionay(*/lib/mecab/dic/mecab-ipadic-neologd/) as -d option of MeCab.
 
 #### Example (on CentOS)
 $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
 ## Example of output of MeCab
-### When you use mecab-ipadic-neologd
+### When you use mecab-ipadic-NEologd
     $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
     10日    名詞,固有名詞,一般,*,*,*,10日,トオカ,トオカ
     放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
@@ -176,10 +176,10 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
 #### What's the point of the above result
 
-- MeCab can parse the words which are recorded in mecab-ipadic-neologd correctly.
+- MeCab can parse the words which are recorded in mecab-ipadic-NEologd correctly.
     - "中居正広のミになる図書館(Masahiro Nakai's library to improve an ability)" is a new word.
         - This word could parse correctly because of updating of the language resources on Web.
-- Almost all of the entry of mecab-ipadic-neologd has the value of furigana field.
+- Almost all of the entry of mecab-ipadic-NEologd has the value of furigana field.
 
 ### When you use default system dictionary
     $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab
