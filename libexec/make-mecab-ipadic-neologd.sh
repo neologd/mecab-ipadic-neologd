@@ -19,7 +19,7 @@
 set -e
 
 BASEDIR=$(cd $(dirname $0);pwd)
-ECHO_PREFIX="[make-mecab-ipadic-neologd] :"
+ECHO_PREFIX="[make-mecab-ipadic-NEologd] :"
 
 echo "$ECHO_PREFIX Start.."
 
