@@ -19,7 +19,7 @@
 set -e
 
 BASEDIR=$(cd $(dirname $0);pwd)
-ECHO_PREFIX="[install-mecab-ipadic-neologd] :"
+ECHO_PREFIX="[install-mecab-ipadic-NEologd] :"
 
 echo "$ECHO_PREFIX Start.."
 
@@ -59,7 +59,7 @@ if [ -e ${INSTALL_DIR_PATH} ]; then
     echo ""
     echo "${ECHO_PREFIX} Install completed."
     echo "${ECHO_PREFIX} When you use MeCab, you can set '${INSTALL_DIR_PATH}' as a value of '-d' option of MeCab."
-    echo "${ECHO_PREFIX} Usage of mecab-ipadic-neologd is here."
+    echo "${ECHO_PREFIX} Usage of mecab-ipadic-NEologd is here."
     echo "Usage:"
     echo "    $ mecab -d ${INSTALL_DIR_PATH} ..."
     echo ""
