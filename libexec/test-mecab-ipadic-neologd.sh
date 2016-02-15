@@ -17,7 +17,7 @@
 # limitations under the License.
 
 BASEDIR=$(cd $(dirname $0);pwd)
-ECHO_PREFIX="[test-mecab-ipadic-neologd] :"
+ECHO_PREFIX="[test-mecab-ipadic-NEologd] :"
 
 echo "$ECHO_PREFIX Start.."
 
@@ -54,7 +54,7 @@ if [ ! -s ${PHRASE_FILE} ]; then
    PHRASE_FILE=""
 fi
 
-echo "$ECHO_PREFIX Get difference between default system dictionary and mecab-ipadic-neologd"
+echo "$ECHO_PREFIX Get difference between default system dictionary and mecab-ipadic-NEologd"
 
 cat /tmp/buzz_phrase| mecab -Owakati > /tmp/buzz_phrase_defdic
 cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} > /tmp/buzz_phrase_neologismdic
@@ -65,19 +65,19 @@ if [ -s /tmp/buzz_phrase_diff ]; then
     echo "default system dictionary" > /tmp/buzz_phrase_defdic
     cat /tmp/buzz_phrase| mecab -Owakati >> /tmp/buzz_phrase_defdic
 
-    echo "$ECHO_PREFIX Tokenize phrase using mecab-ipadic-neologd"
-    echo "mecab-ipadic-neologd" > /tmp/buzz_phrase_neologismdic
+    echo "$ECHO_PREFIX Tokenize phrase using mecab-ipadic-NEologd"
+    echo "mecab-ipadic-NEologd" > /tmp/buzz_phrase_neologismdic
     cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} >> /tmp/buzz_phrase_neologismdic
 
     echo "$ECHO_PREFIX Get result of diff"
     /usr/bin/diff -y -W70 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic > /tmp/buzz_phrase_diff
 
-    echo "$ECHO_PREFIX Please check difference between default system dictionary and mecab-ipadic-neologd"
+    echo "$ECHO_PREFIX Please check difference between default system dictionary and mecab-ipadic-NEologd"
     echo ""
     cat /tmp/buzz_phrase_diff
     echo ""
 else
-    echo "$ECHO_PREFIX Something wrong. You shouldn't install mecab-ipadic-neologd yet."
+    echo "$ECHO_PREFIX Something wrong. You shouldn't install mecab-ipadic-NEologd yet."
 fi
 
 rm /tmp/buzz_phrase
