@@ -226,6 +226,25 @@ mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションに�
     。      記号,句点,*,*,*,*,。,。,。
     EOS
 
+## メモリ使用量を極力減らしたい場合
+以下の --ignore で始まるオプションを全て指定すると、インストールされる辞書のバイナリデータのサイズを 300MByte 程度削減できます。
+
+    ./bin/install-mecab-ipadic-neologd -n -y\
+    --ignore_adverb\
+    --ignore_interject\
+    --ignore_noun_ortho\
+    --ignore_noun_sahen_conn_ortho\
+    --ignore_adjective_std\
+    --ignore_adjective_verb
+
+上記のコマンドを実行すると、インストーラーは追加の副詞(--ignore_adverb)と追加の感動詞(--ignore_interject)と一般名詞の表記ゆれ(--ignore_noun_ortho)とサ変接続名詞の表記ゆれ(--ignore_noun_sahen_conn_ortho)と追加の形容詞(--ignore_adjective_std)と追加の形容動詞(--ignore_adjective_verb)のための辞書エントリをインストールしません。
+
+以下のコマンドでインストール時のオプションを確認できます。
+
+    ./bin//install-mecab-ipadic-neologd --help
+
+--ignore で始まるオプションは特定の辞書をインストールしない時に使います。
+
 ## 研究結果の評価や再現などに使いたい場合
 以下に更新を止めた辞書をリリースしています。
 
