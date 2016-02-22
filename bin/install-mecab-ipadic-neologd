@@ -149,6 +149,10 @@ do
             WANNA_IGNORE_ADVERB=1
             shift 1
             ;;
+        '--ignore_interject' )
+            WANNA_IGNORE_INTERJECT=1
+            shift 1
+            ;;
         '--ignore_adjective_std' )
             WANNA_IGNORE_ADJECTIVE_STD=1
             shift 1
