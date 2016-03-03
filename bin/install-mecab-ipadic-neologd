@@ -45,6 +45,9 @@ usage() {
     echo "  -n, --newest"
     echo "     If you want to update mecab-ipadic-NEologd"
     echo
+    echo "  --eliminate-redundancy-entry"
+    echo "     If you want to eliminate the redundancy entries"
+    echo
     echo "  --min_surface_length INT_VALUE"
     echo "     If you want to delete the entries whose length of surface is shorter than INT_VALUE"
     echo
@@ -93,6 +96,7 @@ MAX_SURFACE_LEN=0
 MIN_BASEFORM_LEN=0
 MAX_BASEFORM_LEN=0
 WANNA_CREATE_USER_DIC=0
+WANNA_ELIMINATE_REDUNDANCY_ENTRY=0
 WANNA_IGNORE_ADVERB=0
 WANNA_IGNORE_INTERJECT=0
 WANNA_IGNORE_NOUN_ORTHO=0
@@ -135,6 +139,10 @@ do
             ;;
         '--create_user_dic' )
             WANNA_CREATE_USER_DIC=1
+            shift 100
+            ;;
+        '--eliminate-redundancy-entry' )
+            WANNA_ELIMINATE_REDUNDANCY_ENTRY=1
             shift 1
             ;;
         '--ignore_noun_ortho' )
@@ -283,7 +291,7 @@ echo "$ECHO_PREFIX mecab-ipadic-NEologd will be install to ${INSTALL_PATH_PREFIX
 echo ""
 
 echo "$ECHO_PREFIX Make mecab-ipadic-NEologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB} -E ${WANNA_ELIMINATE_REDUNDANCY_ENTRY}
 
 if [ $? != 0 ]; then
     echo ""
