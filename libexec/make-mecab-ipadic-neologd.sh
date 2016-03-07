@@ -113,7 +113,7 @@ WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO=0
 WANNA_IGNORE_ADJECTIVE_STD=0
 WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
-ELIMINATE_REDUNDANCY_ENTRY=0
+ELIMINATE_REDUNDANT_ENTRY=0
 
 while getopts p:s:l:S:L:u:B:J:O:H:t:T:j:E: OPT
 do
@@ -131,7 +131,7 @@ do
     "t" ) WANNA_IGNORE_ADJECTIVE_STD=$OPTARG ;;
     "T" ) WANNA_INSTALL_ADJECTIVE_EXP=$OPTARG ;;
     "j" ) WANNA_IGNORE_ADJECTIVE_VERB=$OPTARG ;;
-    "E" ) WANNA_ELIMINATE_REDUNDANCY_ENTRY=$OPTARG ;;
+    "E" ) WANNA_ELIMINATE_REDUNDANT_ENTRY=$OPTARG ;;
   esac
 done
 
@@ -310,12 +310,12 @@ if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
     done
 fi
 
-if [ ${WANNA_ELIMINATE_REDUNDANCY_ENTRY} -gt 0 ]; then
+if [ ${WANNA_ELIMINATE_REDUNDANT_ENTRY} -gt 0 ]; then
     for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
     do
         TMP_SEED_FILE_NAME=${SEED_FILE_NAMES[$I]}
         if [ -f ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} ]; then
-            perl ${BASEDIR}/../libexec/eliminate_redundancy_entry.pl ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} > ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.same
+            perl ${BASEDIR}/../libexec/eliminate_redundant_entry.pl ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} > ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.same
             mv ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.same ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}
         fi
     done
