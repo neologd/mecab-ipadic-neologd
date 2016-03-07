@@ -47,12 +47,38 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
     - インストール済みの MeCab が使用している ipadic が UTF-8 版である必要があります
 
 ## 使用開始
-### 空きメモリ領域
+### 推奨空きメモリ領域
 - 必須: 空き 1.5GByte
 - 推奨: 空き 5GByte
     - 最終的にインストールされるバイナリファイルのサイズが約900MByteです
         - 今後も段々大きくなります
     - 仮想マシンに割り当てたメモリが少なくとも 2GB 以上でないと十分なメモリ領域を確保できずコンパイルに失敗します
+
+#### どうしても空きメモリ領域が足りない場合
+以下の --ignore で始まるオプションを全て指定すると、インストールされる辞書のバイナリデータのサイズを 300MByte 程度削減できます。
+
+    ./bin/install-mecab-ipadic-neologd -n -y\
+    --ignore_adverb\
+    --ignore_interject\
+    --ignore_noun_ortho\
+    --ignore_noun_sahen_conn_ortho\
+    --ignore_adjective_std\
+    --ignore_adjective_verb
+
+上記のコマンドを実行すると、インストーラーは追加の副詞(--ignore_adverb)と追加の感動詞(--ignore_interject)と一般名詞の表記ゆれ(--ignore_noun_ortho)とサ変接続名詞の表記ゆれ(--ignore_noun_sahen_conn_ortho)と追加の形容詞(--ignore_adjective_std)と追加の形容動詞(--ignore_adjective_verb)のための辞書エントリをインストールしません。
+
+--ignore で始まるオプションは特定の辞書をインストールしない時に使います。
+
+また "--eliminate-redundant-entry" オプションを指定した場合は、正規化済みの日本語テキストを単語分割するための別称・異表記・表記揺れなどを一切考慮できない辞書が 512MByte 程度の空きメモリ領域でもインストールできます。
+
+    ./bin/install-mecab-ipadic-neologd -n -y\
+    --eliminate-redundant-entry\
+
+とはいえ、"--eliminate-redundant-entry" オプションは開発側としては一切オススメしません。
+
+その他のオプションは以下のコマンドでインストール時のオプションを確認できます。
+
+    ./bin//install-mecab-ipadic-neologd --help
 
 ### 動作に必要なもの
 
@@ -225,25 +251,6 @@ mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションに�
     た      助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
     。      記号,句点,*,*,*,*,。,。,。
     EOS
-
-## メモリ使用量を極力減らしたい場合
-以下の --ignore で始まるオプションを全て指定すると、インストールされる辞書のバイナリデータのサイズを 300MByte 程度削減できます。
-
-    ./bin/install-mecab-ipadic-neologd -n -y\
-    --ignore_adverb\
-    --ignore_interject\
-    --ignore_noun_ortho\
-    --ignore_noun_sahen_conn_ortho\
-    --ignore_adjective_std\
-    --ignore_adjective_verb
-
-上記のコマンドを実行すると、インストーラーは追加の副詞(--ignore_adverb)と追加の感動詞(--ignore_interject)と一般名詞の表記ゆれ(--ignore_noun_ortho)とサ変接続名詞の表記ゆれ(--ignore_noun_sahen_conn_ortho)と追加の形容詞(--ignore_adjective_std)と追加の形容動詞(--ignore_adjective_verb)のための辞書エントリをインストールしません。
-
-以下のコマンドでインストール時のオプションを確認できます。
-
-    ./bin//install-mecab-ipadic-neologd --help
-
---ignore で始まるオプションは特定の辞書をインストールしない時に使います。
 
 ## 研究結果の評価や再現などに使いたい場合
 以下に更新を止めた辞書をリリースしています。
