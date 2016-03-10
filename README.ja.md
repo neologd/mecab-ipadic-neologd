@@ -163,8 +163,8 @@ cron などで自動的に更新したい場合は下記の様なオプション
 
 例えば、下記の様な 2 行を crontab などに書くと(cron の説明は省略)、火・金曜日の午前 3 時に /path/to/user/directory にインストールされた辞書ファイルが更新されます。
 
-    00 03 * * 2 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory >> /path/to/log/file
-    00 03 * * 5 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory >> /path/to/log/file
+    00 03 * * 2 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory > /path/to/log/file
+    00 03 * * 5 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory > /path/to/log/file
 
 その他のインストール時に指定できるオプションは以下で確認できます。
 
