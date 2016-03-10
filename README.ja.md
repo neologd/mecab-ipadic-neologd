@@ -161,7 +161,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 cron(説明は省略します)などで自動的に更新したい場合に便利なオプションは既にあります。
 
-例えば下記の様な 2 行を crontab などに書いた場合は、火・金曜日の午前 3 時に解析結果を確認確認せずに(-y)ユーザ権限(-u)で指定したディレクリトリに(-p [/path/to/user/directory])ある辞書ファイルが更新されます。
+例えば下記の様な 2 行を crontab などに書いた場合は、火・金曜日の午前 3 時に解析結果を確認せずに(-y)ユーザ権限(-u)で指定したディレクリトリに(-p [/path/to/user/directory])ある辞書ファイルが更新されます。
 
     00 03 * * 2 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory > /path/to/log/file
     00 03 * * 5 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory > /path/to/log/file
