@@ -147,7 +147,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     $ cd mecab-ipadic-neologd
 
 #### Step.2
-以下のコマンドを実行するとリポジトリ上の更新を反映し sudo 権限でインストール(初回以降は更新)します。
+以下のコマンドを実行して結果を確認する画面で「yes」と入力すると、sudo 権限で最新版がインストール(初回実行時以降は更新)されます。
 
     $ ./bin/install-mecab-ipadic-neologd -n
 
@@ -161,9 +161,12 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 cron などで自動的に更新したい場合は下記の様なオプションを指定して、解析結果を確認確認せずに(-y)ユーザ権限(-u)で指定したディレクリトリに(-p 絶対パス)インストールすると便利です。
 
-    $ ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory
+例えば、下記の様な 2 行を crontab などに書くと(cron の説明は省略)、火・金曜日の午前 3 時に /path/to/user/directory にインストールされた辞書ファイルが更新されます。
 
-任意の path にインストールしたい場合や、user 権限でインストールする際のオプションなどは以下で確認できます。
+    00 03 * * 2 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory
+    00 03 * * 5 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory
+
+その他のインストール時に指定できるオプションは以下で確認できます。
 
     $ ./bin/install-mecab-ipadic-neologd -h
 
