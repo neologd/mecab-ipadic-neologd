@@ -140,14 +140,14 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 全変更履歴のデータサイズは変動しますが、ピーク時は約 1GB となり、かなり大容量ですのでご注意下さい。
 
-### mecab-ipadic-NEologd のインストール
+### mecab-ipadic-NEologd のインストールと更新
 #### Step.1
 上記の準備でcloneしたリポジトリに移動します。
 
     $ cd mecab-ipadic-neologd
 
 #### Step.2
-以下のコマンドを実行するとインストールできます。
+以下のコマンドを実行するとリポジトリ上の更新を反映し sudo 権限でインストール(初回以降は更新)します。
 
     $ ./bin/install-mecab-ipadic-neologd -n
 
@@ -166,21 +166,6 @@ cron などで自動的に更新したい場合は下記の様なオプション
 任意の path にインストールしたい場合や、user 権限でインストールする際のオプションなどは以下で確認できます。
 
     $ ./bin/install-mecab-ipadic-neologd -h
-
-### mecab-ipadic-NEologd の更新
-#### Step.1
-上記の準備でcloneしたリポジトリに移動します。
-
-    $ cd mecab-ipadic-neologd
-
-#### Step.2
-以下のコマンドを実行すると上書きによる最新版への更新ができます。
-
-    $ ./bin/install-mecab-ipadic-neologd -n
-
-cron などで自動的に更新したい場合は下記の様なオプションを指定してください。
-
-    $ ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory
 
 ### mecab-ipadic-NEologd の使用方法
 mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
