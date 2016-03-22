@@ -1,6 +1,10 @@
 # Release 20160322-01
 
 ### Update seed data
+* seed/neologd-noun-sahen-conn-ortho-variant-dict-seed.20160322.csv.xz
+	execute: Update algorithm to generate orthographical variant sequences
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/0e0ecf6cdcf45329f086b6d5becad91e86640835
+
 * seed/neologd-common-noun-ortho-variant-dict-seed.20150322.csv.xz
 	execute: Update algorithm to generate orthographical variant sequences
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/196a8b480bbac61b6fd1a62889831de60d9c17c8
