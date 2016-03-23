@@ -191,7 +191,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
 fi
 
-NOUN_ORTHO_SEED_FILE_NAME=neologd-common-noun-ortho-variant-dict-seed.20150322.csv
+NOUN_ORTHO_SEED_FILE_NAME=neologd-common-noun-ortho-variant-dict-seed.20150323.csv
 if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
@@ -206,7 +206,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
 fi
 
-NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME=neologd-noun-sahen-conn-ortho-variant-dict-seed.20160322.csv
+NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME=neologd-noun-sahen-conn-ortho-variant-dict-seed.20160323.csv
 if [ -f ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz"
