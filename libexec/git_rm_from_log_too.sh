@@ -1,4 +1,4 @@
- #!/usr/bin/env /bash
+#!/usr/bin/env /bash
 
 # Copyright (C) 2015-2016 Toshinori Sato (@overlast)
 #
