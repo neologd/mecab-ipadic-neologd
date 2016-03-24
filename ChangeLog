@@ -1,3 +1,26 @@
+# Release 20160324-01
+
+### New seed data
+* seed/mecab-user-dict-seed.20160324.csv.xz
+	execute: Periodic data update on 2016-03-24(Thu)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/00132e159e14ecbede233c562a5057939c7d5545
+
+### Update seed data
+* seed/neologd-adjective-verb-dict-seed.20160324.csv.xz
+	execute: Update algorithm to generate orthographical variant sequences
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/079eed121f87d6e1773d9931ac9aed46ce92e298
+
+# Release 20160323-01
+
+### Update seed data
+* seed/neologd-noun-sahen-conn-ortho-variant-dict-seed.20160323.csv.xz
+	execute: Update algorithm to generate orthographical variant sequences
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/a28fe973766b2cec5344b314e7c9282bd3c38562
+
+* seed/neologd-common-noun-ortho-variant-dict-seed.20150323.csv.xz
+	execute: Update algorithm to generate orthographical variant sequences
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/318465077f2fce04cb1489e6ee8d75a0b23e4b34
+
 # Release 20160322-01
 
 ### Update seed data
