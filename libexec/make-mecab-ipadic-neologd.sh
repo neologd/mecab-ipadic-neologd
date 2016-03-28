@@ -253,11 +253,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}"
 fi
 
-<<<<<<< HEAD
 ADJECTIVE_VERB_SEED_FILE_NAME=neologd-adjective-verb-dict-seed.20160324.csv
-=======
-ADJECTIVE_VERB_SEED_FILE_NAME=neologd-adjective-verb-dict-seed.20151204.csv
->>>>>>> 27cecb2db0af6977b5fa460f13917120fb167017
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_ADJECTIVE_VERB} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz"
