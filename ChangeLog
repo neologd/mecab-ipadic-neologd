@@ -1,3 +1,15 @@
+# Release 20160404-01
+
+### New features
+* misc/patch/Noun.csv.20160404.diff
+	execute: Add patch file to fix some entries of IPADIC
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/70dc6730be9570bdc16b11b5121519a694e53b6c
+
+### New seed data
+* seed/mecab-user-dict-seed.20160404.csv.xz
+	execute: Periodic data update on 2016-04-04(Mon)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/b27c3145ac39c6bf2805d7c1980bc638d7ba687b
+
 # Release 20160331-01
 
 ### New seed data
