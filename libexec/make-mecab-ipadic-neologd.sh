@@ -147,7 +147,7 @@ find . -type f | xargs file | grep ".def" | grep -v ".utf8" | cut -d: -f1 | xarg
 find . -type f | xargs file | grep  ".utf8" | cut -d: -f1 |  sed -e "s|.utf8||" |  xargs -t -I{} mv {}.utf8 {}
 
 echo "${ECHO_PREFIX} Fix yomigana field of IPA dictionary"
-patch < ${BASEDIR}/../misc/patch/Noun.csv.20150609.diff
+patch < ${BASEDIR}/../misc/patch/Noun.csv.20160404.diff
 patch < ${BASEDIR}/../misc/patch/Noun.place.csv.20150609.diff
 patch < ${BASEDIR}/../misc/patch/Verb.csv.20150609.diff
 patch < ${BASEDIR}/../misc/patch/Noun.verbal.csv.20150813.diff
