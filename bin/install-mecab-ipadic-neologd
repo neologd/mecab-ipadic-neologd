@@ -45,8 +45,15 @@ usage() {
     echo "  -n, --newest"
     echo "     If you want to update mecab-ipadic-NEologd"
     echo
+    echo "  --create_user_dic"
+    echo "     If you want to create an user dictionary using seed data of mecab-ipadic-NEologd"
+    echo
     echo "  --eliminate-redundant-entry"
     echo "     If you want to eliminate the redundant entries"
+    echo
+    echo "  --extend-column URL_1,...,URL_N"
+    echo "     If you want to use an arbitrary column extension repository"
+    echo "         You should set CSV value of URL(s)"
     echo
     echo "  --min_surface_length INT_VALUE"
     echo "     If you want to delete the entries whose length of surface is shorter than INT_VALUE"
@@ -59,9 +66,6 @@ usage() {
     echo
     echo "  --max_baseform_length INT_VALUE"
     echo "     If you want to delete the entries whose length of base form is longer than INT_VALUE"
-    echo
-    echo "  --create_user_dic"
-    echo "     If you want to create an user dictionary using seed data of mecab-ipadic-NEologd"
     echo
     echo "  --ignore_adverb"
     echo "     If you would not like to install entries of orthographic variant of an adverbial as seed data of mecab-ipadic-NEologd"
@@ -91,6 +95,7 @@ INSTALL_PATH_PREFIX=""
 IS_FORCE_YES=0
 IS_AS_USER=0
 WANNA_UPDATE=0
+COLUMN_EXTENSIONS_URLS=""
 MIN_SURFACE_LEN=0
 MAX_SURFACE_LEN=0
 MIN_BASEFORM_LEN=0
@@ -144,6 +149,15 @@ do
         '--eliminate-redundant-entry' )
             WANNA_ELIMINATE_REDUNDANT_ENTRY=1
             shift 1
+            ;;
+        '--extend-column' )
+            if [[ -z "$2" ]] || [[ "$2" =~ ^-+ ]]; then
+                echo "${PROGRAM_NAME}: option requires an argument -- $1" 1>&2
+                usage
+                exit 1
+            fi
+            COLUMN_EXTENSIONS_URLS="$2"
+            shift 2
             ;;
         '--ignore_noun_ortho' )
             WANNA_IGNORE_NOUN_ORTHO=1
@@ -291,7 +305,7 @@ echo "$ECHO_PREFIX mecab-ipadic-NEologd will be install to ${INSTALL_PATH_PREFIX
 echo ""
 
 echo "$ECHO_PREFIX Make mecab-ipadic-NEologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB} -E ${WANNA_ELIMINATE_REDUNDANT_ENTRY}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB} -E ${WANNA_ELIMINATE_REDUNDANT_ENTRY} -G ${COLUMN_EXTENSIONS_URLS}
 
 if [ $? != 0 ]; then
     echo ""
