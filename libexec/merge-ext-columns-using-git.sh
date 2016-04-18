@@ -64,15 +64,20 @@ do
     fi
 done
 
+
+
 EXT_COLUMN_URL_ARR=(`echo ${EXT_COLUMN_URL_CSV} | tr -s ',' ' '`)
 for (( I = 0; I < ${#EXT_COLUMN_URL_ARR[@]}; ++I ))
 do
     EXT_COLUMN_URL=${EXT_COLUMN_URL_ARR[${I}]}
     EXT_COLUMN_REPO_NAME=${EXT_COLUMN_URL##*/}
-    if [ -d ${EXT_COLUMN_REPO_NAME} ]; then
+    EXT_COLUMN_REPO_NAME=${EXT_COLUMN_REPO_NAME%%\.git}
+
+    if [ -d ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME} ]; then
         echo "$ECHO_PREFIX Update a column extension of ${EXT_COLUMN_REPO_NAME}"
         cd ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME}
-        git pull
+        git fetch origin
+        git reset --hard origin/master
         cd ${NEOLOGD_BUILD_DIR}
     else
         echo "$ECHO_PREFIX Get a column extension from ${EXT_COLUMN_URL}"
@@ -87,6 +92,10 @@ do
         if [ -f ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME}/extension/${CSV_FILE_NAME_PREFIX}.tsv.xz ]; then
             echo "$ECHO_PREFIX Decompress ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME}/extension/${CSV_FILE_NAME_PREFIX}.tsv.xz"
             unxz -k ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME}/extension/${CSV_FILE_NAME_PREFIX}.tsv.xz
+
+            LC_ALL=C sort ${CSV_FILE_NAME} > ${CSV_FILE_NAME}.sort
+            LC_ALL=C uniq ${CSV_FILE_NAME}.sort > ${CSV_FILE_NAME}
+            rm ${CSV_FILE_NAME}.sort
 
             echo "$ECHO_PREFIX Join ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME}/extension/${CSV_FILE_NAME_PREFIX}.tsv"
             ${BASEDIR}/../libexec/merge-ext-column.pl ${CSV_FILE_PATH} ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME}/extension/${CSV_FILE_NAME_PREFIX}.tsv
