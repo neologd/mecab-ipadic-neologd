@@ -1,3 +1,15 @@
+# Release 20160418-01
+
+### New feature
+* bin/install-mecab-ipadic-neologd
+	execute: Add --extend-column option
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/12eda615badbd0e21bc0fd2dbff42a7182abbbc6
+
+### New seed data
+* seed/mecab-user-dict-seed.20160418.csv.xz
+	execute: Periodic data update on 2016-04-18(Mon)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/1d6a72549e6d702229577bb2f6d8ced63536e59f
+
 # Release 20160414-01
 
 ### New seed data
