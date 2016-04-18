@@ -114,8 +114,9 @@ WANNA_IGNORE_ADJECTIVE_STD=0
 WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
 ELIMINATE_REDUNDANT_ENTRY=0
+COLUMN_EXTENSIONS_URLS=""
 
-while getopts p:s:l:S:L:u:B:J:O:H:t:T:j:E: OPT
+while getopts p:s:l:S:L:u:B:J:O:H:t:T:j:E:G: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -132,6 +133,7 @@ do
     "T" ) WANNA_INSTALL_ADJECTIVE_EXP=$OPTARG ;;
     "j" ) WANNA_IGNORE_ADJECTIVE_VERB=$OPTARG ;;
     "E" ) WANNA_ELIMINATE_REDUNDANT_ENTRY=$OPTARG ;;
+    "G" ) COLUMN_EXTENSIONS_URLS=$OPTARG ;;
   esac
 done
 
@@ -268,8 +270,6 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}"
 fi
 
-
-
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
     for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
     do
@@ -337,6 +337,14 @@ if [ ${WANNA_CREATE_USER_DIC} = 1 ]; then
 fi
 
 cp ${BASEDIR}/../misc/dic/unk.def .
+
+if [ ! "${COLUMN_EXTENSIONS_URLS}" = "" ]; then
+    echo "${ECHO_PREFIX} Expand column of all seed data"
+    echo "    ${COLUMN_EXTENSIONS_URLS}"
+    ${BASEDIR}/../libexec/merge-ext-columns-using-git.sh "${COLUMN_EXTENSIONS_URLS}"
+fi
+
+cd ${NEOLOGD_DIC_DIR}
 
 echo "${ECHO_PREFIX} Re-Index system dictionary"
 ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8
