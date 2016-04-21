@@ -154,6 +154,18 @@ patch < ${BASEDIR}/../misc/patch/Noun.place.csv.20150609.diff
 patch < ${BASEDIR}/../misc/patch/Verb.csv.20150609.diff
 patch < ${BASEDIR}/../misc/patch/Noun.verbal.csv.20150813.diff
 patch < ${BASEDIR}/../misc/patch/Noun.name.csv.20150905.diff
+patch < ${BASEDIR}/../misc/patch/Noun.adverbal.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.name.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.number.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.org.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.others.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.place.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.proper.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Noun.verbal.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Prefix.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Suffix.csv.20160421.diff
+patch < ${BASEDIR}/../misc/patch/Symbol.csv.20160421.diff
 
 echo "${ECHO_PREFIX} Copy user dictionary resource"
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
