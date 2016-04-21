@@ -1,3 +1,15 @@
+# Release 20160421-01
+
+### New seed data
+* seed/mecab-user-dict-seed.20160421.csv.xz
+	execute: Periodic data update on 2016-04-21(Thu)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/1d6a72549e6d702229577bb2f6d8ced63536e59f
+
+### New feature
+*  misc/patch/*.csv.20160421.diff
+	execute: Add patch files to replace Zenkaku alphabet & number characters with Hankaku characters
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/10ef172448c8bb2cdadbd8a2a2289beb47086dad
+
 # Release 20160418-01
 
 ### New feature
