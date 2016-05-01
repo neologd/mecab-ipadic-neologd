@@ -97,9 +97,9 @@ IS_AS_USER=0
 WANNA_UPDATE=0
 COLUMN_EXTENSIONS_URLS=""
 MIN_SURFACE_LEN=0
-MAX_SURFACE_LEN=200
+MAX_SURFACE_LEN=0
 MIN_BASEFORM_LEN=0
-MAX_BASEFORM_LEN=200
+MAX_BASEFORM_LEN=0
 WANNA_CREATE_USER_DIC=0
 WANNA_ELIMINATE_REDUNDANT_ENTRY=0
 WANNA_IGNORE_ADVERB=0
@@ -238,14 +238,14 @@ do
     esac
 done
 
-if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
+if [ ${MIN_SURFACE_LEN} -gt 0 -a ${MAX_SURFACE_LEN} -gt 0 ]; then
     if [ ${MIN_SURFACE_LEN} -ge ${MAX_SURFACE_LEN} ]; then
         echo "${ECHO_PREFIX} Can't set inconsistent values: MIN_SURFACE_LEN(${MIN_SURFACE_LEN}) >= MAX_SURFACE_LEN(${MAX_SURFACE_LEN})"
         usage
         exit 1
     fi
 fi
-if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
+if [ ${MIN_BASEFORM_LEN} -gt 0 -a ${MAX_BASEFORM_LEN} -gt 0 ]; then
     if [ ${MIN_BASEFORM_LEN} -ge ${MAX_BASEFORM_LEN} ]; then
         echo "${ECHO_PREFIX} Can't set inconsistent values: MIN_BASEFORM_LEN(${MIN_BASEFORM_LEN}) >= MAX_BASEFORM_LEN(${MAX_BASEFORM_LEN})"
         usage
