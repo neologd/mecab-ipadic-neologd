@@ -272,7 +272,6 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}"
 fi
 
-echo ${MAX_SURFACE_LEN}
 SEED_FILE_NAMES=($(find ${NEOLOGD_DIC_DIR}/* -name "*.csv"))
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
