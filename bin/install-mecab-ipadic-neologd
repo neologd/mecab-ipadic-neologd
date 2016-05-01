@@ -97,9 +97,9 @@ IS_AS_USER=0
 WANNA_UPDATE=0
 COLUMN_EXTENSIONS_URLS=""
 MIN_SURFACE_LEN=0
-MAX_SURFACE_LEN=0
+MAX_SURFACE_LEN=200
 MIN_BASEFORM_LEN=0
-MAX_BASEFORM_LEN=0
+MAX_BASEFORM_LEN=200
 WANNA_CREATE_USER_DIC=0
 WANNA_ELIMINATE_REDUNDANT_ENTRY=0
 WANNA_IGNORE_ADVERB=0
@@ -144,7 +144,7 @@ do
             ;;
         '--create_user_dic' )
             WANNA_CREATE_USER_DIC=1
-            shift 100
+            shift 1
             ;;
         '--eliminate-redundant-entry' )
             WANNA_ELIMINATE_REDUNDANT_ENTRY=1
