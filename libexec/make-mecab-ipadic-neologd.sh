@@ -272,12 +272,15 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}"
 fi
 
+echo ${MAX_SURFACE_LEN}
 SEED_FILE_NAMES=($(find ${NEOLOGD_DIC_DIR}/* -name "*.csv"))
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
     for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
     do
         TMP_SEED_FILE_NAME=${SEED_FILE_NAMES[$I]}
+        TMP_SEED_FILE_NAME=${TMP_SEED_FILE_NAME##*/}
+
         if [ -f ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} ]; then
             echo "${ECHO_PREFIX} Cut string of surface of entries in ${TMP_SEED_FILE_NAME}"
             if [ ${MIN_SURFACE_LEN} -gt 0 ]; then
@@ -298,6 +301,7 @@ if [ ${MIN_BASEFORM_LEN} -gt 0 -o ${MAX_BASEFORM_LEN} -gt 0 ]; then
     for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
     do
         TMP_SEED_FILE_NAME=${SEED_FILE_NAMES[$I]}
+        TMP_SEED_FILE_NAME=${TMP_SEED_FILE_NAME##*/}
         if [ -f ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} ]; then
             echo "${ECHO_PREFIX} Cut string of base form of entries in ${TMP_SEED_FILE_NAME}"
             if [ ${MIN_BASEFORM_LEN} -gt 0 ]; then
@@ -318,6 +322,7 @@ if [ ${WANNA_ELIMINATE_REDUNDANT_ENTRY} -gt 0 ]; then
     for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
     do
         TMP_SEED_FILE_NAME=${SEED_FILE_NAMES[$I]}
+        TMP_SEED_FILE_NAME=${TMP_SEED_FILE_NAME##*/}
         if [ -f ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} ]; then
             perl ${BASEDIR}/../libexec/eliminate_redundant_entry.pl ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME} > ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.same
             mv ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}.same ${NEOLOGD_DIC_DIR}/${TMP_SEED_FILE_NAME}
