@@ -17,7 +17,6 @@
 # limitations under the License.
 
 set -e
-set -u
 
 BASEDIR=$(cd $(dirname $0);pwd)
 PROGRAM_NAME=install-mecab-ipadic-NEologd
