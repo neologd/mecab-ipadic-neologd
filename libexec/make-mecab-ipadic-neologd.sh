@@ -172,9 +172,6 @@ SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
 cp ${BASEDIR}/../seed/${SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
 unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
-SEED_FILE_NAMES=()
-SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${SEED_FILE_NAME}")
-
 ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv
 if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_IGNORE_ADVERB} -gt 0 ]; then
@@ -183,7 +180,6 @@ if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install adverb entries using ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADVERB_SEED_FILE_NAME}.xz
-        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADVERB_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME} isn't there"
@@ -198,7 +194,6 @@ if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install interjection entries using ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${INTERJECT_SEED_FILE_NAME}.xz
-        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${INTERJECT_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME} isn't there"
@@ -213,7 +208,6 @@ if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install common noun orthographic variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}.xz
-        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${NOUN_ORTHO_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
@@ -228,7 +222,6 @@ if [ -f ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install entries of orthographic variant of a noun used as verb form using ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz
-        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME} isn't there"
@@ -243,7 +236,6 @@ if [ -f ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install frequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_STD_SEED_FILE_NAME}.xz
-        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_STD_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME} isn't there"
@@ -256,7 +248,6 @@ if [ -f ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install infrequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz
-        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_EXP_SEED_FILE_NAME}")
     else
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
         echo "${ECHO_PREFIX}     When you install ${ADJECTIVE_EXP_SEED_FILE_NAME}.xz, please set --install_adjective_exp option"
@@ -275,12 +266,13 @@ if [ -f ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX} Install adjective verb orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz
-        SEED_FILE_NAMES=("${SEED_FILE_NAMES[@]}" "${ADJECTIVE_VERB_SEED_FILE_NAME}")
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}"
 fi
+
+SEED_FILE_NAMES=(`find {NEOLOGD_DIC_DIR}/*.csv`)
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -o ${MAX_SURFACE_LEN} -gt 0 ]; then
     for (( I = 0; I < ${#SEED_FILE_NAMES[@]}; ++I ))
