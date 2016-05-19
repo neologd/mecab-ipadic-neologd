@@ -3,7 +3,7 @@
 ### New feature
 *  misc/patch/*.csv.20160519.diff
 	execute: Remove some noun from a list of proper noun
-	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/d09871b875b6b693b0acfcf97cc65e79523ceb85
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/dd9373de5c82d28cb7d94a702cd5468b117bf415
 
 # Release 20160519-01
 
