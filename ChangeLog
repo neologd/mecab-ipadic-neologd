@@ -1,3 +1,10 @@
+# Release 20160519-02
+
+### New feature
+*  misc/patch/*.csv.20160519.diff
+	execute: Remove some noun from a list of proper noun
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/d09871b875b6b693b0acfcf97cc65e79523ceb85
+
 # Release 20160519-01
 
 ### New seed data
