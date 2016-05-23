@@ -97,9 +97,21 @@ echo "${ECHO_PREFIX} Configure custom system dictionary on ${NEOLOGD_DIC_DIR}"
 
 cd ${NEOLOGD_DIC_DIR}
 
-MECAB_PATH=`which mecab`
-MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
-MECAB_LIBEXEC_DIR=`${MECAB_PATH}-config --libexecdir`
+: "set mecab path" && {
+    set +u > /dev/null
+    if [ -z "${MECAB_PATH}" ] ; then
+        MECAB_PATH=`which mecab`
+    fi
+    if [ -z "${MECAB_DIC_DIR}" ] ; then
+        MECAB_CONFIG_PATH=`which mecab-config`
+        MECAB_DIC_DIR=`${MECAB_CONFIG_PATH} --dicdir`
+    fi
+    if [ -z "${MECAB_LIBEXEC_DIR}" ] ; then
+        MECAB_CONFIG_PATH=`which mecab-config`
+        MECAB_LIBEXEC_DIR=`${MECAB_CONFIG_PATH} --libexecdir`
+    fi
+    set -u > /dev/null
+}
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 
 MIN_SURFACE_LEN=0

@@ -99,6 +99,12 @@ Please install at any time other lack library.
 
     $ brew install mecab mecab-ipadic git curl xz
 
+#### Mroonga / Groonga collaboration
+
+If you are using the **mecab** (groonga-tokenizer-mecab) in the tokenizer of Mroonga, above **mecab** is not required .
+
+The installer uses the mecab-dict-index that is included in the groonga-tokenizer-mecab.
+
 ### Preparation of installing
 A seed data of the dictionary will distribute via GitHub repository.
 
