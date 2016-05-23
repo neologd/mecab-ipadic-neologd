@@ -259,10 +259,68 @@ echo "$ECHO_PREFIX Check the existance of libraries"
 COMMANDS=(find sort head cut egrep mecab mecab-config make curl sed cat diff tar unxz xargs grep iconv patch which file openssl)
 for COMMAND in ${COMMANDS[@]};do
     if [ ! `which ${COMMAND}` ]; then
-        echo "$ECHO_PREFIX     ${COMMAND} is not found."
-        exit 1
+        case ${COMMAND} in
+        "mecab")
+            : "check groonga-tokenizer-mecab" && {
+                set +e > /dev/null
+                mecab_dict_index_path=`find / -name "mecab-dict-index" -print 2> /dev/null`
+                set -e > /dev/null
+                if [ -n "${mecab_dict_index_path}" ] ; then
+                    export MECAB_PATH=${mecab_dict_index_path%/*}
+                    export MECAB_LIBEXEC_DIR=${MECAB_PATH}
+                    echo "$ECHO_PREFIX     ${COMMAND} => ok (for mroonga mode)"
+                else
+                    echo "$ECHO_PREFIX     ${COMMAND} is not found."
+                    exit 1
+                fi
+            }
+            ;;
+        *)
+            echo "$ECHO_PREFIX     ${COMMAND} is not found."
+            exit 1
+            ;;
+        esac
     else
-        echo "$ECHO_PREFIX     ${COMMAND} => ok"
+        case ${COMMAND} in
+        "mecab-config")
+            : "check groonga-tokenizer-mecab" && {
+                ec=1
+                mecabrc_path=""
+                if [ -e "/etc/mecabrc" ] ; then
+                    mecabrc_path="/etc/mecabrc"
+                elif [ -e "/usr/local/etc/mecabrc" ] ; then
+                    mecabrc_path="/usr/local/etc/mecabrc"
+
+                fi
+                if [ -n "${mecabrc_path}" ] ; then
+                    set +e > /dev/null
+                    mecab_dicdir=`cat ${mecabrc_path} | grep -v -e '^;' -e '^\s*$' | awk '{sub("=", ""); print $2}'`
+                    set -e > /dev/null
+                    if [ -n "${mecab_dicdir}" ] && [ -e "${mecab_dicdir}" ] ; then
+                        dicdir_by_mecab_config=`which mecab-config | xargs -Imecab-config mecab-config --dicdir`
+                        if [ "${dicdir_by_mecab_config}" != "${mecab_dicdir}" ] ; then
+                            INSTALL_PATH_PREFIX=${mecab_dicdir}
+                            ec=0
+                        fi
+                    fi
+                fi
+                if [ -n "${mecabrc_path}" ] ; then
+                    if [ ${ec} -lt 0 ] ; then
+                        echo "$ECHO_PREFIX     ${COMMAND} => ng (for mroonga mode)"
+                        exit 1
+                    else
+                        echo "$ECHO_PREFIX     ${COMMAND} => ok (for mroonga mode)"
+                    fi
+                else
+                    # normal
+                    echo "$ECHO_PREFIX     ${COMMAND} => ok"
+                fi
+            }
+            ;;
+        *)
+            echo "$ECHO_PREFIX     ${COMMAND} => ok"
+            ;;
+        esac
     fi
 done
 

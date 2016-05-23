@@ -34,8 +34,17 @@ fi
 
 BUILT_DIC_DIR=${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 
-MECAB_PATH=`which mecab`
-MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
+: "set mecab path" && {
+    set +u > /dev/null
+    if [ -z "${MECAB_PATH}" ] ; then
+        MECAB_PATH=`which mecab`
+    fi
+    if [ -z "${MECAB_DIC_DIR}" ] ; then
+        MECAB_CONFIG_PATH=`which mecab-config`
+        MECAB_DIC_DIR=`${MECAB_CONFIG_PATH} --dicdir`
+    fi
+    set -u > /dev/null
+}
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 INSTALL_AS_USER=0
 
