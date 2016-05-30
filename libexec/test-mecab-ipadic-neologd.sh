@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -e
 set -u
 
 BASEDIR=$(cd $(dirname $0);pwd)
@@ -60,7 +61,10 @@ echo "$ECHO_PREFIX Get difference between default system dictionary and mecab-ip
 
 cat /tmp/buzz_phrase| mecab -Owakati > /tmp/buzz_phrase_defdic
 cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} > /tmp/buzz_phrase_neologismdic
+
+set +e # Can't use diff command and 'set -e' option at the same time
 /usr/bin/diff -y -W70 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic >/tmp/buzz_phrase_diff
+set -e
 
 if [ -s /tmp/buzz_phrase_diff ]; then
     echo "$ECHO_PREFIX Tokenize phrase using default system dictionary"
@@ -72,7 +76,9 @@ if [ -s /tmp/buzz_phrase_diff ]; then
     cat /tmp/buzz_phrase| mecab -Owakati -d ${MECAB_DIC_DIR} >> /tmp/buzz_phrase_neologismdic
 
     echo "$ECHO_PREFIX Get result of diff"
+    set +e # Can't use diff command and 'set -e' option at the same time
     /usr/bin/diff -y -W70 --side-by-side --suppress-common-lines /tmp/buzz_phrase_defdic /tmp/buzz_phrase_neologismdic > /tmp/buzz_phrase_diff
+    set -e
 
     echo "$ECHO_PREFIX Please check difference between default system dictionary and mecab-ipadic-NEologd"
     echo ""
