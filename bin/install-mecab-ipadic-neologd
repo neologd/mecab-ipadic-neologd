@@ -17,6 +17,7 @@
 # limitations under the License.
 
 set -e
+set -u
 
 BASEDIR=$(cd $(dirname $0);pwd)
 PROGRAM_NAME=install-mecab-ipadic-NEologd
@@ -110,6 +111,7 @@ WANNA_IGNORE_ADJECTIVE_STD=0
 WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
 
+set +u
 for OPT in "$@"
 do
     case "$OPT" in
@@ -237,6 +239,7 @@ do
             ;;
     esac
 done
+set -u
 
 if [ ${MIN_SURFACE_LEN} -gt 0 -a ${MAX_SURFACE_LEN} -gt 0 ]; then
     if [ ${MIN_SURFACE_LEN} -ge ${MAX_SURFACE_LEN} ]; then
