@@ -93,7 +93,7 @@ Please install at any time other lack library.
 
 - On Ubuntu
 
-    $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils
+    $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
 
 - On MacOSX
 

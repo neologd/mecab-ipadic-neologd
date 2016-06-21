@@ -121,7 +121,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 - Ubuntu の場合
 
-    $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils
+    $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
 
 - Mac OSX の場合
 
