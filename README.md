@@ -1,4 +1,5 @@
 # mecab-ipadic-NEologd : Neologism dictionary for MeCab
+[![Build Status](https://travis-ci.org/neologd/mecab-ipadic-neologd.svg?branch=master)](https://travis-ci.org/neologd/mecab-ipadic-neologd)
 
 ## For Japanese
 README.ja.md is written in Japanese.
