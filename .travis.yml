@@ -3,6 +3,9 @@ language: bash
 notifications:
  email: false
 
+before_install:
+ - mkdir ./target
+
 cache: apt
 
 addons:
@@ -18,7 +21,7 @@ addons:
     - file
 
 install:
- - bash ./libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s 0 -l 0 -S 0 -L 0 -u 0 -B 0 -J 0 -O 0 -H 0 -t 0 -T 1 -j 0 -E 0 -G ""
+ - bash ./libexec/make-mecab-ipadic-neologd.sh -p ./target/neologd-travisci -s 0 -l 0 -S 0 -L 0 -u 0 -B 0 -J 0 -O 0 -H 0 -t 0 -T 1 -j 0 -E 0 -G ""
 
 script:
  - bash ./libexec/test-mecab-ipadic-neologd.sh
