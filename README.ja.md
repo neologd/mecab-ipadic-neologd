@@ -1,4 +1,5 @@
 # mecab-ipadic-NEologd : Neologism dictionary for MeCab
+[![Build Status](https://travis-ci.org/neologd/mecab-ipadic-neologd.svg?branch=master)](https://travis-ci.org/neologd/mecab-ipadic-neologd)
 
 ## 詳細な情報
 mecab-ipadic-NEologd に関する詳細な情報(サンプルコードなど)は以下の Wiki に書いてあります。
