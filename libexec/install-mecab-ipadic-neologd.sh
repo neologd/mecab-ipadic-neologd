@@ -39,7 +39,7 @@ MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 INSTALL_AS_USER=0
 
-while getopts p:u: OPT
+while getopts :p:u: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
