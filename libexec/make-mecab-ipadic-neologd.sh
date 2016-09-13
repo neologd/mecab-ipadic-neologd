@@ -117,7 +117,7 @@ WANNA_IGNORE_ADJECTIVE_VERB=0
 WANNA_ELIMINATE_REDUNDANT_ENTRY=0
 COLUMN_EXTENSIONS_URLS=""
 
-while getopts p:s:l:S:L:u:B:J:O:H:t:T:j:E:G: OPT
+while getopts :p:s:l:S:L:u:B:J:O:H:t:T:j:E:G: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
