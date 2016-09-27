@@ -20,4 +20,4 @@ set -e
 set -u
 
 FILE_NAME=$1
-iconv -f EUC-JP -t UTF-8 ${FILE_NAME} > ${FILE_NAME}.utf8
+iconv -f EUC-JP -t UTF-8 ${FILE_NAME} | sed -e 's/—/―/g' > ${FILE_NAME}.utf8
