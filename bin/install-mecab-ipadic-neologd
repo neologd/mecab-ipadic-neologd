@@ -89,6 +89,12 @@ usage() {
     echo "  --ignore_adjective_verb"
     echo "     If you would not like to install entries of orthographic variant of an adjective verb as seed data of mecab-ipadic-NEologd"
     echo
+    echo "  --install_infreq_datetime"
+    echo "     If you would not like to install infrequent entries of datetime representation type of named entity as seed data of mecab-ipadic-NEologd"
+    echo
+    echo "  --install_infreq_quantity"
+    echo "     If you would not like to install infrequent entries of quantity representation type of named entity as seed data of mecab-ipadic-NEologd"
+    echo
     exit 1
 }
 
@@ -110,6 +116,8 @@ WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO=0
 WANNA_IGNORE_ADJECTIVE_STD=0
 WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
+WANNA_INSTALL_INFREQ_DATETIME=0
+WANNA_INSTALL_INFREQ_QUANTITY=0
 
 set +u
 for OPT in "$@"
@@ -187,6 +195,14 @@ do
             ;;
         '--ignore_adjective_verb' )
             WANNA_IGNORE_ADJECTIVE_VERB=1
+            shift 1
+            ;;
+        '--install_infreq_datetime' )
+            WANNA_INSTALL_INFREQ_DATETIME=1
+            shift 1
+            ;;
+        '--install_infreq_quantity' )
+            WANNA_INSTALL_INFREQ_QUANTITY=1
             shift 1
             ;;
         '--min_surface_length' )
@@ -307,7 +323,7 @@ echo "$ECHO_PREFIX mecab-ipadic-NEologd will be install to ${INSTALL_PATH_PREFIX
 echo ""
 
 echo "$ECHO_PREFIX Make mecab-ipadic-NEologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB} -E ${WANNA_ELIMINATE_REDUNDANT_ENTRY} -G ${COLUMN_EXTENSIONS_URLS}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB} -E ${WANNA_ELIMINATE_REDUNDANT_ENTRY} -D ${WANNA_INSTALL_INFREQ_DATETIME} -Q ${WANNA_INSTALL_INFREQ_QUANTITY} -G ${COLUMN_EXTENSIONS_URLS}
 
 if [ $? != 0 ]; then
     echo ""
