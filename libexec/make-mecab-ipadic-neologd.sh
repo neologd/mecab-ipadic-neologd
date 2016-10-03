@@ -116,8 +116,10 @@ WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
 WANNA_ELIMINATE_REDUNDANT_ENTRY=0
 COLUMN_EXTENSIONS_URLS=""
+WANNA_INSTALL_INFREQ_DATETIME=0
+WANNA_INSTALL_INFREQ_QUANTITY=0
 
-while getopts :p:s:l:S:L:u:B:J:O:H:t:T:j:E:G: OPT
+while getopts :p:s:l:S:L:u:B:J:O:H:t:T:j:E:D:Q:G: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -134,6 +136,8 @@ do
     "T" ) WANNA_INSTALL_ADJECTIVE_EXP=$OPTARG ;;
     "j" ) WANNA_IGNORE_ADJECTIVE_VERB=$OPTARG ;;
     "E" ) WANNA_ELIMINATE_REDUNDANT_ENTRY=$OPTARG ;;
+    "D" ) WANNA_INSTALL_INFREQ_DATETIME=$OPTARG ;;
+    "Q" ) WANNA_INSTALL_INFREQ_QUANTITY=$OPTARG ;;
     "G" ) COLUMN_EXTENSIONS_URLS=$OPTARG ;;
   esac
 done
@@ -278,6 +282,37 @@ if [ -f ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz ]; then
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME} isn't there"
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}"
+fi
+
+
+echo $WANNA_INSTALL_INFREQ_QUANTITY
+
+INFREQ_DATETIME_SEED_FILE_NAME=neologd-date-time-infreq-dict-seed.20161003.csv
+if [ -f ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSTALL_INFREQ_DATETIME} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Install infrequent datetime representation entries using ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${INFREQ_DATETIME_SEED_FILE_NAME}.xz
+    else
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz"
+    fi
+else
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}"
+fi
+
+INFREQ_QUANTITY_SEED_FILE_NAME=neologd-quantity-infreq-dict-seed.20161003.csv
+if [ -f ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSTALL_INFREQ_QUANTITY} -gt 0 ]; then
+        echo "${ECHO_PREFIX} Install infrequent quantity representation entries using ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz
+    else
+        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz"
+    fi
+else
+    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME} isn't there"
+    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}"
 fi
 
 SEED_FILE_NAMES=($(find ${NEOLOGD_DIC_DIR}/* -name "*.csv"))
