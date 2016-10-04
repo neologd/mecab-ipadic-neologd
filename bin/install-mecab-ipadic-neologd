@@ -298,11 +298,11 @@ if [ ${WANNA_UPDATE} = 1 ]; then
     fi
 
     echo
+    cd ${BASEDIR}/../
     if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
         echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
     else
         echo "$ECHO_PREFIX Get the newest updated information using git"
-        cd ${BASEDIR}/../
         git fetch origin
         git reset --hard origin/master
     fi
