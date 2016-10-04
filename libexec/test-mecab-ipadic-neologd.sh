@@ -21,6 +21,7 @@ set -u
 
 BASEDIR=$(cd $(dirname $0);pwd)
 ECHO_PREFIX="[test-mecab-ipadic-NEologd] :"
+GREP_OPTIONS=""
 
 echo "$ECHO_PREFIX Start.."
 
