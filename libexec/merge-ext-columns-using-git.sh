@@ -21,6 +21,7 @@ set -u
 
 BASEDIR=$(cd $(dirname $0);pwd)
 ECHO_PREFIX="[merge-ext-columns-using-git] :"
+GREP_OPTIONS=""
 
 EXT_COLUMN_URL_CSV=$1
 
