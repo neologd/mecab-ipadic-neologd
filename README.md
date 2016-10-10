@@ -32,7 +32,7 @@ When you analyze the Web documents, it's better to use this system dictionary an
         - Japanese postal code number data download (ken_all.lzh)
         - The name-of-the-station list of whole country of Japan
         - The entry data of the person names (last name / first name)
-        - The entry data of Unicode emojis (version 8.0)
+        - The entry data of Unicode emojis (version 9.0)
         - The entry data of Kaomoji strings
         - The entry data of adverbs
         - The entry data of adjectives
