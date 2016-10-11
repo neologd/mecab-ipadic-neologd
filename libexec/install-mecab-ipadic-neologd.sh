@@ -38,23 +38,39 @@ MECAB_PATH=`which mecab`
 MECAB_DIC_DIR=`${MECAB_PATH}-config --dicdir`
 INSTALL_DIR_PATH=${MECAB_DIC_DIR}/mecab-ipadic-neologd
 INSTALL_AS_USER=0
+INSTALL_AS_SUDOER=0
 
-while getopts :p:u: OPT
+while getopts :p:u:s: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
     "u" ) INSTALL_AS_USER=$OPTARG ;;
+    "s" ) INSTALL_AS_SUDOER=$OPTARG ;;
   esac
 done
 
 cd ${BUILT_DIC_DIR}
 
-if [ ${INSTALL_AS_USER} = 1 ]; then
-    echo "$ECHO_PREFIX Make install to ${INSTALL_DIR_PATH}"
-    make install
+CUR_USER_ID=`id | cut -d $'=' -f 2 | cut -d $'(' -f 1`
+DIR_USER_ID=`ls -na ${INSTALL_DIR_PATH} | head -2 | tail -1 | awk '{ print $3 }'`
+if [ ${CUR_USER_ID} -eq ${DIR_USER_ID} ]; then
+    echo "$ECHO_PREFIX ${BUILT_DIC_DIR} is current user's directory"
+    if [ ${INSTALL_AS_SUDOER} -eq 1 ]; then
+        echo "$ECHO_PREFIX Sudo make install to ${INSTALL_DIR_PATH}"
+        sudo make install
+    else
+        echo "$ECHO_PREFIX Make install to ${INSTALL_DIR_PATH}"
+        make install
+    fi
 else
-    echo "$ECHO_PREFIX Sudo make install to ${INSTALL_DIR_PATH}"
-    sudo make install
+    echo "$ECHO_PREFIX ${BUILT_DIC_DIR} isn't current user's directory"
+    if [ ${INSTALL_AS_USER} -eq 1 ]; then
+        echo "$ECHO_PREFIX Make install to ${INSTALL_DIR_PATH}"
+        make install
+    else
+        echo "$ECHO_PREFIX Sudo make install to ${INSTALL_DIR_PATH}"
+        sudo make install
+    fi
 fi
 
 if [ -e ${INSTALL_DIR_PATH} ]; then
