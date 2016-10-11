@@ -290,7 +290,7 @@ fi
 echo "$ECHO_PREFIX Start.."
 
 echo "$ECHO_PREFIX Check the existance of libraries"
-COMMANDS=(find sort head cut egrep mecab mecab-config make curl sed cat diff tar unxz xargs grep iconv patch which file openssl)
+COMMANDS=(find sort head cut egrep mecab mecab-config make curl sed cat diff tar unxz xargs grep iconv patch which file openssl awk)
 for COMMAND in ${COMMANDS[@]};do
     if [ ! `which ${COMMAND}` ]; then
         echo "$ECHO_PREFIX     ${COMMAND} is not found."
