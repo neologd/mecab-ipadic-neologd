@@ -46,6 +46,9 @@ usage() {
     echo "  -n, --newest"
     echo "     If you want to update mecab-ipadic-NEologd"
     echo
+    echo "  -a, --install_all_seed_files"
+    echo "     If you want to install all seed files(seed/neologd-*.xz)"
+    echo
     echo "  --create_user_dic"
     echo "     If you want to create an user dictionary using seed data of mecab-ipadic-NEologd"
     echo
@@ -118,6 +121,7 @@ WANNA_INSTALL_ADJECTIVE_EXP=0
 WANNA_IGNORE_ADJECTIVE_VERB=0
 WANNA_INSTALL_INFREQ_DATETIME=0
 WANNA_INSTALL_INFREQ_QUANTITY=0
+WANNA_INSRALL_ALL_SEED_FILES=0
 
 set +u
 for OPT in "$@"
@@ -150,6 +154,10 @@ do
             ;;
         '-n'|'--newest' )
             WANNA_UPDATE=1
+            shift 1
+            ;;
+        '-a'|'--install_all_seed_files' )
+            WANNA_INSRALL_ALL_SEED_FILES=1
             shift 1
             ;;
         '--create_user_dic' )
@@ -323,7 +331,7 @@ echo "$ECHO_PREFIX mecab-ipadic-NEologd will be install to ${INSTALL_PATH_PREFIX
 echo ""
 
 echo "$ECHO_PREFIX Make mecab-ipadic-NEologd"
-${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB} -E ${WANNA_ELIMINATE_REDUNDANT_ENTRY} -D ${WANNA_INSTALL_INFREQ_DATETIME} -Q ${WANNA_INSTALL_INFREQ_QUANTITY} -G ${COLUMN_EXTENSIONS_URLS}
+${BASEDIR}/../libexec/make-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -s ${MIN_SURFACE_LEN} -l ${MAX_SURFACE_LEN} -S ${MIN_BASEFORM_LEN} -L ${MAX_BASEFORM_LEN} -u ${WANNA_CREATE_USER_DIC} -B ${WANNA_IGNORE_ADVERB} -J ${WANNA_IGNORE_INTERJECT} -O ${WANNA_IGNORE_NOUN_ORTHO} -H ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -t ${WANNA_IGNORE_ADJECTIVE_STD} -T ${WANNA_INSTALL_ADJECTIVE_EXP} -j ${WANNA_IGNORE_ADJECTIVE_VERB} -E ${WANNA_ELIMINATE_REDUNDANT_ENTRY} -D ${WANNA_INSTALL_INFREQ_DATETIME} -Q ${WANNA_INSTALL_INFREQ_QUANTITY} -a ${WANNA_INSRALL_ALL_SEED_FILES} -G ${COLUMN_EXTENSIONS_URLS}
 
 if [ $? != 0 ]; then
     echo ""

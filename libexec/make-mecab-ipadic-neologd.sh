@@ -119,8 +119,9 @@ WANNA_ELIMINATE_REDUNDANT_ENTRY=0
 COLUMN_EXTENSIONS_URLS=""
 WANNA_INSTALL_INFREQ_DATETIME=0
 WANNA_INSTALL_INFREQ_QUANTITY=0
+WANNA_INSRALL_ALL_SEED_FILES=0
 
-while getopts :p:s:l:S:L:u:B:J:O:H:t:T:j:E:D:Q:G: OPT
+while getopts :p:s:l:S:L:u:B:J:O:H:t:T:j:E:D:Q:a:G: OPT
 do
   case $OPT in
     "p" ) INSTALL_DIR_PATH=$OPTARG ;;
@@ -139,6 +140,7 @@ do
     "E" ) WANNA_ELIMINATE_REDUNDANT_ENTRY=$OPTARG ;;
     "D" ) WANNA_INSTALL_INFREQ_DATETIME=$OPTARG ;;
     "Q" ) WANNA_INSTALL_INFREQ_QUANTITY=$OPTARG ;;
+    "a" ) WANNA_INSRALL_ALL_SEED_FILES=$OPTARG ;;
     "G" ) COLUMN_EXTENSIONS_URLS=$OPTARG ;;
   esac
 done
@@ -191,6 +193,9 @@ unxz ${NEOLOGD_DIC_DIR}/${SEED_FILE_NAME}.xz
 
 ADVERB_SEED_FILE_NAME=neologd-adverb-dict-seed.20150623.csv
 if [ -f ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_IGNORE_ADVERB=0
+    fi
     if [ ${WANNA_IGNORE_ADVERB} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}.xz"
     else
@@ -205,6 +210,9 @@ fi
 
 INTERJECT_SEED_FILE_NAME=neologd-interjection-dict-seed.20151022.csv
 if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_IGNORE_INTERJECT=0
+    fi
     if [ ${WANNA_IGNORE_INTERJECT} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz"
     else
@@ -219,6 +227,9 @@ fi
 
 NOUN_ORTHO_SEED_FILE_NAME=neologd-common-noun-ortho-variant-dict-seed.20150323.csv
 if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_IGNORE_NOUN_ORTHO=0
+    fi
     if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
     else
@@ -233,6 +244,9 @@ fi
 
 NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME=neologd-noun-sahen-conn-ortho-variant-dict-seed.20160323.csv
 if [ -f ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO=0
+    fi
     if [ ${WANNA_IGNORE_NOUN_SAHEN_CONN_ORTHO} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz"
     else
@@ -247,6 +261,9 @@ fi
 
 ADJECTIVE_STD_SEED_FILE_NAME=neologd-adjective-std-dict-seed.20151126.csv
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_IGNORE_ADJECTIVE_STD=0
+    fi
     if [ ${WANNA_IGNORE_ADJECTIVE_STD} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_STD_SEED_FILE_NAME}.xz"
     else
@@ -261,6 +278,9 @@ fi
 
 ADJECTIVE_EXP_SEED_FILE_NAME=neologd-adjective-exp-dict-seed.20151126.csv
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_INSTALL_ADJECTIVE_EXP=1
+    fi
     if [ ${WANNA_INSTALL_ADJECTIVE_EXP} -gt 0 ]; then
         echo "${ECHO_PREFIX} Install infrequent adjective orthographic variant entries using ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ADJECTIVE_EXP_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
@@ -277,6 +297,9 @@ fi
 
 ADJECTIVE_VERB_SEED_FILE_NAME=neologd-adjective-verb-dict-seed.20160324.csv
 if [ -f ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_IGNORE_ADJECTIVE_VERB=0
+    fi
     if [ ${WANNA_IGNORE_ADJECTIVE_VERB} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}.xz"
     else
@@ -289,17 +312,19 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}"
 fi
 
-
-echo $WANNA_INSTALL_INFREQ_QUANTITY
-
 INFREQ_DATETIME_SEED_FILE_NAME=neologd-date-time-infreq-dict-seed.20161003.csv
 if [ -f ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_INSTALL_INFREQ_DATETIME=1
+    fi
     if [ ${WANNA_INSTALL_INFREQ_DATETIME} -gt 0 ]; then
         echo "${ECHO_PREFIX} Install infrequent datetime representation entries using ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${INFREQ_DATETIME_SEED_FILE_NAME}.xz
     else
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX}     When you install ${INFREQ_DATETIME_SEED_FILE_NAME}.xz, please set --install_infreq_datetime option"
+        echo
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME} isn't there"
@@ -308,12 +333,17 @@ fi
 
 INFREQ_QUANTITY_SEED_FILE_NAME=neologd-quantity-infreq-dict-seed.20161003.csv
 if [ -f ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz ]; then
+    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+        WANNA_INSTALL_INFREQ_QUANTITY=1
+    fi
     if [ ${WANNA_INSTALL_INFREQ_QUANTITY} -gt 0 ]; then
         echo "${ECHO_PREFIX} Install infrequent quantity representation entries using ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz
     else
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX}     When you install ${INFREQ_QUANTITY_SEED_FILE_NAME}.xz, please set --install_infreq_quantity option"
+        echo
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME} isn't there"
