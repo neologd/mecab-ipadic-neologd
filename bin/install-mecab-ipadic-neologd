@@ -49,6 +49,9 @@ usage() {
     echo "  -a, --install_all_seed_files"
     echo "     If you want to install all seed files(seed/neologd-*.xz)"
     echo
+    echo "  --as_sudoer"
+    echo "     If you want to install to an other user's directory as sudoer"
+    echo
     echo "  --create_user_dic"
     echo "     If you want to create an user dictionary using seed data of mecab-ipadic-NEologd"
     echo
@@ -104,6 +107,7 @@ usage() {
 INSTALL_PATH_PREFIX=""
 IS_FORCE_YES=0
 IS_AS_USER=0
+IS_AS_SUDOER=0
 WANNA_UPDATE=0
 COLUMN_EXTENSIONS_URLS=""
 MIN_SURFACE_LEN=0
@@ -150,6 +154,10 @@ do
             ;;
         '-u'|'--asuser' )
             IS_AS_USER=1
+            shift 1
+            ;;
+        '--as_sudoer' )
+            IS_AS_SUDOER=1
             shift 1
             ;;
         '-n'|'--newest' )
@@ -379,7 +387,7 @@ if [ ${IS_FORCE_YES} -eq 0 ]; then
 fi
 
 echo "$ECHO_PREFIX OK. Let's install mecab-ipadic-NEologd."
-${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -u ${IS_AS_USER}
+${BASEDIR}/../libexec/install-mecab-ipadic-neologd.sh -p ${INSTALL_PATH_PREFIX} -u ${IS_AS_USER} -s ${IS_AS_SUDOER}
 
 if [ $? != 0 ]; then
     echo ""
