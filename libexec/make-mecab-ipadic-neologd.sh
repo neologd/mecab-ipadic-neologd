@@ -227,22 +227,28 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}"
 fi
 
-NOUN_ORTHO_SEED_FILE_NAME=neologd-common-noun-ortho-variant-dict-seed.20150323.csv
-if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
-    if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
-        WANNA_IGNORE_NOUN_ORTHO=0
-    fi
-    if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
+NOUN_ORTHO_SEED_FILE_NAME_LIST=()
+NOUN_ORTHO_SEED_FILE_NAME_LIST[0]=neologd-common-noun-ortho-variant-dict-seed.20161017.csv
+NOUN_ORTHO_SEED_FILE_NAME_LIST[1]=neologd-proper-noun-ortho-variant-dict-seed.20161017.csv
+for (( I = 0; I < ${#NOUN_ORTHO_SEED_FILE_NAME_LIST[@]}; ++I ))
+do
+    NOUN_ORTHO_SEED_FILE_NAME=${NOUN_ORTHO_SEED_FILE_NAME_LIST[${I}]}
+    if [ -f ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ]; then
+        if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+            WANNA_IGNORE_NOUN_ORTHO=0
+        fi
+        if [ ${WANNA_IGNORE_NOUN_ORTHO} -gt 0 ]; then
+            echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
+        else
+            echo "${ECHO_PREFIX} Install noun orthographic variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
+            cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+            unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}.xz
+        fi
     else
-        echo "${ECHO_PREFIX} Install common noun orthographic variant entries using ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz"
-        cp ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
-        unxz ${NEOLOGD_DIC_DIR}/${NOUN_ORTHO_SEED_FILE_NAME}.xz
+        echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
+        echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
     fi
-else
-    echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME} isn't there"
-    echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${NOUN_ORTHO_SEED_FILE_NAME}"
-fi
+done
 
 NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME=neologd-noun-sahen-conn-ortho-variant-dict-seed.20160323.csv
 if [ -f ${BASEDIR}/../seed/${NOUN_SAHEN_CONN_ORTHO_SEED_FILE_NAME}.xz ]; then
