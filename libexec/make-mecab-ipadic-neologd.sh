@@ -119,7 +119,7 @@ WANNA_ELIMINATE_REDUNDANT_ENTRY=0
 COLUMN_EXTENSIONS_URLS=""
 WANNA_INSTALL_INFREQ_DATETIME=0
 WANNA_INSTALL_INFREQ_QUANTITY=0
-WANNA_INSTALL_ILL_FORMED_WORDS=0
+WANNA_IGNORE_ILL_FORMED_WORDS=0
 WANNA_INSRALL_ALL_SEED_FILES=0
 
 while getopts :p:s:l:S:L:u:B:J:O:H:t:T:j:E:D:Q:I:a:G: OPT
@@ -141,7 +141,7 @@ do
     "E" ) WANNA_ELIMINATE_REDUNDANT_ENTRY=$OPTARG ;;
     "D" ) WANNA_INSTALL_INFREQ_DATETIME=$OPTARG ;;
     "Q" ) WANNA_INSTALL_INFREQ_QUANTITY=$OPTARG ;;
-    "I" ) WANNA_INSTALL_ILL_FORMED_WORDS=$OPTARG ;;
+    "I" ) WANNA_IGNORE_ILL_FORMED_WORDS=$OPTARG ;;
     "a" ) WANNA_INSRALL_ALL_SEED_FILES=$OPTARG ;;
     "G" ) COLUMN_EXTENSIONS_URLS=$OPTARG ;;
   esac
@@ -361,16 +361,16 @@ fi
 ILL_FORMED_WORDS_SEED_FILE_NAME=neologd-ill-formed-words-dict-seed.20161019.csv
 if [ -f ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
-        WANNA_INSTALL_ILL_FORMED_WORDS=1
+        WANNA_IGNORE_ILL_FORMED_WORDS=1
     fi
-    if [ ${WANNA_INSTALL_ILL_FORMED_WORDS} -gt 0 ]; then
-        echo "${ECHO_PREFIX} Install entries of ill formed words using ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz"
-        cp ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
-        unxz ${NEOLOGD_DIC_DIR}/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz
-    else
+    if [ ${WANNA_IGNORE_ILL_FORMED_WORDS} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz"
         echo "${ECHO_PREFIX}     When you install ${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz, please set --install_ill_formed_words option"
         echo
+    else
+        echo "${ECHO_PREFIX} Install entries of ill formed words using ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz"
+        cp ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
+        unxz ${NEOLOGD_DIC_DIR}/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz
     fi
 else
     echo "${ECHO_PREFIX} ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME} isn't there"
