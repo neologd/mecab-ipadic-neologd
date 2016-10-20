@@ -75,6 +75,10 @@ do
     EXT_COLUMN_REPO_NAME=${EXT_COLUMN_URL##*/}
     EXT_COLUMN_REPO_NAME=${EXT_COLUMN_REPO_NAME%%\.git}
 
+    if [[ ! ${EXT_COLUMN_URL} =~ "^https?://" ]]; then
+        EXT_COLUMN_URL="https://github.com/neologd/"${EXT_COLUMN_URL_ARR[${I}]}
+    fi
+
     if [ -d ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME} ]; then
         echo "$ECHO_PREFIX Update a column extension of ${EXT_COLUMN_REPO_NAME}"
         cd ${NEOLOGD_BUILD_DIR}/${EXT_COLUMN_REPO_NAME}
