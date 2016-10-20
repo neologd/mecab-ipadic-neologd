@@ -56,9 +56,9 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 ## 使用開始
 ### 推奨空きメモリ領域
 - 標準インストール時(オプション未指定の場合)
-    - 必須: 空き 1.5GByte
-    - 推奨: 空き 5GByte
-        - インストールされるバイナリファイルのサイズが約900MByteです
+    - 必須: 空き 1.75GByte
+    - 推奨: 空き 6GByte
+        - フルインストールするとバイナリファイルのサイズが約1GByteです
             - 今後も段々大きくなります
         - 仮想マシンに割り当てたメモリが少なくとも 2GB 以上でないと十分なメモリ領域を確保できずコンパイルに失敗します
 
@@ -73,9 +73,10 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
     --ignore_noun_ortho\
     --ignore_noun_sahen_conn_ortho\
     --ignore_adjective_std\
-    --ignore_adjective_verb
+    --ignore_adjective_verb\
+    --ignore_ill_formed_words
 
-上記のコマンドを実行すると、インストーラーは追加の副詞(--ignore_adverb)と追加の感動詞(--ignore_interject)と一般名詞の表記ゆれ(--ignore_noun_ortho)とサ変接続名詞の表記ゆれ(--ignore_noun_sahen_conn_ortho)と追加の形容詞(--ignore_adjective_std)と追加の形容動詞(--ignore_adjective_verb)のための辞書エントリをインストールしません。
+上記のコマンドを実行すると、インストーラーは追加の副詞(--ignore_adverb)と追加の感動詞(--ignore_interject)と一般名詞/固有名詞の表記ゆれ(--ignore_noun_ortho)とサ変接続名詞の表記ゆれ(--ignore_noun_sahen_conn_ortho)と追加の形容詞(--ignore_adjective_std)と追加の形容動詞(--ignore_adjective_verb)とSNSなどで見かける崩れ表記語(--ignore_ill_formed_words)のための辞書エントリをインストールしません。
 
 --ignore で始まるオプションは特定の辞書をインストールしない時に使います。
 
