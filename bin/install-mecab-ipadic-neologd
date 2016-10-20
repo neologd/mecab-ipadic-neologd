@@ -101,8 +101,8 @@ usage() {
     echo "  --install_infreq_quantity"
     echo "     If you would like to install infrequent entries of quantity representation type of named entity as seed data of mecab-ipadic-NEologd"
     echo
-    echo "  --install_ill_formed_words"
-    echo "     If you would like to install entries of ill formed words as seed data of mecab-ipadic-NEologd"
+    echo "  --ignore_ill_formed_words"
+    echo "     If you would not like to install entries of ill formed words as seed data of mecab-ipadic-NEologd"
     echo
     exit 1
 }
