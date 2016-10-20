@@ -180,6 +180,15 @@ cron(説明は省略します)などで自動的に更新したい場合に便�
 
     $ ./bin/install-mecab-ipadic-neologd -h
 
+### 全部入りな mecab-ipadic-NEologd を簡単にインストールする方法
+標準インストールでは一部の辞書ファイルがインストールされません。
+
+オプションで個別に指定しても良いですが、-a オプションを指定すると全部入り状態でインストールできます。
+
+    $ ./bin/install-mecab-ipadic-neologd -n -a
+
+全部入りな辞書を構築する際の最低メモリ使用量は2GByte弱です。
+
 ### mecab-ipadic-NEologd の使用方法
 mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
