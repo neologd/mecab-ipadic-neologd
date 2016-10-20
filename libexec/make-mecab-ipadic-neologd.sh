@@ -361,7 +361,7 @@ fi
 ILL_FORMED_WORDS_SEED_FILE_NAME=neologd-ill-formed-words-dict-seed.20161019.csv
 if [ -f ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
-        WANNA_IGNORE_ILL_FORMED_WORDS=1
+        WANNA_IGNORE_ILL_FORMED_WORDS=0
     fi
     if [ ${WANNA_IGNORE_ILL_FORMED_WORDS} -gt 0 ]; then
         echo "${ECHO_PREFIX} Not install ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz"
