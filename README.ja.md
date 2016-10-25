@@ -115,7 +115,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 他にも足りないものがあったら適時インストールして下さい。
 
-#### 例
+#### 例: 動作に必要なライブラリのインストール
 - CentOS の場合
 
     $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
