@@ -187,6 +187,7 @@ patch < ${BASEDIR}/../misc/patch/Noun.name.csv.20161005.diff
 patch < ${BASEDIR}/../misc/patch/Noun.org.csv.20161005.diff
 patch < ${BASEDIR}/../misc/patch/Noun.place.csv.20161005.diff
 patch < ${BASEDIR}/../misc/patch/Noun.proper.csv.20161005.diff
+patch < ${BASEDIR}/../misc/patch/Suffix.csv.20161027.diff
 
 echo "${ECHO_PREFIX} Copy user dictionary resource"
 SEED_FILE_NAME=mecab-user-dict-seed.${YMD}.csv
