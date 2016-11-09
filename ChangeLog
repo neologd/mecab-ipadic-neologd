@@ -1,3 +1,10 @@
+# Release 20161110-01
+
+### New seed data
+* seed/neologd-proper-noun-ortho-variant-dict-seed.20161110.csv.xz
+	execute: Fix POS information of entries in proper-noun-ortho-variant.csv (Thanks @kazuhira_r)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/a5f59c3ab03392ec31f2a64534aa68f86b3d38ae
+
 # Release 20161107-01
 
 ### New seed data
