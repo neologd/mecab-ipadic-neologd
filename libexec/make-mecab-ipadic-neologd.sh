@@ -230,7 +230,7 @@ fi
 
 NOUN_ORTHO_SEED_FILE_NAME_LIST=()
 NOUN_ORTHO_SEED_FILE_NAME_LIST[0]=neologd-common-noun-ortho-variant-dict-seed.20161017.csv
-NOUN_ORTHO_SEED_FILE_NAME_LIST[1]=neologd-proper-noun-ortho-variant-dict-seed.20161017.csv
+NOUN_ORTHO_SEED_FILE_NAME_LIST[1]=neologd-proper-noun-ortho-variant-dict-seed.20161110.csv
 for (( I = 0; I < ${#NOUN_ORTHO_SEED_FILE_NAME_LIST[@]}; ++I ))
 do
     NOUN_ORTHO_SEED_FILE_NAME=${NOUN_ORTHO_SEED_FILE_NAME_LIST[${I}]}
