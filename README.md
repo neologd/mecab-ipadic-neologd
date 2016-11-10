@@ -48,7 +48,6 @@ When you analyze the Web documents, it's better to use this system dictionary an
     - Ex. Some person names and a product name are classified into the same named entity category.
 - Not named entity word is recorded as named entity too.
 - Since the manual checking to all the named entities can't conduct, it may have made a mistake in matching of surface of the named entity and furigana of the named entity.
-- Unless the language resources on Web are updated, a new named entity won't add to the dictionary.
 - Corresponding to only UTF-8
     - You should install the UTF-8 version of MeCab
 
