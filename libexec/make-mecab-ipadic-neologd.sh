@@ -150,7 +150,7 @@ done
 LIBS=-liconv ./configure --prefix=${INSTALL_DIR_PATH} --with-charset=utf8
 
 echo "${ECHO_PREFIX} Encode the character encoding of system dictionary resources from EUC_JP to UTF-8"
-sed -i -e "s|${MECAB_DIC_DIR}/ipadic|${INSTALL_DIR_PATH}|p" ${NEOLOGD_DIC_DIR}/Makefile
+sed -i -e "s|${MECAB_DIC_DIR}/ipadic|${INSTALL_DIR_PATH}|g" ${NEOLOGD_DIC_DIR}/Makefile
 
 find . -type f | xargs file | grep ".csv" | cut -d: -f1 | xargs -t -I{} ./../../libexec/iconv_euc_to_utf8.sh {}
 find . -type f | xargs file | grep ".csv" | grep -v ".utf8" | cut -d: -f1 | xargs -t -I{} rm {}
