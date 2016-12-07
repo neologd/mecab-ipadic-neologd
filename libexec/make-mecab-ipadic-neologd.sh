@@ -467,5 +467,7 @@ ${MECAB_LIBEXEC_DIR}/mecab-dict-index -f UTF8 -t UTF8
 
 echo "${ECHO_PREFIX} Make custom system dictionary on ${BASEDIR}/../build/${NEOLOGD_DIC_NAME}"
 make
+# for Ubuntu on Windows 10
+sed -i -e "s|${MECAB_DIC_DIR}/ipadic|${INSTALL_DIR_PATH}|g" ${NEOLOGD_DIC_DIR}/Makefile
 
 echo "$ECHO_PREFIX Finish.."
