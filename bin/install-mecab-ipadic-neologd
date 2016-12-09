@@ -328,7 +328,9 @@ if [ ${WANNA_UPDATE} = 1 ]; then
     else
         if [ `grep -n Microsoft /proc/version | head -1 | cut -d $':' -f 1` = 1 ]; then
             echo "$ECHO_PREFIX Please execute following commands to install newest version of mecab-ipadic-NEologd"
-            echo "    git fetch origin; git reset --hard origin/master"
+            echo
+            echo "  $ git fetch origin; git reset --hard origin/master"
+            echo
             exit
         else
             echo "$ECHO_PREFIX Get the newest updated information using git"
