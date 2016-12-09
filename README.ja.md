@@ -135,17 +135,18 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     $ brew install mecab mecab-ipadic git curl xz
 
 - Windows 10 バージョン 1607 以降の場合
-
-    Bash on Ubuntu on Windows
+    BoW(Bash on Ubuntu on Windows)をインストールして、BoW環境内にMeCabとmecab-ipadic-NEologdをインストールします。
 
     - Bash on Ubuntu on Windows (beta) をインストールする
         - 公式ドキュメント:[Bash on Ubuntu on Windows : Microsoft - Developer Network](https://msdn.microsoft.com/ja-jp/commandline/wsl/install_guide)
-    - Bash on Ubuntu on Windows を起動
+
+    BoW 環境では最初に以下を実行します。
 
     $ sudo aptitude update
     $ sudo aptitude upgrade
     $ sudo aptitude install make automake autoconf autotools-dev m4 mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
     $ sudo sed -i -e 's%/lib/mecab/dic%/share/mecab/dic%' /usr/bin/mecab-config
+
 
 ### mecab-ipadic-NEologd をインストールする準備
 
