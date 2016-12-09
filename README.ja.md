@@ -136,7 +136,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 - Windows 10 バージョン 1607 以降の場合
 
-    BoW(Bash on Ubuntu on Windows)をインストールすれば、BoW環境内にMeCabとmecab-ipadic-NEologdをインストールできます。
+    BoW(Bash on Ubuntu on Windows)をインストールすれば、BoW 環境内に MeCab と mecab-ipadic-NEologd をインストールできます。
 
     - Bash on Ubuntu on Windows (beta) をインストールする
         - 公式ドキュメント:[Bash on Ubuntu on Windows : Microsoft - Developer Network](https://msdn.microsoft.com/ja-jp/commandline/wsl/install_guide)
@@ -151,7 +151,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ sudo sed -i -e 's%/lib/mecab/dic%/share/mecab/dic%' /usr/bin/mecab-config
 
-    この後はLinuxやmacOSと同じです。
+    この後は Linux や macOS と同じです。
 
 ### mecab-ipadic-NEologd をインストールする準備
 
