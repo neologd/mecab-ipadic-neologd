@@ -326,7 +326,7 @@ if [ ${WANNA_UPDATE} = 1 ]; then
     if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
         echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
     else
-        if [ `grep Microsoft /proc/version` ]; then
+        if [ `grep Microsoft /proc/version | head -1 | cut -d $':' -f 1` ]; then
             echo "$ECHO_PREFIX Please execute following commands to install newest version of mecab-ipadic-NEologd"
             echo "    git fetch origin; git reset --hard origin/master"
             exit
