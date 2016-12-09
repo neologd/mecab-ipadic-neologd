@@ -130,26 +130,25 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
 
-- Mac OSX の場合
+- macOS の場合
 
     $ brew install mecab mecab-ipadic git curl xz
 
 - Windows 10 バージョン 1607 以降の場合
-    BoW(Bash on Ubuntu on Windows)をインストールして、BoW環境内にMeCabとmecab-ipadic-NEologdをインストールします。
+
+    BoW(Bash on Ubuntu on Windows)をインストールすれば、BoW環境内にMeCabとmecab-ipadic-NEologdをインストールできます。
 
     - Bash on Ubuntu on Windows (beta) をインストールする
         - 公式ドキュメント:[Bash on Ubuntu on Windows : Microsoft - Developer Network](https://msdn.microsoft.com/ja-jp/commandline/wsl/install_guide)
 
-    BoW 環境では最初に以下を実行します。
+    BoW 環境で以下を実行します。
 
     $ sudo aptitude update
     $ sudo aptitude upgrade
     $ sudo aptitude install make automake autoconf autotools-dev m4 mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
     $ sudo sed -i -e 's%/lib/mecab/dic%/share/mecab/dic%' /usr/bin/mecab-config
 
-    この後はLinuxと同じです。
-
-    /mnt/c/以下にアクセスできるので、任意のUTF-8なテキストを解析できます。
+    この後はLinuxやmacOSと同じです。
 
 ### mecab-ipadic-NEologd をインストールする準備
 
