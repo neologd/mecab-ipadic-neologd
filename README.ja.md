@@ -134,7 +134,12 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ brew install mecab mecab-ipadic git curl xz
 
-- Windows 10 の場合
+- Windows 10 バージョン 1607 以降の場合
+
+    - Bash on Ubuntu on Windows (beta) をインストールする
+        - 公式ドキュメント:[Bash on Ubuntu on Windows : Microsoft - Developer Network](https://msdn.microsoft.com/ja-jp/commandline/wsl/install_guide)
+    - Bash on Ubuntu on Windows
+
 
 ### mecab-ipadic-NEologd をインストールする準備
 
