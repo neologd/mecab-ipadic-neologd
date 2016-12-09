@@ -329,6 +329,7 @@ if [ ${WANNA_UPDATE} = 1 ]; then
         if [ `grep Microsoft /proc/version` ]; then
             echo "$ECHO_PREFIX Please execute following commands to install newest version of mecab-ipadic-NEologd"
             echo "    git fetch origin; git reset --hard origin/master"
+            exit
         else
             echo "$ECHO_PREFIX Get the newest updated information using git"
             git fetch origin
