@@ -144,8 +144,11 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     BoW 環境で以下を実行します。
 
     $ sudo aptitude update
+
     $ sudo aptitude upgrade
+
     $ sudo aptitude install make automake autoconf autotools-dev m4 mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
+
     $ sudo sed -i -e 's%/lib/mecab/dic%/share/mecab/dic%' /usr/bin/mecab-config
 
     この後はLinuxやmacOSと同じです。
