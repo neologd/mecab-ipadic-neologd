@@ -147,6 +147,9 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
     $ sudo aptitude install make automake autoconf autotools-dev m4 mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
     $ sudo sed -i -e 's%/lib/mecab/dic%/share/mecab/dic%' /usr/bin/mecab-config
 
+    この後はLinuxと同じです。
+
+    /mnt/c/以下にアクセスできるので、任意のUTF-8なテキストを解析できます。
 
 ### mecab-ipadic-NEologd をインストールする準備
 
