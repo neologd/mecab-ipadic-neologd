@@ -134,6 +134,8 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ brew install mecab mecab-ipadic git curl xz
 
+- Windows 10 の場合
+
 ### mecab-ipadic-NEologd をインストールする準備
 
 辞書の元になるデータの配布と更新は GitHub 経由で行います。
