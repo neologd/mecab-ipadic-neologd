@@ -338,6 +338,12 @@ mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションに�
         year   = {2015}
     }
 
+## よろしければアンケートにご回答ください
+
+よろしければ[mecab-ipadic-NEologdの利用状況アンケート](https://goo.gl/dcRhsJ)にご協力ください。
+
+何処でどの様に使われているかを知ることで、我々が高いモチベーションを維持できます。
+
 ## Star please !!
 mecab-ipadic-NEologd 使ってみて良い結果が得られた時は、ぜひこのリポジトリの Star ボタンを押して下さい。
 
