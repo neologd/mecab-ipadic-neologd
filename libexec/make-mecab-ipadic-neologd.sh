@@ -359,7 +359,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}"
 fi
 
-ILL_FORMED_WORDS_SEED_FILE_NAME=neologd-ill-formed-words-dict-seed.20161019.csv
+ILL_FORMED_WORDS_SEED_FILE_NAME=neologd-ill-formed-words-dict-seed.20170127.csv
 if [ -f ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
         WANNA_IGNORE_ILL_FORMED_WORDS=0
@@ -369,7 +369,7 @@ if [ -f ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz ]; then
         echo "${ECHO_PREFIX}     When you install ${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz, please set --install_ill_formed_words option"
         echo
     else
-        echo "${ECHO_PREFIX} Install entries of ill formed words using ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz"
+        echo "${ECHO_PREFIX} Install entries of ill formed words using ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz"
         cp ${BASEDIR}/../seed/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz ${NEOLOGD_DIC_DIR}
         unxz ${NEOLOGD_DIC_DIR}/${ILL_FORMED_WORDS_SEED_FILE_NAME}.xz
     fi
