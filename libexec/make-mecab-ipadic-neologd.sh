@@ -211,7 +211,7 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADVERB_SEED_FILE_NAME}"
 fi
 
-INTERJECT_SEED_FILE_NAME=neologd-interjection-dict-seed.20151022.csv
+INTERJECT_SEED_FILE_NAME=neologd-interjection-dict-seed.20170213.csv
 if [ -f ${BASEDIR}/../seed/${INTERJECT_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
         WANNA_IGNORE_INTERJECT=0
