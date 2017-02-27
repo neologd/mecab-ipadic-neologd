@@ -1,3 +1,10 @@
+# Release 20170228-01
+
+### New patch file
+* misc/patch/Noun.demonst.csv.20170228.diff
+	execute: Add a patch file to fix the cost parameter of each entries of a Japanese pronoun
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/c8be700f19be8bf8b7b67a0fc768aa8a6b663032
+
 # Release 20170227-01
 
 ### New seed data
