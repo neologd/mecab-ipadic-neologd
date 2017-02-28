@@ -284,6 +284,12 @@ do
 done
 set -u
 
+if [ ${WANNA_INSTALL_ONLY_PATCHED_IPADIC} -gt 0 -a ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
+    echo "${ECHO_PREFIX} '-a option' and '-c option' can't be specified at the same time !!"
+    echo "${ECHO_PREFIX} Please check usage using '--help option'"
+    exit 1
+fi
+
 if [ ${MIN_SURFACE_LEN} -gt 0 -a ${MAX_SURFACE_LEN} -gt 0 ]; then
     if [ ${MIN_SURFACE_LEN} -ge ${MAX_SURFACE_LEN} ]; then
         echo "${ECHO_PREFIX} Can't set inconsistent values: MIN_SURFACE_LEN(${MIN_SURFACE_LEN}) >= MAX_SURFACE_LEN(${MAX_SURFACE_LEN})"
