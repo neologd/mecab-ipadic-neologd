@@ -139,6 +139,10 @@ set +u
 for OPT in "$@"
 do
     case "$OPT" in
+        '-n'|'--newest' )
+            WANNA_UPDATE=1
+            shift 1
+            ;;
         '-h'|'--help' )
             usage
             exit 1
