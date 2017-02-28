@@ -290,6 +290,14 @@ if [ ${WANNA_INSTALL_ONLY_PATCHED_IPADIC} -gt 0 -a ${WANNA_INSRALL_ALL_SEED_FILE
     exit 1
 fi
 
+if [[ ${WANNA_INSTALL_ONLY_PATCHED_IPADIC} -gt 0 && -z ${INSTALL_PATH_PREFIX} ]]; then
+    echo "${ECHO_PREFIX} When you set '-c option', please set '-p option' as install directory path"
+    echo "${ECHO_PREFIX}     Example:"
+    echo "${ECHO_PREFIX}         Linux: -c -p /usr/local/lib/mecab/dic/ipadic_neologd_patched"
+    echo "${ECHO_PREFIX}         macOS: -c -p /usr/local/Cellar/mecab/0.996/lib/mecab/dic/ipadic_neologd_patched"
+    exit 1
+fi
+
 if [ ${MIN_SURFACE_LEN} -gt 0 -a ${MAX_SURFACE_LEN} -gt 0 ]; then
     if [ ${MIN_SURFACE_LEN} -ge ${MAX_SURFACE_LEN} ]; then
         echo "${ECHO_PREFIX} Can't set inconsistent values: MIN_SURFACE_LEN(${MIN_SURFACE_LEN}) >= MAX_SURFACE_LEN(${MAX_SURFACE_LEN})"
