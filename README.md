@@ -253,7 +253,7 @@ Please use the following bibtex, when you refer mecab-ipadic-NEologd from your p
     }
     @INPROCEEDINGS{sato2016neologdipsjnl229,
         author    = {Toshinori Sato, Taiichi Hashimoro and Manabu Okumura},
-        title     = {Operation of a word segmentation dictionary generation system called NEologd  (in Japanese)—},
+        title     = {Operation of a word segmentation dictionary generation system called NEologd (in Japanese)},
         booktitle = "Information Processing Society of Japan, Special Interest Group on Natural Language Processing (IPSJ-SIGNL)",
         year      = "2016",
         pages     = "NL-229-15",
