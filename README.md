@@ -242,6 +242,23 @@ If you are the beginner of NLP, I recommend that you use the latest version of m
 
 Please use the following bibtex, when you refer mecab-ipadic-NEologd from your papers.
 
+    @INPROCEEDINGS{sato2017mecabipadicneologdnlp2017,
+        author    = {Toshinori Sato, Taiichi Hashimoro and Manabu Okumura},
+        title     = {Implementation of a word segmentation dictionary called mecab-ipadic-NEologd and study on how to use it effectively for information retrieval (in Japanese)},
+        booktitle = "Proceedings of the Twenty-three
+        Annual Meeting of the Association for Natural Language Processing",
+        year      = "2017",
+        pages     = "NLP2017-B6-1",
+        publisher = "The Association for Natural Language Processing",
+    }
+    @INPROCEEDINGS{sato2016neologdipsjnl229,
+        author    = {Toshinori Sato, Taiichi Hashimoro and Manabu Okumura},
+        title     = {Operation of a word segmentation dictionary generation system called NEologd  (in Japanese)—},
+        booktitle = "Information Processing Society of Japan, Special Interest Group on Natural Language Processing (IPSJ-SIGNL)",
+        year      = "2016",
+        pages     = "NL-229-15",
+        publisher = "Information Processing Society of Japan",
+    }
     @misc{sato2015mecabipadicneologd,
         title  = {Neologism dictionary based on the language resources on the Web for Mecab},
         author = {Toshinori, Sato},
