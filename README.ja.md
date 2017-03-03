@@ -331,9 +331,25 @@ mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションに�
 
 もしも mecab-ipadic-NEologd を論文や書籍、アプリ、サービスから参照して下さる場合は、以下の bibtex をご利用ください。
 
+    @INPROCEEDINGS{sato2017mecabipadicneologdnlp2017,
+        author    = {佐藤敏紀, 橋本泰一, 奥村学},
+        title     = {単語分かち書き辞書 mecab-ipadic-NEologd の実装と情報検索における効果的な使用方法の検討},
+        booktitle = "言語処理学会第23回年次大会(NLP2017)",
+        year      = "2017",
+        pages     = "NLP2017-B6-1",
+        publisher = "言語処理学会",
+    }
+    @INPROCEEDINGS{sato2016neologdipsjnl229,
+        author    = {佐藤敏紀, 橋本泰一, 奥村学},
+        title     = {単語分かち書き用辞書生成システム NEologd の運用 — 文書分類を例にして —},
+        booktitle = "自然言語処理研究会研究報告",
+        year      = "2016",
+        pages     = "NL-229-15",
+        publisher = "情報処理学会",
+    }
     @misc{sato2015mecabipadicneologd,
-        title  = {Neologism dictionary based on the language resources on the Web for Mecab},
         author = {Toshinori, Sato},
+        title  = {Neologism dictionary based on the language resources on the Web for Mecab},
         url    = {https://github.com/neologd/mecab-ipadic-neologd},
         year   = {2015}
     }
