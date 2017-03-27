@@ -50,7 +50,7 @@ if [ $? != 0 ]; then
 fi
 
 sed -i -e "/\n/d" /tmp/realtime_buzz.html
-cat /tmp/realtime_buzz.html | perl -ne '$l = $_;  if ($l =~ m|<h3><a href="http://rdsig\.yahoo\.co\.jp.+?">(.+)</a></h3>|g){ print $1."\n";}' > /tmp/buzz_phrase
+cat /tmp/realtime_buzz.html | perl -ne '$l = $_;  if ($l =~ m|<h3><a href="https?://rdsig\.yahoo\.co\.jp.+?">(.+)</a></h3>|g){ print $1."\n";}' > /tmp/buzz_phrase
 rm /tmp/realtime_buzz.html
 
 PHRASE_FILE=/tmp/buzz_phrase
