@@ -40,7 +40,7 @@ MECAB_DIC_DIR=${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 
 echo "$ECHO_PREFIX Get buzz phrases"
 
-curl http://searchranking.yahoo.co.jp/realtime_buzz/ -o "/tmp/realtime_buzz.html"
+curl https://searchranking.yahoo.co.jp/realtime_buzz/ -o "/tmp/realtime_buzz.html"
 
 if [ $? != 0 ]; then
     echo ""
