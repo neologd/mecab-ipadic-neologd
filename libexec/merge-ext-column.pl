@@ -37,43 +37,43 @@ sub main {
     open my $ext_out, '>:utf8', $seed_dict.".ext";
 
     my $eline = readline($ext_in);
-    my $prev_sline_key = "";
-    while (my $sline = <$seed_in>) {
+    while (my $sline = readline($seed_in)) {
         $sline =~ s|\n||;
         my @sline_cols = split /\,/, $sline;
         my $sline_key = $sline_cols[0].",".$sline_cols[1];
-        if ($prev_sline_key) {
-            if ($prev_sline_key ne $sline_key) {
-                $eline = readline($ext_in);
-                if ( eof($ext_in) ) {
-                    $eline = "";
-                }
-            }
+
+        # reached EOF of $ext_in and $eline is empty
+        if ((eof($ext_in)) && ($eline eq "")) {
+            print $ext_out $sline.",\n";
+            next;
         }
-        if ($eline) {
-            if ( ! eof($ext_in) ) {
-                $eline =~ s|\n||;
-            }
-            my @eline_cols = split /\t/, $eline;
-            my $eline_key = $eline_cols[0];
-            if ($eline_key eq $sline_key) {
-                print $ext_out $sline.",".&_normalize($eline_cols[1])."\n";
-                $prev_sline_key = $sline_key;
-            }
-            elsif (($sline_key cmp $eline_key) == -1) {
-                print $ext_out $sline.",\n";
-                $prev_sline_key = "";
-            }
-            else {
-                print $ext_out $sline.",\n";
-                $prev_sline_key = "";
-                $eline = readline($ext_in);
-            }
+
+        $eline =~ s|\n||;
+        my @eline_cols = split /\t/, $eline;
+        my $eline_key = $eline_cols[0];
+
+        while ((! eof($ext_in)) && (($sline_key cmp $eline_key) == 1)) {
+            # $eline_key won't match $sline_key
+            $eline = readline($ext_in);
+            $eline =~ s|\n||;
+            @eline_cols = split /\t/, $eline;
+            $eline_key = $eline_cols[0];
         }
-        else {
+
+        if ($sline_key eq $eline_key) {
+            print $ext_out $sline.",".&_normalize($eline_cols[1])."\n";
+        }
+        elsif (($sline_key cmp $eline_key) == -1) {
+            # There is a possibility that $eline_key will match $sline_key
             print $ext_out $sline.",\n";
         }
-        last if (eof($seed_in));
+        else {
+            # $eline_key won't match $sline_key
+            print $ext_out $sline.",\n";
+            if (eof($ext_in)) {
+                $eline = ""; # It will be cause printing only $sline
+            }
+        }
     }
 
     close $ext_out;
