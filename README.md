@@ -56,7 +56,7 @@ When you analyze the Web documents, it's better to use this system dictionary an
 ### Memory requirements
 - Required: 1.5GB of RAM
 - Recommend: 5GB of RAM
-    - Current maximum binary size is 900MB
+    - Current maximum binary size is 1.1GB
 
 ### Dependencies
 
