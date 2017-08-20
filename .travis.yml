@@ -1,27 +1,107 @@
 language: bash
 
 notifications:
- email: false
+  email: false
 
-before_install:
- - mkdir ./target
+env:
+  global:
+    - INSTALL_TARGET=./target
+
+    - BINTRAY_USERNAME=pypt
+
+    # BINTRAY_API_KEY:
+    - secure: vk0KVxcrHfcIv93OgRGcXBnqUzs/BA2b+4FAZ2/8vIoeEATvM4FCgxafDbXITQuu3yyOisth/f8T+QOB+c6M7gB3vE3Ut2EA8J4zPk0dMJ+WKoec8rpUKLCAiS03b4Xiq3lTYxyESfCXGhhty/H4xxY1VOkulzZpqMu2JI0eF6KNeIyXWiPKCGmgID8/SRa8DEPul3F4RDlUDFEKx0uOFBc53p2fOFAhhUgAHmsHE4LSmwuGKLaxPWev6lytZsW/UQ8ksfJjkyi01pAy6CudYWmtACTutqVFVw6XUxt2/SqO/1HegHDhv7XuDPAusCXKrvniMp37MgWb1j2zZO6uNcBYN6CoXzKdHGq2YTnVWpta69vl6Gr+jyeG/TGTvcxfzRCXfF4LbRZRS9PGGRcxmoQ57sYvDKxRvyiRW/Dx3kF+PjicKLdicXZsKghjGGV6DREVBqVFovV+DjUoHEZ0YUfNuNqZKS7EKxV7yYASeSjCelW3/tH1wkjl4tkf9lYzQGVACp/E2Ktdphk6SaEdfBZxhWOSi+oPCWVjyRrR9++j2sNqbtAfbtVeLpH6yTAUQbcqNpuQ0KdtJ/1ajjRS5bElJcdiBeQfhG1XoTddQBsOJ91QHcqpIjNn2oCiBO0aBMXPtibHn2U7oGjmcmB/TRlWBVmKVEvZz4DwYOI8e7U=
+
+    - BINTRAY_REPOSITORY_TGZ=mecab-ipadic-neologd-tgz
+    - BINTRAY_REPOSITORY_DEB=mecab-ipadic-neologd-deb
+    - BINTRAY_REPOSITORY_RPM=mecab-ipadic-neologd-rpm
+
+    - BINTRAY_DESCRIPTOR_TGZ=$HOME/bintray-tgz.json
+    - BINTRAY_DESCRIPTOR_DEB=$HOME/bintray-deb.json
+    - BINTRAY_DESCRIPTOR_RPM=$HOME/bintray-rpm.json
+
+install:
+  - gem install --no-ri --no-rdoc fpm
 
 cache: apt
 
 addons:
   apt:
     packages:
-    - mecab
-    - libmecab-dev
-    - mecab-ipadic-utf8
-    - git
-    - make
-    - curl
-    - xz-utils
-    - file
+      - build-essential
+      - curl
+      - file
+      - git
+      - libmecab-dev
+      - make
+      - mecab
+      - mecab-ipadic-utf8
+      - rpm
+      - ruby
+      - ruby-dev
+      - xz-utils
 
-install:
- - bash ./libexec/make-mecab-ipadic-neologd.sh -p /home/travis/build/neologd/mecab-ipadic-neologd/target/neologd-travisci -s 0 -l 0 -S 0 -L 0 -u 0 -B 0 -J 0 -O 0 -H 0 -t 0 -T 1 -j 0 -E 0 -G ""
+before_script:
+  - mkdir $INSTALL_TARGET
 
 script:
- - bash ./libexec/test-mecab-ipadic-neologd.sh
+  - bash ./bin/install-mecab-ipadic-neologd --prefix `readlink -m $INSTALL_TARGET`
+
+  # Create .tgz
+  - >
+      if [[ "$TRAVIS_TAG" != "" ]]; then python2.7 ./libexec/create_package.py
+      --type tgz
+      --input_dir $INSTALL_TARGET
+      --version_tag $TRAVIS_TAG
+      --bintray_descriptor_file $BINTRAY_DESCRIPTOR_TGZ
+      --bintray_repository_name $BINTRAY_REPOSITORY_TGZ
+      --bintray_username $BINTRAY_USERNAME; fi
+
+  # Create .deb
+  - >
+      if [[ "$TRAVIS_TAG" != "" ]]; then python2.7 ./libexec/create_package.py
+      --type deb
+      --input_dir $INSTALL_TARGET
+      --version_tag $TRAVIS_TAG
+      --bintray_descriptor_file $BINTRAY_DESCRIPTOR_DEB
+      --bintray_repository_name $BINTRAY_REPOSITORY_DEB
+      --bintray_username $BINTRAY_USERNAME; fi
+
+  # Create .rpm
+  - >
+      if [[ "$TRAVIS_TAG" != "" ]]; then python2.7 ./libexec/create_package.py
+      --type rpm
+      --input_dir $INSTALL_TARGET
+      --version_tag $TRAVIS_TAG
+      --bintray_descriptor_file $BINTRAY_DESCRIPTOR_RPM
+      --bintray_repository_name $BINTRAY_REPOSITORY_RPM
+      --bintray_username $BINTRAY_USERNAME; fi
+
+deploy:
+
+  # Deploy .tgz
+  - provider: bintray
+    file: "$BINTRAY_DESCRIPTOR_TGZ"
+    user: "$BINTRAY_USERNAME"
+    key: "$BINTRAY_API_KEY"
+    skip_cleanup: true
+    on:
+      tags: true
+
+  # Deploy .deb
+  - provider: bintray
+    file: "$BINTRAY_DESCRIPTOR_DEB"
+    user: "$BINTRAY_USERNAME"
+    key: "$BINTRAY_API_KEY"
+    skip_cleanup: true
+    on:
+      tags: true
+
+  # Deploy .rpm
+  - provider: bintray
+    file: "$BINTRAY_DESCRIPTOR_RPM"
+    user: "$BINTRAY_USERNAME"
+    key: "$BINTRAY_API_KEY"
+    skip_cleanup: true
+    on:
+      tags: true
