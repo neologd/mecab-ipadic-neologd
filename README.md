@@ -75,7 +75,7 @@ You should install following libraries using apt or yum, homebrew, source-code.
         - Use to test at the time of installation
         - If you install it using source code, you should select the UTF-8 as a character code
 
-    ./configure --with-charset=utf8; make; sudo make install
+              $ ./configure --with-charset=utf8; make; sudo make install
 
 - xz
     - Use to decompress a xz package of a seed of mecab-ipadic-NEologd
@@ -85,26 +85,26 @@ Please install at any time other lack library.
 #### Examples
 - On CentOS
 
-    $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
+       $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
 
-    $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
+       $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
 
 - On Fedora
 
-    $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
+       $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
 
 - On Ubuntu
 
-    $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
+      $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
 
 - On MacOSX
 
-    $ brew install mecab mecab-ipadic git curl xz
+      $ brew install mecab mecab-ipadic git curl xz
 
 ### Preparation of installing
 A seed data of the dictionary will distribute via GitHub repository.
 
-In first time, you should execute the following command to 'git clone'.
+In first time, you should execute the following command to `git clone`.
 
     $ git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
 
@@ -112,7 +112,7 @@ OR
 
     $ git clone --depth 1 git@github.com:neologd/mecab-ipadic-neologd.git
 
-If you need all log of mecab-ipadic-neologd.git, you should clone the repository without '--depth 1'
+If you need all log of mecab-ipadic-neologd.git, you should clone the repository without `--depth 1`
 
 ### How to install/update mecab-ipadic-NEologd
 #### Step.1
@@ -137,14 +137,14 @@ If you use following command, you can check useful command line option.
     $ ./bin/install-mecab-ipadic-neologd -h
 
 ### How to use mecab-ipadic-NEologd
-When you want to use mecab-ipadic-NEologd, you should set the path of custom system dictionay(*/lib/mecab/dic/mecab-ipadic-neologd/) as -d option of MeCab.
+When you want to use mecab-ipadic-NEologd, you should set the path of custom system dictionay(*/lib/mecab/dic/mecab-ipadic-neologd/) as `-d` option of MeCab.
 
 #### Example (on CentOS)
-$ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
+    $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 
 ## Example of output of MeCab
 ### When you use mecab-ipadic-NEologd
-    $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
+    $ echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
     10日    名詞,固有名詞,一般,*,*,*,10日,トオカ,トオカ
     放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
     の      助詞,連体化,*,*,*,*,の,ノ,ノ
@@ -184,7 +184,7 @@ $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
 - Almost all of the entry of mecab-ipadic-NEologd has the value of furigana field.
 
 ### When you use default system dictionary
-    $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab
+    $ echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab
     10      名詞,数,*,*,*,*,*
     日      名詞,接尾,助数詞,*,*,*,日,ニチ,ニチ
     放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー

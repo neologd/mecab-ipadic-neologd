@@ -65,9 +65,9 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 #### 空きメモリ領域が足りない場合
 メモリ領域の少ない仮想マシンにインストールする場合はエントリ数を減らすオプションを指定してください。
 
-下記の --ignore で始まるオプションを全て指定すると、インストールされる辞書のバイナリデータのサイズを 300MByte 程度削減できます。
+下記の `--ignore` で始まるオプションを全て指定すると、インストールされる辞書のバイナリデータのサイズを 300MByte 程度削減できます。
 
-    ./bin/install-mecab-ipadic-neologd -n -y\
+    $ ./bin/install-mecab-ipadic-neologd -n -y\
     --ignore_adverb\
     --ignore_interject\
     --ignore_noun_ortho\
@@ -76,19 +76,19 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
     --ignore_adjective_verb\
     --ignore_ill_formed_words
 
-上記のコマンドを実行すると、インストーラーは追加の副詞(--ignore_adverb)と追加の感動詞(--ignore_interject)と一般名詞/固有名詞の表記ゆれ(--ignore_noun_ortho)とサ変接続名詞の表記ゆれ(--ignore_noun_sahen_conn_ortho)と追加の形容詞(--ignore_adjective_std)と追加の形容動詞(--ignore_adjective_verb)とSNSなどで見かける崩れ表記語(--ignore_ill_formed_words)のための辞書エントリをインストールしません。
+上記のコマンドを実行すると、インストーラーは追加の副詞(`--ignore_adverb`)と追加の感動詞(`--ignore_interject`)と一般名詞/固有名詞の表記ゆれ(`--ignore_noun_ortho`)とサ変接続名詞の表記ゆれ(`--ignore_noun_sahen_conn_ortho`)と追加の形容詞(`--ignore_adjective_std`)と追加の形容動詞(`--ignore_adjective_verb`)とSNSなどで見かける崩れ表記語(`--ignore_ill_formed_words`)のための辞書エントリをインストールしません。
 
---ignore で始まるオプションは特定の辞書をインストールしない時に使います。
+`--ignore` で始まるオプションは特定の辞書をインストールしない時に使います。
 
-また下記の様に "--eliminate-redundant-entry" オプションを指定した場合は、正規化済みの日本語テキストを単語分割するための別称・異表記・表記揺れなどを一切考慮できない辞書を、512MByte 程度の空きメモリ領域があればインストールできます。
+また下記の様に `--eliminate-redundant-entry` オプションを指定した場合は、正規化済みの日本語テキストを単語分割するための別称・異表記・表記揺れなどを一切考慮できない辞書を、512MByte 程度の空きメモリ領域があればインストールできます。
 
-    ./bin/install-mecab-ipadic-neologd -n -y\
+    $ ./bin/install-mecab-ipadic-neologd -n -y\
     --eliminate-redundant-entry\
 
-とはいえ、"--eliminate-redundant-entry" オプションは開発側としては一切オススメしません。
+とはいえ、`--eliminate-redundant-entry` オプションは開発側としては一切オススメしません。
 その他のインストール時のオプションは下記のコマンドで確認できます。
 
-    ./bin//install-mecab-ipadic-neologd --help
+    $ ./bin/install-mecab-ipadic-neologd --help
 
 ### 動作に必要なもの
 
@@ -108,7 +108,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
         - インストール時のテストに使います
         - ソースコードからインストールするときは以下の手順で文字コードを UTF-8 インストールして下さい
 
-    ./configure --with-charset=utf8; make; sudo make install
+               $ ./configure --with-charset=utf8; make; sudo make install
 
 - xz
     - mecab-ipadic-NEologd のシードの解凍に unxz を使います
@@ -118,21 +118,21 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 #### 例: 動作に必要なライブラリのインストール
 - CentOS の場合
 
-    $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
+       $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
 
-    $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
+       $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
 
 - Fedora の場合
 
-    $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
+      $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz
 
 - Ubuntu の場合
 
-    $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
+      $ sudo aptitude install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
 
 - macOS の場合
 
-    $ brew install mecab mecab-ipadic git curl xz
+      $ brew install mecab mecab-ipadic git curl xz
 
 - Windows 10 バージョン 1607 以降の場合
 
@@ -143,13 +143,13 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     BoW 環境で以下を実行します。
 
-    $ sudo aptitude update
+      $ sudo aptitude update
 
-    $ sudo aptitude upgrade
+      $ sudo aptitude upgrade
 
-    $ sudo aptitude install make automake autoconf autotools-dev m4 mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
+      $ sudo aptitude install make automake autoconf autotools-dev m4 mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
 
-    $ sudo sed -i -e 's%/lib/mecab/dic%/share/mecab/dic%' /usr/bin/mecab-config
+      $ sudo sed -i -e 's%/lib/mecab/dic%/share/mecab/dic%' /usr/bin/mecab-config
 
     この後は Linux や macOS と同じです。
 
@@ -157,7 +157,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 辞書の元になるデータの配布と更新は GitHub 経由で行います。
 
-初回は以下のコマンドでgit cloneしてください。
+初回は以下のコマンドで`git clone`してください。
 
     $ git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
 
@@ -165,7 +165,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
     $ git clone --depth 1 git@github.com:neologd/mecab-ipadic-neologd.git
 
-もしも、リポジトリの全変更履歴を入手したい方は「--depth 1」を消してcloneして下さい。
+もしも、リポジトリの全変更履歴を入手したい方は`--depth 1`を消してcloneして下さい。
 
 全変更履歴のデータサイズは変動しますが、ピーク時は約 1GB となり、かなり大容量ですのでご注意下さい。
 
@@ -190,7 +190,7 @@ apt、yum や homebrew でインストールするか、自前でコンパイル
 
 cron(説明は省略します)などで自動的に更新したい場合に便利なオプションは既にあります。
 
-例えば下記の様な 2 行を crontab などに書いた場合は、火・金曜日の午前 3 時に解析結果を確認せずに(-y)ユーザ権限(-u)で指定したディレクリトリに(-p [/path/to/user/directory])ある辞書ファイルが更新されます。
+例えば下記の様な 2 行を crontab などに書いた場合は、火・金曜日の午前 3 時に解析結果を確認せずに(`-y`)ユーザ権限(`-u`)で指定したディレクリトリに(`-p [/path/to/user/directory]`)ある辞書ファイルが更新されます。
 
     00 03 * * 2 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory > /path/to/log/file
     00 03 * * 5 ./bin/install-mecab-ipadic-neologd -n -y -u -p /path/to/user/directory > /path/to/log/file
@@ -202,14 +202,14 @@ cron(説明は省略します)などで自動的に更新したい場合に便�
 ### 全部入りな mecab-ipadic-NEologd を簡単にインストールする方法
 標準インストールでは一部の辞書ファイルがインストールされません。
 
-オプションで個別に指定しても良いですが、-a オプションを指定すると全部入り状態でインストールできます。
+オプションで個別に指定しても良いですが、`-a` オプションを指定すると全部入り状態でインストールできます。
 
     $ ./bin/install-mecab-ipadic-neologd -n -a
 
 全部入りな辞書を構築する際の最低メモリ使用量は2GByte弱です。
 
 ### mecab-ipadic-NEologd の使用方法
-mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
+mecab-ipadic-NEologd を使いたいときは、MeCab の `-d` オプションにカスタムシステム辞書のパス(例: */lib/mecab/dic/mecab-ipadic-neologd/)を指定してください。
 
 #### 例 (CentOS 上でインストールした場合)
 
@@ -217,7 +217,7 @@ mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションに�
 
 ## MeCabの実行結果の例
 ### mecab-ipadic-NEologd をシステム辞書として使った場合
-    $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
+    $ echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd
     10日    名詞,固有名詞,一般,*,*,*,10日,トオカ,トオカ
     放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
     の      助詞,連体化,*,*,*,*,の,ノ,ノ
@@ -256,7 +256,7 @@ mecab-ipadic-NEologd を使いたいときは、MeCab の -d オプションに�
 - mecab-ipadic-NEologd に収録されているほとんどの語にフリガナが付いています
 
 ### 標準のシステム辞書(ipadic-2.7.0)を使った場合
-    $echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab
+    $ echo "10日放送の「中居正広のミになる図書館」（テレビ朝日系）で、SMAPの中居正広が、篠原信一の過去の勘違いを明かす一幕があった。" | mecab
     10      名詞,数,*,*,*,*,*
     日      名詞,接尾,助数詞,*,*,*,日,ニチ,ニチ
     放送    名詞,サ変接続,*,*,*,*,放送,ホウソウ,ホーソー
