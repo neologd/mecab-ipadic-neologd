@@ -88,7 +88,7 @@ Web上の文書の解析をする際には、この辞書と標準のシステ�
 とはいえ、"--eliminate-redundant-entry" オプションは開発側としては一切オススメしません。
 その他のインストール時のオプションは下記のコマンドで確認できます。
 
-    ./bin//install-mecab-ipadic-neologd --help
+    ./bin/install-mecab-ipadic-neologd --help
 
 ### 動作に必要なもの
 
