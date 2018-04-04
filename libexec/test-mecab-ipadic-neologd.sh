@@ -40,18 +40,18 @@ MECAB_DIC_DIR=${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 
 echo "$ECHO_PREFIX Get buzz phrases"
 
-curl https://searchranking.yahoo.co.jp/realtime_buzz/ -o "/tmp/realtime_buzz.html"
+CURRENT_UNIXTIME=`date +%s`
+curl 'https://search.yahoo.co.jp/?ajax=1&prop=realtime&_=${CURRENT_UNIXTIME}' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.33 Safari/537.36' -H 'accept: application/json, text/javascript, */*; q=0.01' -H 'referer: https://search.yahoo.co.jp/' -H 'authority: search.yahoo.co.jp' -H 'x-requested-with: XMLHttpRequest' --compressed -o "/tmp/realtime_buzz.json"
 
 if [ $? != 0 ]; then
     echo ""
     echo "$ECHO_PREFIX Failed to get the buzz phrases"
-    echo "$ECHO_PREFIX Please check your network to download 'http://searchranking.yahoo.co.jp/realtime_buzz/'"
+    echo "$ECHO_PREFIX Please check your network to download 'https://search.yahoo.co.jp/#!/realtime'"
     exit 1;
 fi
 
-sed -i -e "/\n/d" /tmp/realtime_buzz.html
-cat /tmp/realtime_buzz.html | perl -ne '$l = $_;  if ($l =~ m|<h3><a href="https?://rdsig\.yahoo\.co\.jp.+?">(.+)</a></h3>|g){ print $1."\n";}' > /tmp/buzz_phrase
-rm /tmp/realtime_buzz.html
+cat /tmp/realtime_buzz.json | perl -Xpne 's/\\u([0-9a-fA-F]{4})/chr(hex($1))/eg' | perl -ne '$l = $_; while ($l =~ m|<a [^>]+realtime[^>]+>([^<]+)<\\/a>|g) {print $1."\n"}' > /tmp/buzz_phrase
+rm /tmp/realtime_buzz.json
 
 PHRASE_FILE=/tmp/buzz_phrase
 if [ ! -s ${PHRASE_FILE} ]; then
