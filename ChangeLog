@@ -1,5 +1,10 @@
 # Release 20180329-01
 
+### Updated command line tool
+* libexec/test-mecab-ipadic-neologd.sh
+	execute: Update a processing to get a buzz phrase list
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/d8e414b256400aeb939429c8db52ed0815c8eaff
+
 ### New seed data
 * seed/mecab-user-dict-seed.20180329.csv.xz
 	execute: Periodic data update on 2018-03-29(Thu)
