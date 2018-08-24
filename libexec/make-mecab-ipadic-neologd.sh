@@ -64,18 +64,28 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
         exit 1
     fi
 
-    curl --insecure -L "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" -o "${ORG_DIC_NAME}.tar.gz"
-    if [ $? != 0 ]; then
-        echo ""
-        echo "$ECHO_PREFIX Failed to download $ORG_DIC_NAME"
-        echo "$ECHO_PREFIX Please check your network to download 'https://mecab.googlecode.com/files/${ORG_DIC_NAME}.tar.gz'"
-        exit 1;
-    fi
+    ORG_DIC_URL_LIST=()
+    # download from google drive
+    ORG_DIC_URL_LIST[0]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
+    # download from ja.osdn.net
+    ORG_DIC_URL_LIST[1]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
+    for (( I = 0; I < ${#ORG_DIC_URL_LIST[@]}; ++I ))
+    do
+        curl --insecure -L "${ORG_DIC_URL_LIST[${I}]}" -o "${ORG_DIC_NAME}.tar.gz"
+        if [ $? != 0 ]; then
+            echo ""
+            echo "$ECHO_PREFIX Failed to download $ORG_DIC_NAME"
+            echo "$ECHO_PREFIX Please check your network to download '${ORG_DIC_URL_LIST[${I}]}'"
+            exit 1;
+        elif [ `openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2` == "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
+            break 1
+        fi
+    done
 else
     echo "$ECHO_PREFIX Original mecab-ipadic file is already there."
 fi
 
-if [ `openssl sha1 ${BASEDIR}/../build/mecab-ipadic-2.7.0-20070801.tar.gz | cut -d $' ' -f 2,2` != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
+if [ `openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2` != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
     echo "$ECHO_PREFIX Fail to download ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz"
     echo "$ECHO_PREFIX You should remove ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz before retrying to install mecab-ipadic-NEologd"
     echo "$ECHO_PREFIX        rm -rf ${BASEDIR}/../build/${ORG_DIC_NAME}"
