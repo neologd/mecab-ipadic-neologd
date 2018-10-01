@@ -71,6 +71,7 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     ORG_DIC_URL_LIST[1]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
     for (( I = 0; I < ${#ORG_DIC_URL_LIST[@]}; ++I ))
     do
+        echo "$ECHO_PREFIX Try to download from ${ORG_DIC_URL_LIST[${I}]}"
         curl --insecure -L "${ORG_DIC_URL_LIST[${I}]}" -o "${ORG_DIC_NAME}.tar.gz"
         if [ $? != 0 ]; then
             echo ""
@@ -78,7 +79,9 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
             echo "$ECHO_PREFIX Please check your network to download '${ORG_DIC_URL_LIST[${I}]}'"
             exit 1;
         elif [ `openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2` == "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
-            break 1
+            echo ""
+            echo "Hash value of ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz don't match"
+            continue 1
         fi
     done
 else
