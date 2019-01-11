@@ -399,7 +399,7 @@ mecab-ipadic-NEologd 使ってみて良い結果が得られた時は、ぜひ�
 とても大きな励みになります。
 
 ## Copyrights
-Copyright (c) 2015-2018 Toshinori Sato (@overlast) All rights reserved.
+Copyright (c) 2015-2019 Toshinori Sato (@overlast) All rights reserved.
 
 ライセンスは Apache License, Version 2.0 です。下記をご参照下さい。
 

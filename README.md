@@ -290,7 +290,7 @@ Please use the following bibtex, when you refer mecab-ipadic-NEologd from your p
 Please star this github repository if mecab-ipadic-NEologd is very useful to your project ;)
 
 ## Copyrights
-Copyright (c) 2015-2018 Toshinori Sato (@overlast) All rights reserved.
+Copyright (c) 2015-2019 Toshinori Sato (@overlast) All rights reserved.
 
 We select the 'Apache License, Version 2.0'. Please check following link.
 
