@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# Copyright (C) 2015-2018 Toshinori Sato (@overlast)
+# Copyright (C) 2015-2019 Toshinori Sato (@overlast)
 #
 #       https://github.com/neologd/mecab-ipadic-neologd
 #
