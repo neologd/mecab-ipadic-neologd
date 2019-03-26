@@ -54,21 +54,32 @@ ORG_DIC_NAME=mecab-ipadic-2.7.0-20070801
 NEOLOGD_DIC_NAME=mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 
 if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
-    STATUS_CODE=`curl --insecure -IL https://drive.google.com -s -w '%{http_code}\n' -o /dev/null`
-    if [ ${STATUS_CODE} = 200 ]; then
-        IS_NETWORK_ONLINE=1
-    else
-        echo "$ECHO_PREFIX Unable to access https://drive.google.com/"
-        echo "$ECHO_PREFIX     Status code : ${STATUS_CODE}"
+    DIST_SITE_URL_LIST=()
+    DIST_SITE_URL_LIST[0]="https://ja.osdn.net"
+    DIST_SITE_URL_LIST[1]="https://drive.google.com"
+    IS_NETWORK_ONLINE=0
+    for (( I = 0; I < ${#DIST_SITE_URL_LIST[@]}; ++I ))
+    do
+        echo "$ECHO_PREFIX Try to access to ${DIST_SITE_URL_LIST[${I}]}"
+        STATUS_CODE=`curl --insecure -IL ${DIST_SITE_URL_LIST[${I}]} -s -w '%{http_code}\n' -o /dev/null`
+        if [ ${STATUS_CODE} = 200 ]; then
+            IS_NETWORK_ONLINE=1
+            break
+        else
+            echo "$ECHO_PREFIX Unable to access ${DIST_SITE_URL_LIST[${I}]}"
+            echo "$ECHO_PREFIX     Status code : ${STATUS_CODE}"
+        fi
+    done
+    if [ ${IS_NETWORK_ONLINE} != 1 ]; then
         echo "$ECHO_PREFIX Install error, please retry after re-connecting to network"
         exit 1
     fi
 
     ORG_DIC_URL_LIST=()
-    # download from google drive
-    ORG_DIC_URL_LIST[0]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
     # download from ja.osdn.net
-    ORG_DIC_URL_LIST[1]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
+    ORG_DIC_URL_LIST[0]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
+    # download from google drive
+    ORG_DIC_URL_LIST[1]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
     for (( I = 0; I < ${#ORG_DIC_URL_LIST[@]}; ++I ))
     do
         echo "$ECHO_PREFIX Try to download from ${ORG_DIC_URL_LIST[${I}]}"
@@ -77,11 +88,13 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
             echo ""
             echo "$ECHO_PREFIX Failed to download $ORG_DIC_NAME"
             echo "$ECHO_PREFIX Please check your network to download '${ORG_DIC_URL_LIST[${I}]}'"
-            exit 1;
-        elif [ `openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2` == "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
+            continue 1
+        elif [ `openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2` != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
             echo ""
             echo "Hash value of ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz don't match"
-            continue 1
+        else
+            echo "Hash value of ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz matched"
+            break 1;
         fi
     done
 else
