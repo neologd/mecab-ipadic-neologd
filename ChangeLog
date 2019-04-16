@@ -1,6 +1,11 @@
 # Release 20190415-01
 
 ### New seed data
+
+* seed/neologd-date-time-infreq-dict-seed.20190415.csv.xz, seed/neologd-date-time-infreq-dict-seed.20190415.csv.xz
+	execute: Periodic data update on 2019-04-15(Mon)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/e78e7c252b5b3b6fae233f6ab738cf1d90648664
+
 * seed/mecab-user-dict-seed.20190415.csv.xz
 	execute: Periodic data update on 2019-04-15(Mon)
 	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/35affc59fdd87261eebc6f40361e011b48a467b1
