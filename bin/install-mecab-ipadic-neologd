@@ -348,9 +348,9 @@ if [ ${WANNA_UPDATE} = 1 ]; then
     if [ `git log refs/heads/master --pretty=%H | head -1` = `git ls-remote origin -h refs/heads/master |cut -f1` ]; then
         echo "$ECHO_PREFIX mecab-ipadic-NEologd is already up-to-date"
     else
-        ${IS_WINDOWS_OS}=""
+        IS_WINDOWS_OS=""
         if [ -e /proc ] && [ -e /proc/version ]; then
-            ${IS_WINDOWS_OS}=`grep -n Microsoft /proc/version | head -1 | cut -d $':' -f 1`
+            IS_WINDOWS_OS=`grep -n Microsoft /proc/version | head -1 | cut -d $':' -f 1`
         fi
 
         if [ "${IS_WINDOWS_OS}" = "1" ]; then
