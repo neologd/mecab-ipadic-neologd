@@ -369,7 +369,11 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${ADJECTIVE_VERB_SEED_FILE_NAME}"
 fi
 
+<<<<<<< HEAD
 INFREQ_DATETIME_SEED_FILE_NAME=neologd-date-time-infreq-dict-seed.20190415.csv
+=======
+INFREQ_DATETIME_SEED_FILE_NAME=neologd-date-time-infreq-dict-seed.20181004.csv
+>>>>>>> 2a6390789b3e50cbd26ba2bf93f6cda545f39b60
 if [ -f ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
         WANNA_INSTALL_INFREQ_DATETIME=1
@@ -390,7 +394,11 @@ else
     echo "${ECHO_PREFIX} We can't intall ${BASEDIR}/../seed/${INFREQ_DATETIME_SEED_FILE_NAME}"
 fi
 
+<<<<<<< HEAD
 INFREQ_QUANTITY_SEED_FILE_NAME=neologd-quantity-infreq-dict-seed.20190415.csv
+=======
+INFREQ_QUANTITY_SEED_FILE_NAME=neologd-quantity-infreq-dict-seed.20181004.csv
+>>>>>>> 2a6390789b3e50cbd26ba2bf93f6cda545f39b60
 if [ -f ${BASEDIR}/../seed/${INFREQ_QUANTITY_SEED_FILE_NAME}.xz ]; then
     if [ ${WANNA_INSRALL_ALL_SEED_FILES} -gt 0 ]; then
         WANNA_INSTALL_INFREQ_QUANTITY=1
