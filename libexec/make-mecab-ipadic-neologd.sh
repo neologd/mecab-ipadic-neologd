@@ -57,12 +57,14 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     DIST_SITE_URL_LIST=()
     DIST_SITE_URL_LIST[0]="https://ja.osdn.net"
     DIST_SITE_URL_LIST[1]="https://drive.google.com"
+    DIST_SITE_URL_LIST[2]="https://sourceforge.net"
+
     IS_NETWORK_ONLINE=0
     for (( I = 0; I < ${#DIST_SITE_URL_LIST[@]}; ++I ))
     do
         echo "$ECHO_PREFIX Try to access to ${DIST_SITE_URL_LIST[${I}]}"
-        STATUS_CODE=`curl --insecure -IL ${DIST_SITE_URL_LIST[${I}]} -s -w '%{http_code}\n' -o /dev/null`
-        if [ ${STATUS_CODE} = 200 ]; then
+        STATUS_CODE=`curl -k --insecure -IL ${DIST_SITE_URL_LIST[${I}]} -s -w '%{http_code}\n' -o /dev/null` || true
+        if [ "${STATUS_CODE}" = 200 ]; then
             IS_NETWORK_ONLINE=1
             break
         else
@@ -80,16 +82,20 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     ORG_DIC_URL_LIST[0]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
     # download from google drive
     ORG_DIC_URL_LIST[1]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
+    # download from sourceforge
+    ORG_DIC_URL_LIST[2]="https://sourceforge.net/projects/mecab/files/mecab-ipadic/2.7.0-20070801/mecab-ipadic-2.7.0-20070801.tar.gz/download?use_mirror=autoselect#"
     for (( I = 0; I < ${#ORG_DIC_URL_LIST[@]}; ++I ))
     do
         echo "$ECHO_PREFIX Try to download from ${ORG_DIC_URL_LIST[${I}]}"
-        curl --insecure -L "${ORG_DIC_URL_LIST[${I}]}" -o "${ORG_DIC_NAME}.tar.gz"
+        curl --insecure -L "${ORG_DIC_URL_LIST[${I}]}" -o "${ORG_DIC_NAME}.tar.gz"  || true
         if [ $? != 0 ]; then
             echo ""
             echo "$ECHO_PREFIX Failed to download $ORG_DIC_NAME"
             echo "$ECHO_PREFIX Please check your network to download '${ORG_DIC_URL_LIST[${I}]}'"
             continue 1
-        elif [ `openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2` != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
+	fi
+	TMP_IPADIC_HASH_VAL=`openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2`
+        if [ "${TMP_IPADIC_HASH_VAL}" != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
             echo ""
             echo "Hash value of ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz don't match"
         else
@@ -101,7 +107,8 @@ else
     echo "$ECHO_PREFIX Original mecab-ipadic file is already there."
 fi
 
-if [ `openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2` != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
+IPADIC_HASH_VAL=`openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2`
+if [ "${IPADIC_HASH_VAL}" != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
     echo "$ECHO_PREFIX Fail to download ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz"
     echo "$ECHO_PREFIX You should remove ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz before retrying to install mecab-ipadic-NEologd"
     echo "$ECHO_PREFIX        rm -rf ${BASEDIR}/../build/${ORG_DIC_NAME}"
