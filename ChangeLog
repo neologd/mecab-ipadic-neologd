@@ -1,3 +1,14 @@
+# Release 20190902-01
+
+### New seed data
+* seed/mecab-user-dict-seed.20190902.csv.xz
+	execute: Periodic data update on 2019-09-02(Mon)
+	commit: https://github.com/neologd/mecab-ipadic-neologd/commit/0534a3c542f1a2f5b50da4dac6e34cc9e3508537
+
+	Today is @overlast's birthday.
+	Thank you for your supporting !!
+	https://www.amazon.co.jp/hz/wishlist/ls/215KD7HCB406E
+
 # Release 20190829-01
 
 ### New seed data
