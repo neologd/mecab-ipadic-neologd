@@ -1,7 +1,7 @@
 # mecab-ipadic-NEologd : Neologism dictionary for MeCab
 <img src="https://raw.githubusercontent.com/neologd/mecab-ipadic-neologd/images/neologd-logo-September2016.png" width="250">
 
-[![Build Status](https://travis-ci.org/neologd/mecab-ipadic-neologd.svg?branch=master)](https://travis-ci.org/neologd/mecab-ipadic-neologd)
+[![Build Status](https://travis-ci.org/pypt/mecab-ipadic-neologd-publish-builds.svg?branch=master)](https://travis-ci.org/pypt/mecab-ipadic-neologd-publish-builds)
 
 ## 詳細な情報
 mecab-ipadic-NEologd に関する詳細な情報(サンプルコードなど)は以下の Wiki に書いてあります。

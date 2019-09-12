@@ -1,7 +1,7 @@
 # mecab-ipadic-NEologd : Neologism dictionary for MeCab
 <img src="https://raw.githubusercontent.com/neologd/mecab-ipadic-neologd/images/neologd-logo-September2016.png" width="250">
 
-[![Build Status](https://travis-ci.org/neologd/mecab-ipadic-neologd.svg?branch=master)](https://travis-ci.org/neologd/mecab-ipadic-neologd)
+[![Build Status](https://travis-ci.org/pypt/mecab-ipadic-neologd-publish-builds.svg?branch=master)](https://travis-ci.org/pypt/mecab-ipadic-neologd-publish-builds)
 
 ## For Japanese
 README.ja.md is written in Japanese.
@@ -51,7 +51,59 @@ When you analyze the Web documents, it's better to use this system dictionary an
 - Corresponding to only UTF-8
     - You should install the UTF-8 version of MeCab
 
-## Getting started
+## Installing mecab-ipadic-NEologd
+
+### Debian / Ubuntu
+
+You can download pre-build mecab-ipadic-neologd `.deb` packages via APT:
+
+```bash
+# Add Bintray's GPG key
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 379CE192D401AB61
+
+# Add mecab-ipadic-neologd APT repository
+echo "deb https://dl.bintray.com/neologd-unofficial/mecab-ipadic-neologd-deb stable main" | sudo tee -a /etc/apt/sources.list.d/mecab-ipadic-neologd.list
+
+# Update APT package listing
+sudo apt-get -y update
+
+# Install mecab-ipadic-neologd
+sudo apt-get -y install mecab-ipadic-neologd
+```
+
+or from our [GitHub releases](releases) page.
+
+mecab-ipadic-NEologd data files will be available at `/var/lib/mecab/dic/ipadic-neologd`.
+
+### Red Hat / CentOS
+
+You can download pre-build mecab-ipadic-neologd `.rpm` packages via YUM:
+
+```bash
+# Add repository that provides mecab RPM
+sudo yum install -y https://packages.groonga.org/centos/groonga-release-latest.noarch.rpm
+sudo yum makecache
+
+# Add mecab-ipadic-neologd YUM repository
+sudo curl https://bintray.com/neologd-unofficial/mecab-ipadic-neologd-rpm/rpm -o /etc/yum.repos.d/mecab-ipadic-neologd.repo
+
+# Install mecab-ipadic-neologd
+sudo yum install -y mecab-ipadic-neologd
+```
+
+or from our [GitHub releases](releases) page.
+
+mecab-ipadic-NEologd data files will be available at `/usr/lib64/mecab/dic/ipadic-neologd`.
+
+### Tarball
+
+You can download pre-build mecab-ipadic-NEologd tarball packages from:
+
+**<https://bintray.com/neologd-unofficial/mecab-ipadic-neologd-tgz>**
+
+or from our [GitHub releases](releases) page.
+
+## Building mecab-ipadic-NEologd yourself
 
 ### Memory requirements
 - Required: 1.5GB of RAM
