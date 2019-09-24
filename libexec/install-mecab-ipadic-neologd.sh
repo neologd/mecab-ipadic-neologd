@@ -52,8 +52,12 @@ done
 cd ${BUILT_DIC_DIR}
 
 CUR_USER_ID=`id | cut -d $'=' -f 2 | cut -d $'(' -f 1`
-DIR_USER_ID=`ls -na ${INSTALL_DIR_PATH%/*} | head -2 | tail -1 | awk '{ print $3 }'`
-if [ ${CUR_USER_ID} -eq ${DIR_USER_ID} ]; then
+if [ -d ${INSTALL_DIR_PATH%/*} ]; then
+    DIR_USER_ID=`ls -na ${INSTALL_DIR_PATH%/*} | head -2 | tail -1 | awk '{ print $3 }'`
+else
+    DIR_USER_ID=""
+fi
+if [ ! -z "${DIR_USER_ID}" ] && [ ${CUR_USER_ID} -eq ${DIR_USER_ID} ]; then
     echo "$ECHO_PREFIX ${INSTALL_DIR_PATH%/*} is current user's directory"
     if [ ${INSTALL_AS_SUDOER} -eq 1 ]; then
         echo "$ECHO_PREFIX Sudo make install to ${INSTALL_DIR_PATH}"
