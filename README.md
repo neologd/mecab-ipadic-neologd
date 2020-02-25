@@ -137,7 +137,7 @@ If you use following command, you can check useful command line option.
     $ ./bin/install-mecab-ipadic-neologd -h
 
 ### How to use mecab-ipadic-NEologd
-When you want to use mecab-ipadic-NEologd, you should set the path of custom system dictionay(*/lib/mecab/dic/mecab-ipadic-neologd/) as -d option of MeCab.
+When you want to use mecab-ipadic-NEologd, you should set the path of custom system dictionary(*/lib/mecab/dic/mecab-ipadic-neologd/) as -d option of MeCab.
 
 #### Example (on CentOS)
 $ mecab -d /usr/local/lib/mecab/dic/mecab-ipadic-neologd/
