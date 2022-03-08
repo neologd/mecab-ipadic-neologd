@@ -85,7 +85,7 @@ Please install at any time other lack library.
 #### Examples
 - On CentOS
 
-    $ sudo rpm -ivh http://packages.groonga.org/centos/groonga-release-1.1.0-1.noarch.rpm
+    $ sudo yum install http://packages.groonga.org/centos/7/groonga-release-latest.noarch.rpm
 
     $ sudo yum install mecab mecab-devel mecab-ipadic git make curl xz patch
 
