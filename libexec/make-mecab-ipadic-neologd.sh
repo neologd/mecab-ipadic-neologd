@@ -78,10 +78,10 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     fi
 
     ORG_DIC_URL_LIST=()
-    # download from ja.osdn.net
-    ORG_DIC_URL_LIST[0]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
     # download from google drive
-    ORG_DIC_URL_LIST[1]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
+    ORG_DIC_URL_LIST[0]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
+    # download from ja.osdn.net
+    ORG_DIC_URL_LIST[1]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
     # download from sourceforge
     ORG_DIC_URL_LIST[2]="https://sourceforge.net/projects/mecab/files/mecab-ipadic/2.7.0-20070801/mecab-ipadic-2.7.0-20070801.tar.gz/download?use_mirror=autoselect#"
     for (( I = 0; I < ${#ORG_DIC_URL_LIST[@]}; ++I ))
@@ -97,7 +97,8 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
 	TMP_IPADIC_HASH_VAL=`openssl sha1 ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz | cut -d $' ' -f 2,2`
         if [ "${TMP_IPADIC_HASH_VAL}" != "0d9d021853ba4bb4adfa782ea450e55bfe1a229b" ]; then
             echo ""
-            echo "Hash value of ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz don't match"
+            echo "Hash value of ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz"
+            echo "    ${TMP_IPADIC_HASH_VAL} != 0d9d021853ba4bb4adfa782ea450e55bfe1a229b"
         else
             echo "Hash value of ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz matched"
             break 1;
