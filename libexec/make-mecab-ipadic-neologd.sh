@@ -55,9 +55,8 @@ NEOLOGD_DIC_NAME=mecab-ipadic-2.7.0-20070801-neologd-${YMD}
 
 if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     DIST_SITE_URL_LIST=()
-    DIST_SITE_URL_LIST[0]="https://ja.osdn.net"
-    DIST_SITE_URL_LIST[1]="https://drive.google.com"
-    DIST_SITE_URL_LIST[2]="https://sourceforge.net"
+    DIST_SITE_URL_LIST[0]="https://drive.google.com"
+    DIST_SITE_URL_LIST[1]="https://sourceforge.net"
 
     IS_NETWORK_ONLINE=0
     for (( I = 0; I < ${#DIST_SITE_URL_LIST[@]}; ++I ))
@@ -78,12 +77,10 @@ if [ ! -e ${BASEDIR}/../build/${ORG_DIC_NAME}.tar.gz ]; then
     fi
 
     ORG_DIC_URL_LIST=()
-    # download from ja.osdn.net
-    ORG_DIC_URL_LIST[0]="https://ja.osdn.net/frs/g_redir.php?m=kent&f=mecab%2Fmecab-ipadic%2F2.7.0-20070801%2F${ORG_DIC_NAME}.tar.gz"
     # download from google drive
-    ORG_DIC_URL_LIST[1]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
+    ORG_DIC_URL_LIST[0]="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
     # download from sourceforge
-    ORG_DIC_URL_LIST[2]="https://sourceforge.net/projects/mecab/files/mecab-ipadic/2.7.0-20070801/mecab-ipadic-2.7.0-20070801.tar.gz/download?use_mirror=autoselect#"
+    ORG_DIC_URL_LIST[1]="https://sourceforge.net/projects/mecab/files/mecab-ipadic/2.7.0-20070801/mecab-ipadic-2.7.0-20070801.tar.gz/download?use_mirror=autoselect#"
     for (( I = 0; I < ${#ORG_DIC_URL_LIST[@]}; ++I ))
     do
         echo "$ECHO_PREFIX Try to download from ${ORG_DIC_URL_LIST[${I}]}"
